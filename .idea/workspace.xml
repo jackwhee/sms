@@ -1,0 +1,1599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ffa78489-7478-40b6-b589-facfb01223b2" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="sms_02@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="sms_02@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="sms_02@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="sms_02: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/salary">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state projectRestartId="a8c8a62a-9103-4f9b-be5a-0b5967e8aff0">
+              <filtering>
+                <filter text="" />
+              </filtering>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/users/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="130" column="89" selection-start-line="130" selection-start-column="89" selection-end-line="130" selection-end-column="89" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/users/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="94">
+              <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+              <folding>
+                <element signature="e#39#50#0" expanded="true" />
+                <element signature="e#630#2711#0" />
+                <element signature="e#661#2599#0" />
+                <element signature="e#722#2599#0" />
+                <element signature="e#783#1082#0" />
+                <element signature="e#1135#1478#0" />
+                <element signature="e#1525#1836#0" />
+                <element signature="e#1883#2174#0" />
+                <element signature="e#2221#2460#0" />
+                <element signature="e#2498#2599#0" />
+                <element signature="e#2618#2711#0" />
+                <element signature="e#2753#74562#0" />
+                <element signature="e#3667#4795#0" />
+                <element signature="e#4700#4732#0" />
+                <element signature="e#4804#4894#0" />
+                <element signature="e#4988#6378#0" />
+                <element signature="e#5085#5219#0" />
+                <element signature="e#5281#5373#0" />
+                <element signature="e#5456#6060#0" />
+                <element signature="e#5456#5484#0" />
+                <element signature="e#5553#5931#0" />
+                <element signature="e#5621#5792#0" />
+                <element signature="e#5843#5931#0" />
+                <element signature="e#5976#6060#0" />
+                <element signature="e#6124#6378#0" />
+                <element signature="e#6216#6334#0" />
+                <element signature="e#6461#6470#0" />
+                <element signature="e#6676#6959#0" />
+                <element signature="e#7022#7536#0" />
+                <element signature="e#7271#7359#0" />
+                <element signature="e#7410#7536#0" />
+                <element signature="e#7595#7913#0" />
+                <element signature="e#7595#7613#0" />
+                <element signature="e#7967#9186#0" />
+                <element signature="e#8050#8200#0" />
+                <element signature="e#8279#8379#0" />
+                <element signature="e#8478#9186#0" />
+                <element signature="e#8478#8506#0" />
+                <element signature="e#8599#9033#0" />
+                <element signature="e#8675#8870#0" />
+                <element signature="e#8937#9033#0" />
+                <element signature="e#9094#9186#0" />
+                <element signature="e#9270#9421#0" />
+                <element signature="e#9664#10718#0" />
+                <element signature="e#10851#10964#0" />
+                <element signature="e#11176#24090#0" />
+                <element signature="e#11215#23784#0" />
+                <element signature="e#11204#11487#0" />
+                <element signature="e#11546#11882#0" />
+                <element signature="e#11945#12459#0" />
+                <element signature="e#12194#12282#0" />
+                <element signature="e#12333#12459#0" />
+                <element signature="e#12517#12835#0" />
+                <element signature="e#12517#12535#0" />
+                <element signature="e#12896#13212#0" />
+                <element signature="e#12896#12914#0" />
+                <element signature="e#13266#14485#0" />
+                <element signature="e#13318#13468#0" />
+                <element signature="e#13578#13678#0" />
+                <element signature="e#13777#14485#0" />
+                <element signature="e#13777#13805#0" />
+                <element signature="e#13898#14332#0" />
+                <element signature="e#13974#14169#0" />
+                <element signature="e#14236#14332#0" />
+                <element signature="e#14393#14485#0" />
+                <element signature="e#14544#22094#0" />
+                <element signature="e#16837#17059#0" />
+                <element signature="e#17100#18246#0" />
+                <element signature="e#18442#21046#0" />
+                <element signature="e#19275#19497#0" />
+                <element signature="e#19810#19907#0" />
+                <element signature="e#20144#20168#0" />
+                <element signature="e#20371#20405#0" />
+                <element signature="e#20762#20787#0" />
+                <element signature="e#21142#21262#0" />
+                <element signature="e#22340#22352#0" />
+                <element signature="e#22502#22540#0" />
+                <element signature="e#23066#23740#0" />
+                <element signature="e#23809#24391#0" />
+                <element signature="e#24459#25039#0" />
+                <element signature="e#26917#26970#0" />
+                <element signature="e#32666#32916#0" />
+                <element signature="e#32985#33213#0" />
+                <element signature="e#33282#33801#0" />
+                <element signature="e#33516#33608#0" />
+                <element signature="e#33667#33801#0" />
+                <element signature="e#34065#34403#0" />
+                <element signature="e#34481#34762#0" />
+                <element signature="e#34839#36419#0" />
+                <element signature="e#34965#35040#0" />
+                <element signature="e#35460#35814#0" />
+                <element signature="e#36120#36300#0" />
+                <element signature="e#36604#38227#0" />
+                <element signature="e#36686#37422#0" />
+                <element signature="e#37117#37213#0" />
+                <element signature="e#37280#37422#0" />
+                <element signature="e#37483#38227#0" />
+                <element signature="e#37922#38018#0" />
+                <element signature="e#38085#38227#0" />
+                <element signature="e#38502#38665#0" />
+                <element signature="e#38963#41691#0" />
+                <element signature="e#40064#40306#0" />
+                <element signature="e#40347#41561#0" />
+                <element signature="e#41758#41875#0" />
+                <element signature="e#41936#42049#0" />
+                <element signature="e#42073#42097#0" />
+                <element signature="e#42564#43045#0" />
+                <element signature="e#42760#42852#0" />
+                <element signature="e#42911#43045#0" />
+                <element signature="e#43111#44189#0" />
+                <element signature="e#43160#44017#0" />
+                <element signature="e#44076#44189#0" />
+                <element signature="e#44285#47751#0" />
+                <element signature="e#44285#44374#0" />
+                <element signature="e#44560#44673#0" />
+                <element signature="e#45648#47157#0" />
+                <element signature="e#47331#47525#0" />
+                <element signature="e#47586#47751#0" />
+                <element signature="e#47828#48176#0" />
+                <element signature="e#48259#51646#0" />
+                <element signature="e#48282#51646#0" />
+                <element signature="e#48340#48364#0" />
+                <element signature="e#49062#51510#0" />
+                <element signature="e#49192#49773#0" />
+                <element signature="e#49816#51426#0" />
+                <element signature="e#51545#51646#0" />
+                <element signature="e#51689#57975#0" />
+                <element signature="e#51784#53873#0" />
+                <element signature="e#51784#51796#0" />
+                <element signature="e#51907#52005#0" />
+                <element signature="e#52167#52292#0" />
+                <element signature="e#52425#52524#0" />
+                <element signature="e#52606#52848#0" />
+                <element signature="e#52904#53873#0" />
+                <element signature="e#52977#53112#0" />
+                <element signature="e#53130#53156#0" />
+                <element signature="e#53357#53789#0" />
+                <element signature="e#53531#53789#0" />
+                <element signature="e#53923#57975#0" />
+                <element signature="e#53992#54090#0" />
+                <element signature="e#54392#56410#0" />
+                <element signature="e#54459#55988#0" />
+                <element signature="e#54597#54709#0" />
+                <element signature="e#55023#55595#0" />
+                <element signature="e#55137#55238#0" />
+                <element signature="e#55316#55417#0" />
+                <element signature="e#55494#55595#0" />
+                <element signature="e#56049#56261#0" />
+                <element signature="e#56305#56410#0" />
+                <element signature="e#56464#57189#0" />
+                <element signature="e#56504#56767#0" />
+                <element signature="e#56828#57040#0" />
+                <element signature="e#57084#57189#0" />
+                <element signature="e#57243#57838#0" />
+                <element signature="e#57457#57621#0" />
+                <element signature="e#57874#57975#0" />
+                <element signature="e#58021#58917#0" />
+                <element signature="e#58116#58917#0" />
+                <element signature="e#58116#58128#0" />
+                <element signature="e#58239#58337#0" />
+                <element signature="e#58507#58635#0" />
+                <element signature="e#58704#58781#0" />
+                <element signature="e#58818#58917#0" />
+                <element signature="e#58959#61089#0" />
+                <element signature="e#58959#59037#1" />
+                <element signature="e#59043#59051#0" />
+                <element signature="e#59515#60263#0" />
+                <element signature="e#59640#59739#0" />
+                <element signature="e#59794#60116#0" />
+                <element signature="e#60143#60263#0" />
+                <element signature="e#60308#61089#0" />
+                <element signature="e#60386#60485#0" />
+                <element signature="e#60580#60674#0" />
+                <element signature="e#60809#60924#0" />
+                <element signature="e#61058#61079#0" />
+                <element signature="e#61127#62969#0" />
+                <element signature="e#61127#61206#1" />
+                <element signature="e#61212#61220#0" />
+                <element signature="e#61432#62184#0" />
+                <element signature="e#61533#61632#0" />
+                <element signature="e#61688#62036#0" />
+                <element signature="e#61688#61703#0" />
+                <element signature="e#62063#62184#0" />
+                <element signature="e#62229#62969#0" />
+                <element signature="e#62307#62406#0" />
+                <element signature="e#62501#62595#0" />
+                <element signature="e#62730#62845#0" />
+                <element signature="e#63006#64660#0" />
+                <element signature="e#63006#63085#1" />
+                <element signature="e#63128#63875#0" />
+                <element signature="e#63229#63328#0" />
+                <element signature="e#63383#63728#0" />
+                <element signature="e#63383#63398#0" />
+                <element signature="e#63755#63875#0" />
+                <element signature="e#63920#64660#0" />
+                <element signature="e#63998#64097#0" />
+                <element signature="e#64192#64286#0" />
+                <element signature="e#64421#64536#0" />
+                <element signature="e#64703#65881#0" />
+                <element signature="e#64739#65324#0" />
+                <element signature="e#64829#65235#0" />
+                <element signature="e#64836#65146#0" />
+                <element signature="e#65262#65324#0" />
+                <element signature="e#65367#65881#0" />
+                <element signature="e#65459#65827#0" />
+                <element signature="e#66034#67106#0" />
+                <element signature="e#66070#66556#0" />
+                <element signature="e#66118#66493#0" />
+                <element signature="e#66302#66420#0" />
+                <element signature="e#66602#67106#0" />
+                <element signature="e#66746#67040#0" />
+                <element signature="e#66892#66991#0" />
+                <element signature="e#67137#73127#0" />
+                <element signature="e#67168#72875#0" />
+                <element signature="e#67270#71632#0" />
+                <element signature="e#67309#67601#0" />
+                <element signature="e#67652#69280#0" />
+                <element signature="e#67739#67937#0" />
+                <element signature="e#68000#68198#0" />
+                <element signature="e#68258#68409#0" />
+                <element signature="e#68472#68640#0" />
+                <element signature="e#68703#68871#0" />
+                <element signature="e#68934#69091#0" />
+                <element signature="e#69329#69509#0" />
+                <element signature="e#69565#70053#0" />
+                <element signature="e#69565#69595#0" />
+                <element signature="e#70104#70704#0" />
+                <element signature="e#70104#70184#0" />
+                <element signature="e#70798#71030#0" />
+                <element signature="e#71084#71224#0" />
+                <element signature="e#71277#71416#0" />
+                <element signature="e#71471#71553#0" />
+                <element signature="e#71813#72724#0" />
+                <element signature="e#72016#72173#0" />
+                <element signature="e#72239#72346#0" />
+                <element signature="e#72539#72723#0" />
+                <element signature="e#72950#73127#0" />
+                <element signature="e#73164#73677#0" />
+                <element signature="e#73164#73215#1" />
+                <element signature="e#73265#73622#0" />
+                <element signature="e#73433#73557#0" />
+                <element signature="e#73715#74603#0" />
+                <element signature="e#73715#73773#1" />
+                <element signature="e#73809#74093#0" />
+                <element signature="e#73881#74093#0" />
+                <element signature="e#73921#74093#0" />
+                <element signature="e#74112#74603#0" />
+                <element signature="e#74160#74540#0" />
+                <element signature="e#74344#74467#0" />
+                <element signature="e#74641#75153#0" />
+                <element signature="e#74641#74696#1" />
+                <element signature="e#74746#75098#0" />
+                <element signature="e#74914#75033#0" />
+                <element signature="e#75188#75917#0" />
+                <element signature="e#75188#75241#1" />
+                <element signature="e#75291#75862#0" />
+                <element signature="e#75459#75797#0" />
+                <element signature="e#75961#76809#0" />
+                <element signature="e#75961#76017#1" />
+                <element signature="e#76067#76754#0" />
+                <element signature="e#76235#76689#0" />
+                <element signature="e#76352#76689#0" />
+                <element signature="e#76403#76689#0" />
+                <element signature="e#76443#76689#0" />
+                <element signature="e#76844#77558#0" />
+                <element signature="e#76844#76900#1" />
+                <element signature="e#76950#77503#0" />
+                <element signature="e#77118#77438#0" />
+                <element signature="e#77235#77438#0" />
+                <element signature="e#77286#77438#0" />
+                <element signature="e#77334#77438#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sms02/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+              <folding>
+                <element signature="e#630#662#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/market">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state projectRestartId="a8c8a62a-9103-4f9b-be5a-0b5967e8aff0">
+              <filtering>
+                <filter text="" />
+              </filtering>
+              <column-attributes>
+                <column name="low" position="5" />
+                <column name="middle" position="4" />
+              </column-attributes>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/financial/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="348">
+              <caret line="99" column="4" selection-start-line="99" selection-start-column="4" selection-end-line="99" selection-end-column="10" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/school">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state projectRestartId="a8c8a62a-9103-4f9b-be5a-0b5967e8aff0">
+              <filtering>
+                <filter text="" />
+              </filtering>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/users">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state projectRestartId="a8c8a62a-9103-4f9b-be5a-0b5967e8aff0">
+              <filtering>
+                <filter text="" />
+              </filtering>
+              <column-attributes>
+                <column name="allotTime" position="29" />
+                <column name="feedbackTime" position="30" />
+                <column name="subTime" position="31" />
+                <column name="passTime" position="32" />
+                <column name="LOPTime" position="33" />
+                <column name="voucher" position="34" />
+                <column name="card_img" position="35" />
+                <column name="ambassador_id" position="36" />
+                <column name="counselor_id" position="37" />
+                <column name="pay_bq_time" position="28" />
+              </column-attributes>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/users_school">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state projectRestartId="a8c8a62a-9103-4f9b-be5a-0b5967e8aff0">
+              <filtering>
+                <filter text="" />
+              </filtering>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>search_amb</find>
+      <find>search_ds</find>
+      <find>210</find>
+      <find>201</find>
+      <find>print(1)</find>
+      <find>202</find>
+      <find>refund_s</find>
+      <find>data_generate</find>
+      <find>amb_s</find>
+      <find>base</find>
+      <find>amb_obj.username</find>
+      <find>last_month</find>
+      <find>amb_obj</find>
+      <find>stu_obj</find>
+      <find>datetime.date(year, last_month, 1</find>
+      <find>now_time</find>
+      <find>key</find>
+      <find>get</find>
+      <find>year</find>
+      <find># salary.save()</find>
+      <find>Ambassador_annual</find>
+      <find>task</find>
+      <find>Salary</find>
+      <find>约克</find>
+      <find>市场</find>
+      <find>卡尔加里大学</find>
+      <find>discount</find>
+      <find>underling_commission</find>
+      <find>qyfz</find>
+      <find>405</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>DateField</replace>
+      <replace>month_target</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/sms02/__init__.py" />
+        <option value="$PROJECT_DIR$/sms02/test.py" />
+        <option value="$PROJECT_DIR$/templates/stu_search.html" />
+        <option value="$PROJECT_DIR$/tool/openid_decorator.py" />
+        <option value="$USER_HOME$/Desktop/views.py" />
+        <option value="$PROJECT_DIR$/sms02/settings.py" />
+        <option value="$PROJECT_DIR$/users/migrations/0001_initial.py" />
+        <option value="$PROJECT_DIR$/course/models.py" />
+        <option value="$USER_HOME$/Desktop/文字处理.txt" />
+        <option value="$USER_HOME$/Desktop/test.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/users/urls.py" />
+        <option value="$PROJECT_DIR$/test_data_generate.py" />
+        <option value="$PROJECT_DIR$/tool/orm_helper.py" />
+        <option value="$PROJECT_DIR$/financial/models.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/users/models.py" />
+        <option value="$PROJECT_DIR$/users/views.py" />
+        <option value="$PROJECT_DIR$/sms02/urls.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="940" />
+    <option name="height" value="385" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="sms02" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sms02" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sms02" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sms02" type="462c0819:PsiDirectoryNode" />
+              <item name="course" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sms02" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sms02" type="462c0819:PsiDirectoryNode" />
+              <item name="financial" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sms02" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sms02" type="462c0819:PsiDirectoryNode" />
+              <item name="sms02" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sms02" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sms02" type="462c0819:PsiDirectoryNode" />
+              <item name="tool" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sms02" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sms02" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="database.console.LAST_STATE" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/文字处理.txt" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\sms\sms02" />
+      <recent name="E:\sms\sms02\sms02" />
+      <recent name="E:\sms\sms02\users" />
+      <recent name="E:\sms\sms02\users\migrations" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Django server.sms02">
+    <configuration name="models (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="sms02" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/course" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/course/models.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="models" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="sms02" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/financial" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/financial/models.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="sms02" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_data_generate" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="sms02" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_data_generate.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="sms02" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/users" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/users/views.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="sms02" type="Python.DjangoServer" factoryName="Django server">
+      <module name="sms02" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="sms02.settings" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Administrator\AppData\Local\Programs\Python\Python37\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="0.0.0.0" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django server.sms02" />
+      <item itemvalue="Python.test" />
+      <item itemvalue="Python.test_data_generate" />
+      <item itemvalue="Python.models" />
+      <item itemvalue="Python.models (1)" />
+      <item itemvalue="Python.views" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.test_data_generate" />
+        <item itemvalue="Python.views" />
+        <item itemvalue="Python.models" />
+        <item itemvalue="Python.models (1)" />
+        <item itemvalue="Python.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ffa78489-7478-40b6-b589-facfb01223b2" name="Default Changelist" comment="" />
+      <created>1566205398728</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1566205398728</updated>
+      <workItem from="1566205400143" duration="1356000" />
+      <workItem from="1566263286782" duration="20595000" />
+      <workItem from="1566351002143" duration="11100000" />
+      <workItem from="1566435582883" duration="13970000" />
+      <workItem from="1566522670576" duration="16840000" />
+      <workItem from="1566613140148" duration="10859000" />
+      <workItem from="1566781246340" duration="19236000" />
+      <workItem from="1566868436384" duration="16422000" />
+      <workItem from="1566955496100" duration="21254000" />
+      <workItem from="1567040918758" duration="21933000" />
+      <workItem from="1567127675642" duration="22630000" />
+      <workItem from="1567387500896" duration="18053000" />
+      <workItem from="1567473512920" duration="19281000" />
+      <workItem from="1567560283663" duration="14137000" />
+      <workItem from="1567646925194" duration="22673000" />
+      <workItem from="1567733792219" duration="17997000" />
+      <workItem from="1567824395324" duration="16133000" />
+      <workItem from="1567992572750" duration="21534000" />
+      <workItem from="1568078766478" duration="21741000" />
+      <workItem from="1568164941378" duration="26885000" />
+      <workItem from="1568249420667" duration="14582000" />
+      <workItem from="1568596958434" duration="25588000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="394799000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1802949" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="5" />
+      <window_info anchor="bottom" id="Terminal" order="6" weight="0.32956153" />
+      <window_info anchor="bottom" id="Database Console" order="7" weight="0.32956153" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Database Changes" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50067025" side_tool="true" weight="0.2234795" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32956153" />
+      <window_info active="true" anchor="bottom" id="Run" order="13" sideWeight="0.49932975" visible="true" weight="0.23479491" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.3297587" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.21380697" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.112600535" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32956153" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Console" order="7" weight="0.32956153" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Database Changes" order="10" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.3297587" />
+      <window_info active="true" anchor="right" id="Database" order="4" visible="true" weight="0.18096514" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/users/models.py</url>
+          <line>160</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tool/orm_helper.py</url>
+          <line>338</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tool/orm_helper.py</url>
+          <line>326</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tool/orm_helper.py</url>
+          <line>136</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/users/views.py</url>
+          <line>2049</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/users/views.py</url>
+          <line>377</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/sms02$models__1_.coverage" NAME="models (1) Coverage Results" MODIFIED="1567583093763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/course" />
+    <SUITE FILE_PATH="coverage/sms02$models.coverage" NAME="models Coverage Results" MODIFIED="1567583309439" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/financial" />
+    <SUITE FILE_PATH="coverage/sms02$views.coverage" NAME="views Coverage Results" MODIFIED="1568171039772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/users" />
+    <SUITE FILE_PATH="coverage/sms02$test.coverage" NAME="test Coverage Results" MODIFIED="1567391124529" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/sms02$settings.coverage" NAME="settings Coverage Results" MODIFIED="1566961331138" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sms02" />
+    <SUITE FILE_PATH="coverage/sms02$test_data_generate.coverage" NAME="test_data_generate Coverage Results" MODIFIED="1568249422561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/media/sb1/avatar/07f910ae7f.jpg" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/ntpath.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/Django-2.2.2-py3.7.egg/django/core/handlers/exception.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/Django-2.2.2-py3.7.egg/django/core/handlers/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="125" selection-start-line="125" selection-end-line="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/stu_search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="109" selection-start-line="109" selection-end-line="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/Django-2.2.2-py3.7.egg/django/views/static.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sms02/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/json/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="347" selection-start-line="347" selection-end-line="347" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="286" column="29" lean-forward="true" selection-start-line="279" selection-start-column="12" selection-end-line="286" selection-end-column="29" />
+          <folding>
+            <element signature="e#596#10803#0" />
+            <element signature="e#12460#14549#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tool/openid_decorator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="52" column="30" lean-forward="true" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="30" />
+          <folding>
+            <element signature="e#40#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="916" selection-start-line="916" selection-end-line="916" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/importlib/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="126" selection-start-line="126" selection-end-line="126" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/Django-2.2.2-py3.7.egg/django/db/models/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sms02/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="779">
+          <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/auth_group">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="0bf1b57a-6262-4594-a97e-57f63c9d6afe">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/auth_group_permissions">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="0bf1b57a-6262-4594-a97e-57f63c9d6afe">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/auth_permission">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="0bf1b57a-6262-4594-a97e-57f63c9d6afe">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/auth_user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="0bf1b57a-6262-4594-a97e-57f63c9d6afe">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/auth_user_groups">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="0bf1b57a-6262-4594-a97e-57f63c9d6afe">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/auth_user_user_permissions">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="0bf1b57a-6262-4594-a97e-57f63c9d6afe">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/django_admin_log">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="0bf1b57a-6262-4594-a97e-57f63c9d6afe">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/django_content_type">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="0bf1b57a-6262-4594-a97e-57f63c9d6afe">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/django_migrations">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="0bf1b57a-6262-4594-a97e-57f63c9d6afe">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1026">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/文字处理.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="518" selection-end-column="518" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="334" selection-end-line="337" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" lean-forward="true" selection-end-column="527" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/state">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="402a3a54-4ded-46e3-b359-f86bb5770e20">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/django_session">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="402a3a54-4ded-46e3-b359-f86bb5770e20">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/course">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="ce276aec-f9fd-4f2c-b614-0dd5da20b0e9">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/counselor">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="ce276aec-f9fd-4f2c-b614-0dd5da20b0e9">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/tuition">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="ce276aec-f9fd-4f2c-b614-0dd5da20b0e9">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/assistant">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="11c96a32-5976-4b38-8f17-07a79f7494cd">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/base_commission">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="11c96a32-5976-4b38-8f17-07a79f7494cd">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tool/orm_helper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="543" column="13" lean-forward="true" selection-start-line="543" selection-start-column="13" selection-end-line="543" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#17#1" />
+            <element signature="e#190#1146#1" />
+            <element signature="e#1433#1445#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/socket.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="588" selection-start-line="588" selection-end-line="588" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_data_generate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="71" column="14" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/ambassador_annual">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="a8c8a62a-9103-4f9b-be5a-0b5967e8aff0">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/course/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-89">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/users_school">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="a8c8a62a-9103-4f9b-be5a-0b5967e8aff0">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/head_salary">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="a8c8a62a-9103-4f9b-be5a-0b5967e8aff0">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/head_annual">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="a8c8a62a-9103-4f9b-be5a-0b5967e8aff0">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/salary">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="a8c8a62a-9103-4f9b-be5a-0b5967e8aff0">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="a8c8a62a-9103-4f9b-be5a-0b5967e8aff0">
+          <filtering>
+            <filter text="" />
+          </filtering>
+          <column-attributes>
+            <column name="allotTime" position="29" />
+            <column name="feedbackTime" position="30" />
+            <column name="subTime" position="31" />
+            <column name="passTime" position="32" />
+            <column name="LOPTime" position="33" />
+            <column name="voucher" position="34" />
+            <column name="card_img" position="35" />
+            <column name="ambassador_id" position="36" />
+            <column name="counselor_id" position="37" />
+            <column name="pay_bq_time" position="28" />
+          </column-attributes>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/school">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="a8c8a62a-9103-4f9b-be5a-0b5967e8aff0">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://ad9f33bf-40ca-4330-8d14-c684507ca6cf/schema/sms_02/table/market">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="a8c8a62a-9103-4f9b-be5a-0b5967e8aff0">
+          <filtering>
+            <filter text="" />
+          </filtering>
+          <column-attributes>
+            <column name="low" position="5" />
+            <column name="middle" position="4" />
+          </column-attributes>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/financial/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="99" column="4" selection-start-line="99" selection-start-column="4" selection-end-line="99" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+          <folding>
+            <element signature="e#39#50#0" expanded="true" />
+            <element signature="e#630#2711#0" />
+            <element signature="e#661#2599#0" />
+            <element signature="e#722#2599#0" />
+            <element signature="e#783#1082#0" />
+            <element signature="e#1135#1478#0" />
+            <element signature="e#1525#1836#0" />
+            <element signature="e#1883#2174#0" />
+            <element signature="e#2221#2460#0" />
+            <element signature="e#2498#2599#0" />
+            <element signature="e#2618#2711#0" />
+            <element signature="e#2753#74562#0" />
+            <element signature="e#3667#4795#0" />
+            <element signature="e#4700#4732#0" />
+            <element signature="e#4804#4894#0" />
+            <element signature="e#4988#6378#0" />
+            <element signature="e#5085#5219#0" />
+            <element signature="e#5281#5373#0" />
+            <element signature="e#5456#6060#0" />
+            <element signature="e#5456#5484#0" />
+            <element signature="e#5553#5931#0" />
+            <element signature="e#5621#5792#0" />
+            <element signature="e#5843#5931#0" />
+            <element signature="e#5976#6060#0" />
+            <element signature="e#6124#6378#0" />
+            <element signature="e#6216#6334#0" />
+            <element signature="e#6461#6470#0" />
+            <element signature="e#6676#6959#0" />
+            <element signature="e#7022#7536#0" />
+            <element signature="e#7271#7359#0" />
+            <element signature="e#7410#7536#0" />
+            <element signature="e#7595#7913#0" />
+            <element signature="e#7595#7613#0" />
+            <element signature="e#7967#9186#0" />
+            <element signature="e#8050#8200#0" />
+            <element signature="e#8279#8379#0" />
+            <element signature="e#8478#9186#0" />
+            <element signature="e#8478#8506#0" />
+            <element signature="e#8599#9033#0" />
+            <element signature="e#8675#8870#0" />
+            <element signature="e#8937#9033#0" />
+            <element signature="e#9094#9186#0" />
+            <element signature="e#9270#9421#0" />
+            <element signature="e#9664#10718#0" />
+            <element signature="e#10851#10964#0" />
+            <element signature="e#11176#24090#0" />
+            <element signature="e#11215#23784#0" />
+            <element signature="e#11204#11487#0" />
+            <element signature="e#11546#11882#0" />
+            <element signature="e#11945#12459#0" />
+            <element signature="e#12194#12282#0" />
+            <element signature="e#12333#12459#0" />
+            <element signature="e#12517#12835#0" />
+            <element signature="e#12517#12535#0" />
+            <element signature="e#12896#13212#0" />
+            <element signature="e#12896#12914#0" />
+            <element signature="e#13266#14485#0" />
+            <element signature="e#13318#13468#0" />
+            <element signature="e#13578#13678#0" />
+            <element signature="e#13777#14485#0" />
+            <element signature="e#13777#13805#0" />
+            <element signature="e#13898#14332#0" />
+            <element signature="e#13974#14169#0" />
+            <element signature="e#14236#14332#0" />
+            <element signature="e#14393#14485#0" />
+            <element signature="e#14544#22094#0" />
+            <element signature="e#16837#17059#0" />
+            <element signature="e#17100#18246#0" />
+            <element signature="e#18442#21046#0" />
+            <element signature="e#19275#19497#0" />
+            <element signature="e#19810#19907#0" />
+            <element signature="e#20144#20168#0" />
+            <element signature="e#20371#20405#0" />
+            <element signature="e#20762#20787#0" />
+            <element signature="e#21142#21262#0" />
+            <element signature="e#22340#22352#0" />
+            <element signature="e#22502#22540#0" />
+            <element signature="e#23066#23740#0" />
+            <element signature="e#23809#24391#0" />
+            <element signature="e#24459#25039#0" />
+            <element signature="e#26917#26970#0" />
+            <element signature="e#32666#32916#0" />
+            <element signature="e#32985#33213#0" />
+            <element signature="e#33282#33801#0" />
+            <element signature="e#33516#33608#0" />
+            <element signature="e#33667#33801#0" />
+            <element signature="e#34065#34403#0" />
+            <element signature="e#34481#34762#0" />
+            <element signature="e#34839#36419#0" />
+            <element signature="e#34965#35040#0" />
+            <element signature="e#35460#35814#0" />
+            <element signature="e#36120#36300#0" />
+            <element signature="e#36604#38227#0" />
+            <element signature="e#36686#37422#0" />
+            <element signature="e#37117#37213#0" />
+            <element signature="e#37280#37422#0" />
+            <element signature="e#37483#38227#0" />
+            <element signature="e#37922#38018#0" />
+            <element signature="e#38085#38227#0" />
+            <element signature="e#38502#38665#0" />
+            <element signature="e#38963#41691#0" />
+            <element signature="e#40064#40306#0" />
+            <element signature="e#40347#41561#0" />
+            <element signature="e#41758#41875#0" />
+            <element signature="e#41936#42049#0" />
+            <element signature="e#42073#42097#0" />
+            <element signature="e#42564#43045#0" />
+            <element signature="e#42760#42852#0" />
+            <element signature="e#42911#43045#0" />
+            <element signature="e#43111#44189#0" />
+            <element signature="e#43160#44017#0" />
+            <element signature="e#44076#44189#0" />
+            <element signature="e#44285#47751#0" />
+            <element signature="e#44285#44374#0" />
+            <element signature="e#44560#44673#0" />
+            <element signature="e#45648#47157#0" />
+            <element signature="e#47331#47525#0" />
+            <element signature="e#47586#47751#0" />
+            <element signature="e#47828#48176#0" />
+            <element signature="e#48259#51646#0" />
+            <element signature="e#48282#51646#0" />
+            <element signature="e#48340#48364#0" />
+            <element signature="e#49062#51510#0" />
+            <element signature="e#49192#49773#0" />
+            <element signature="e#49816#51426#0" />
+            <element signature="e#51545#51646#0" />
+            <element signature="e#51689#57975#0" />
+            <element signature="e#51784#53873#0" />
+            <element signature="e#51784#51796#0" />
+            <element signature="e#51907#52005#0" />
+            <element signature="e#52167#52292#0" />
+            <element signature="e#52425#52524#0" />
+            <element signature="e#52606#52848#0" />
+            <element signature="e#52904#53873#0" />
+            <element signature="e#52977#53112#0" />
+            <element signature="e#53130#53156#0" />
+            <element signature="e#53357#53789#0" />
+            <element signature="e#53531#53789#0" />
+            <element signature="e#53923#57975#0" />
+            <element signature="e#53992#54090#0" />
+            <element signature="e#54392#56410#0" />
+            <element signature="e#54459#55988#0" />
+            <element signature="e#54597#54709#0" />
+            <element signature="e#55023#55595#0" />
+            <element signature="e#55137#55238#0" />
+            <element signature="e#55316#55417#0" />
+            <element signature="e#55494#55595#0" />
+            <element signature="e#56049#56261#0" />
+            <element signature="e#56305#56410#0" />
+            <element signature="e#56464#57189#0" />
+            <element signature="e#56504#56767#0" />
+            <element signature="e#56828#57040#0" />
+            <element signature="e#57084#57189#0" />
+            <element signature="e#57243#57838#0" />
+            <element signature="e#57457#57621#0" />
+            <element signature="e#57874#57975#0" />
+            <element signature="e#58021#58917#0" />
+            <element signature="e#58116#58917#0" />
+            <element signature="e#58116#58128#0" />
+            <element signature="e#58239#58337#0" />
+            <element signature="e#58507#58635#0" />
+            <element signature="e#58704#58781#0" />
+            <element signature="e#58818#58917#0" />
+            <element signature="e#58959#61089#0" />
+            <element signature="e#58959#59037#1" />
+            <element signature="e#59043#59051#0" />
+            <element signature="e#59515#60263#0" />
+            <element signature="e#59640#59739#0" />
+            <element signature="e#59794#60116#0" />
+            <element signature="e#60143#60263#0" />
+            <element signature="e#60308#61089#0" />
+            <element signature="e#60386#60485#0" />
+            <element signature="e#60580#60674#0" />
+            <element signature="e#60809#60924#0" />
+            <element signature="e#61058#61079#0" />
+            <element signature="e#61127#62969#0" />
+            <element signature="e#61127#61206#1" />
+            <element signature="e#61212#61220#0" />
+            <element signature="e#61432#62184#0" />
+            <element signature="e#61533#61632#0" />
+            <element signature="e#61688#62036#0" />
+            <element signature="e#61688#61703#0" />
+            <element signature="e#62063#62184#0" />
+            <element signature="e#62229#62969#0" />
+            <element signature="e#62307#62406#0" />
+            <element signature="e#62501#62595#0" />
+            <element signature="e#62730#62845#0" />
+            <element signature="e#63006#64660#0" />
+            <element signature="e#63006#63085#1" />
+            <element signature="e#63128#63875#0" />
+            <element signature="e#63229#63328#0" />
+            <element signature="e#63383#63728#0" />
+            <element signature="e#63383#63398#0" />
+            <element signature="e#63755#63875#0" />
+            <element signature="e#63920#64660#0" />
+            <element signature="e#63998#64097#0" />
+            <element signature="e#64192#64286#0" />
+            <element signature="e#64421#64536#0" />
+            <element signature="e#64703#65881#0" />
+            <element signature="e#64739#65324#0" />
+            <element signature="e#64829#65235#0" />
+            <element signature="e#64836#65146#0" />
+            <element signature="e#65262#65324#0" />
+            <element signature="e#65367#65881#0" />
+            <element signature="e#65459#65827#0" />
+            <element signature="e#66034#67106#0" />
+            <element signature="e#66070#66556#0" />
+            <element signature="e#66118#66493#0" />
+            <element signature="e#66302#66420#0" />
+            <element signature="e#66602#67106#0" />
+            <element signature="e#66746#67040#0" />
+            <element signature="e#66892#66991#0" />
+            <element signature="e#67137#73127#0" />
+            <element signature="e#67168#72875#0" />
+            <element signature="e#67270#71632#0" />
+            <element signature="e#67309#67601#0" />
+            <element signature="e#67652#69280#0" />
+            <element signature="e#67739#67937#0" />
+            <element signature="e#68000#68198#0" />
+            <element signature="e#68258#68409#0" />
+            <element signature="e#68472#68640#0" />
+            <element signature="e#68703#68871#0" />
+            <element signature="e#68934#69091#0" />
+            <element signature="e#69329#69509#0" />
+            <element signature="e#69565#70053#0" />
+            <element signature="e#69565#69595#0" />
+            <element signature="e#70104#70704#0" />
+            <element signature="e#70104#70184#0" />
+            <element signature="e#70798#71030#0" />
+            <element signature="e#71084#71224#0" />
+            <element signature="e#71277#71416#0" />
+            <element signature="e#71471#71553#0" />
+            <element signature="e#71813#72724#0" />
+            <element signature="e#72016#72173#0" />
+            <element signature="e#72239#72346#0" />
+            <element signature="e#72539#72723#0" />
+            <element signature="e#72950#73127#0" />
+            <element signature="e#73164#73677#0" />
+            <element signature="e#73164#73215#1" />
+            <element signature="e#73265#73622#0" />
+            <element signature="e#73433#73557#0" />
+            <element signature="e#73715#74603#0" />
+            <element signature="e#73715#73773#1" />
+            <element signature="e#73809#74093#0" />
+            <element signature="e#73881#74093#0" />
+            <element signature="e#73921#74093#0" />
+            <element signature="e#74112#74603#0" />
+            <element signature="e#74160#74540#0" />
+            <element signature="e#74344#74467#0" />
+            <element signature="e#74641#75153#0" />
+            <element signature="e#74641#74696#1" />
+            <element signature="e#74746#75098#0" />
+            <element signature="e#74914#75033#0" />
+            <element signature="e#75188#75917#0" />
+            <element signature="e#75188#75241#1" />
+            <element signature="e#75291#75862#0" />
+            <element signature="e#75459#75797#0" />
+            <element signature="e#75961#76809#0" />
+            <element signature="e#75961#76017#1" />
+            <element signature="e#76067#76754#0" />
+            <element signature="e#76235#76689#0" />
+            <element signature="e#76352#76689#0" />
+            <element signature="e#76403#76689#0" />
+            <element signature="e#76443#76689#0" />
+            <element signature="e#76844#77558#0" />
+            <element signature="e#76844#76900#1" />
+            <element signature="e#76950#77503#0" />
+            <element signature="e#77118#77438#0" />
+            <element signature="e#77235#77438#0" />
+            <element signature="e#77286#77438#0" />
+            <element signature="e#77334#77438#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="130" column="89" selection-start-line="130" selection-start-column="89" selection-end-line="130" selection-end-column="89" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sms02/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+          <folding>
+            <element signature="e#630#662#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

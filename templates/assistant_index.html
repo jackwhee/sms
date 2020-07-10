@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>&#60;CSO&#62;首页</title>
+    <link rel="stylesheet" href="/static/css/css_initialize.css">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <style>
+        /* body {
+            background-image: url(./index.jpg);
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-size: 100%;
+        } */
+
+        #row {
+            width: 100%;
+        }
+
+        button {
+            line-height: 6vw;
+            outline: none;
+            cursor: pointer;
+            width: 9vw;
+            height: 9vw;
+            border: 0;
+            background: transparent;
+        }
+
+        #count {
+            z-index: 999;
+            position: absolute;
+            border-radius: 50%;
+            width: 3vw;
+            height: 3vw;
+            line-height: 3vw;
+            background: red;
+            color: white;
+            font-size: 2vw;
+            text-align: center;
+            left: 44.5vw;
+            top: 14vw;
+
+        }
+
+        #count2 {
+            z-index: 999;
+            position: absolute;
+            border-radius: 50%;
+            width: 3vw;
+            height: 3vw;
+            line-height: 3vw;
+            background: red;
+            color: white;
+            font-size: 2vw;
+            text-align: center;
+            left: 57.5vw;
+            top: 14vw;
+
+        }
+
+        #b1 {
+            position: absolute;
+            top: 14vw;
+            left: 40vw;
+        }
+
+        #b5 {
+            position: absolute;
+            top: 14vw;
+            left: 52vw;
+
+        }
+
+        #b3 {
+            position: absolute;
+            top: 28vw;
+            left: 31vw;
+
+        }
+
+        #b4 {
+            position: absolute;
+            top: 28vw;
+            left: 46vw;
+
+        }
+
+        #b2 {
+            position: absolute;
+            top: 28vw;
+            left: 60vw;
+
+        }
+        img{
+            width: 100vw;
+        }
+    </style>
+</head>
+
+<body style="display: none">
+
+    <img src="/static/images/select_bg.jpg" alt="">
+    <div id="row">
+        <div id="count" style="display: none">0</div>
+        <a target="view_window" href="assistant_new"><button id="b1"></button></a>
+        <div id="count2" style="display: none">0</div>
+        <a target="view_window" href="assistant_false"><button id="b5"></button></a>
+        <a target="view_window" href="assistant_search"><button id="b2"></button></a>
+        <a target="view_window" href="assistant_sch"><button id="b3"></button></a>
+        <a target="view_window" href='assistant_sch_msg?search_msg={"all":"qianfei"}'><button id="b4"></button></a>
+        
+    </div>
+</body>
+<script>
+    $(function () {
+        $('body').fadeIn(500);
+        $.get('assistant', function (json) {
+            if (json.data.new_stu_num != 0) {
+                $('#count').fadeIn(700);
+                $('#count').html(json.data.new_stu_num);
+            };
+
+        });
+        $.get('assistant', function (json) {
+            if (json.data.new_stu_num != 0) {
+                $('#count2').fadeIn(700);
+                $('#count2').html(json.data.false_stu_num);
+            };
+
+        });
+    })
+</script>
+
+</html>

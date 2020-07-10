@@ -1,0 +1,123 @@
+{%extends "moodle/base.html" %}
+
+{% block title %}
+CSO Moodle
+{% endblock %}
+
+
+{% block css/js %}
+
+    <style>
+    .card{
+        border: 0 !important;
+        display: block !important;
+    }
+    label{
+        font-size: 1.3vw;
+        padding: 0 1vw;
+    }
+
+    .set_btn{
+        width: 5vw;
+        height: 2vw;
+        vertical-align: middle;
+        line-height: 2vw;
+        background: transparent;
+        outline: none;
+        border: 1px solid #042955;
+        color: #042955;
+        border-radius: 5px;
+        margin-left: 0.5vw;
+    }
+    .set_btn:hover{
+        color: #fff;
+        background-color: #042955;
+    }
+    </style>
+
+<link rel="stylesheet" href="/static/moodle/css/style.css">
+
+
+<script src="/static/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+{% endblock %}
+
+
+
+
+{% block main %}
+
+<main name='score'>
+    <div class="stu">
+
+        <div class="title">
+            <h3>{{ course.subject.s_name }}</h3>
+            <h4>{{ course.c_name }}</h4>
+            <div class="hen"></div>
+        </div>
+
+        <div class="stu-list">
+            <ul>
+                {% for stu in all_stu_list %}
+                <li style="height: auto;">
+                    <div>
+                        <i></i>
+                        <span>{{ stu.moodle_user.nick }}-{{ stu.moodle_user.users.pinyin }}</span>
+                        <a style="height: auto" data-toggle="collapse" href="#collapseExample{{ stu.moodle_user.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">Check</a>
+                    </div>
+                    <div class="collapse" id="collapseExample{{ stu.moodle_user.id }}">
+                      <div class="card card-body">
+                          {% for item in stu.moodle_user.getAllscore %}
+                          
+                          {% if item.moodle_course.c_name  == course.c_name %}
+                        <label>{{ item.exam_name }}: {{ item.exam_score }}</label>
+                        {% endif %}
+                              {% endfor %}
+                          <div style="text-align: right; padding-right: 5vw">
+                              <label>Total grade：{{ stu.grade }}</label>
+                            <input style="width: 5vw;height: 2vw;" type="text" placeholder="Set score">
+                            <button class="set_btn" id="{{ stu.moodle_user.id }}">Confirm</button>
+                          </div>
+                      </div>
+                    </div>
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+
+
+</main>
+
+
+{% endblock %}
+
+
+
+
+{% block base_script %}
+
+<script>
+
+$('.set_btn').click(function () {
+
+    var stu_id = $(this).parent().find('button').attr('id')
+    var score = $(this).parent().find('input').val()
+    var label = $(this).parent().find('label')
+
+    $.ajax({
+      url: "{% url 'score' course.id %}",
+      type: 'post',
+      data: { stu_id: stu_id, score: score },
+      dataType: 'json',
+      success: function (res) {
+        label.html("总成绩："+score)
+      }
+    })
+})
+
+</script>
+
+{% endblock %}

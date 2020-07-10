@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>&#60;CSO&#62;财务登录页</title>
+    <link rel="stylesheet" href="/static/css/css_initialize.css">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <style>
+        #login {
+            color: #2781d7;
+            font-size: 5vw;
+            line-height: 5vw;
+            position: absolute;
+            left: 34vw;
+            top: 3vw;
+            text-align: center;
+            width: 30vw;
+        }
+
+        .msg_inp {
+            position: absolute;
+            left: 36vw;
+            height: 3vw;
+            line-height: 3vw;
+            width: 23vw;
+            border-radius: 2vw;
+            border: 0.2vw solid #2781d7;
+            outline: none;
+            padding-left: 2vw;
+            font-size: 1.2vw;
+
+        }
+
+
+        #button {
+            text-align: center;
+            cursor: pointer;
+            border: 0;
+            border-radius: 0.5vw;
+            color: white;
+            font-size: 1vw;
+            background: #2781d7;
+            position: absolute;
+            top: 30vw;
+            left: 41.2vw;
+            border: 0.2vw solid #2781d7;
+            line-height: 2.4vw;
+            width: 15vw;
+            outline: none;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        #button:hover {
+            line-height: 2.4vw;
+            background: white;
+            color: #2781d7;
+            border: 0.2vw solid #2781d7;
+        }
+
+
+    </style>
+</head>
+
+<body style="display: none">
+
+    
+
+    {% if request.session.userinfo %}
+    <script>
+        // console.log('{{request.session.userinfo.ast_name}}')
+        window.location.href = 'cw_index'
+    </script>
+    {% else %}
+    <h1 id="login">财务登录</h1>
+    <form action="cw_login" method="post">
+        
+        <input autocomplete="off" placeholder="请输入账号" style="top: 15vw;" class="msg_inp" type="text" name="ast_name">
+        <input placeholder="请输入密码" style="top: 20vw;" class="msg_inp" type="password" name="password">
+        <input id="button" type="submit" value="一键登录">
+
+    </form>
+
+    {% endif %}
+</body>
+
+
+<script>
+    $(function () {
+        $('body').fadeIn(500);
+
+    })
+</script>
+
+
+</html>

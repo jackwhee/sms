@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=6KTnn1kanYT1So6k5dgirfuwcACqYT2w"></script>
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <title>Document</title>
+    <style type="text/css">
+        body, html,#allmap {width: 30vw;height: 30vw;overflow: hidden;margin:0;font-family:"微软雅黑";}
+
+    </style>
+</head>
+
+
+
+<body>
+	<div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript">
+	// 百度地图API功能
+	var sContent =
+    '<div style="margin:0;line-height:20px;padding:2px;background-color:#2c333b">' +
+	`<h4 style="margin: 1vw;font-size:1.5vw;color:white">华中师范大学</h4>` + 
+    '<div style="width: 5vw;float: right;height: 5vw;margin: 1vw;"></div>' +
+	"<img style='width: 5vw;float: right;height: 5vw;margin: 1vw;position: absolute;top: 0;right: 0;' id='imgDemo' src='/media/school_logo.png' width='139' height='104' title='天安门'/>" + 
+	"<p style='margin:0;line-height:1.5;font-size:0.7vw;color:white;height:9vw;width:16.5vw;margin:0 1vw'>华中师范大学简称“华中师大”或“华大”，位于湖北省会武汉，华中师范大学简称“华中师大”或“华大”，位于湖北省会武汉华中师范大学简称“华中师大”或“华大”，位于湖北省会武汉华</p>" + 
+	"</div>";
+	var map = new BMap.Map("allmap");
+	var point = new BMap.Point(114.367216,30.524004);
+	var marker = new BMap.Marker(point);
+	var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+
+
+    map.enableScrollWheelZoom(true);  
+	map.centerAndZoom(point, 15);
+	map.addOverlay(marker);
+    marker.openInfoWindow(infoWindow);
+
+	marker.addEventListener("click", function(){        
+	   this.openInfoWindow(infoWindow);
+	   //图片加载完毕重绘infowindow
+	   document.getElementById('imgDemo').onload = function (){
+		   infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+	   }
+	});
+
+
+    
+
+</script>
+
+    
+
+    <!-- <body> -->
+<!-- </body>
+    <div style="width: 500px; height: 500px" id="allmap"></div>
+    <div id="l-map"></div>
+	<div id="r-result"></div>
+</html>
+<script type="text/javascript">
+	// 百度地图API功能
+
+
+	var map = new BMap.Map("allmap");    // 创建Map实例
+    var point = new BMap.Point(114.367216,30.524004);
+    var marker = new BMap.Marker(point);
+
+	map.centerAndZoom(point, 16);
+    map.setCurrentCity("武汉");          // 设置地图显示的城市 此项是必须设置的
+	map.enableScrollWheelZoom(true);
+	map.addOverlay(marker);
+	marker.addEventListener("click", function(){          
+	   this.openInfoWindow(infoWindow);
+	   //图片加载完毕重绘infowindow
+	   document.getElementById('imgDemo').onload = function (){
+		   infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+	   }
+	});
+
+
+
+	//添加地图类型控件
+	map.addControl(new BMap.MapTypeControl({
+		mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));
+
+
+
+    //创建LOGO
+	// var pt = new BMap.Point(114.363089, 30.531512);
+	// var myIcon = new BMap.Icon("/static/CSO_yuan.png", new BMap.Size(100,100));
+	// var marker2 = new BMap.Marker(pt,{icon:myIcon});  // 创建标注
+	// map.addOverlay(marker2);              // 将标注添加到地图中
+
+
+
+</script> -->

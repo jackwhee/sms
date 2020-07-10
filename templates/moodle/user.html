@@ -1,0 +1,132 @@
+{%extends "moodle/base.html" %}
+
+{% block title %}
+CSO Moodle
+{% endblock %}
+
+
+{% block css/js %}
+<script src="/static/js/jquery-3.4.1.min.js"></script>
+
+<link rel="stylesheet" href="/static/moodle/css/user.css">
+
+<script src="/static/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+{% endblock %}
+
+
+
+{% block main %}
+
+
+<main name='user'>
+
+  <div id="msg_title">
+    <img src="/static/moodle/img/user_msg/个人信息.png" alt="">
+    <p>个人信息</p>
+  </div>
+  <div id="msg_body">
+
+    <div class="msg_row"><span>姓名：{{user.username}}</span><span style="left: 40vw;">专业：{{user.major}}</span></div>
+    <div class="msg_row"><span>微信号：{{user.wechat}}</span><span style="left: 40vw;">年级：{{user.grade}}</span>
+    </div>
+    <div class="msg_row"><span>出生日期：{{user.birth}}</span><span style="left: 40vw;">学校：{{school}}</span></div>
+
+    <div class="msg_row"><span>学习签证到期时间：{{user.study}}</span></div>
+    <div class="msg_row"><span>中国地址：{{user.domesticAddress}}</span></div>
+    <div class="msg_row"><span>国际地址：{{user.foreignAddress}}</span></div>
+    <div class="msg_row"><span>联系方式：{{user.domesticTelephone}}</span></div>
+    <div class="msg_row"><span>邮箱：{{user.firstEmail}}</span></div>
+
+    <div id="photo">
+      <div id="GPA_photo">
+        <span>GPA成绩单照片</span>
+
+        <img data-toggle="modal" data-target="#myModal1" src="/media/{{user.GPA_img}}" alt="">
+
+        <!-- 模态框 -->
+        <div class="modal fade" id="myModal1">
+          <div style="margin-top: 15vh;" class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <!-- 模态框主体 -->
+              <div class="modal-body">
+                <img style="width: 95%;height: auto;position: relative;" src="/media/{{user.GPA_img}}" alt="">
+              </div>
+              <!-- 模态框底部 -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div id="ID_photo">
+        <span>身份证正反面照片</span>
+        <img data-toggle="modal" data-target="#myModal2" src="/media/{{user.id}}/card_img/face.jpg" alt="">
+        <!-- 模态框 -->
+        <div class="modal fade" id="myModal2">
+          <div style="margin-top: 15vh;" class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <!-- 模态框主体 -->
+              <div class="modal-body">
+                <img style="width: 95%;height: auto;position: relative;" src="/media/{{user.id}}/card_img/face.jpg" alt="">
+              </div>
+              <!-- 模态框底部 -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <img data-toggle="modal" data-target="#myModal3" style="left: 14.6vw;" src="/media/{{user.id}}/card_img/reverse.jpg" alt="">
+         <!-- 模态框 -->
+         <div class="modal fade" id="myModal3">
+          <div style="margin-top: 15vh;" class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <!-- 模态框主体 -->
+              <div class="modal-body">
+                <img style="width: 95%;height: auto;position: relative;" src="/media/{{user.id}}/card_img/reverse.jpg" alt="">
+              </div>
+              <!-- 模态框底部 -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block base_script %}
+
+<script>
+
+</script>
+
+{% endblock %}

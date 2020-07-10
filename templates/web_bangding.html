@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CSO暑校学生系统</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="/static/css/bui.css">
+		<script src="/static/js/zepto.js"></script>
+		<script src="/static/js/bui.js"></script>
+    <script type="text/javascript" src="/static/js/qrcode.min.js"></script>
+		<style></style>
+	</head>
+	<body>
+	<div class="bui-page page-form">
+    <header class="bui-bar">
+        <div class="bui-bar-left"> <a class="bui-btn btn-back"><i class="icon-back"></i></a> </div>
+        <div class="bui-bar-main">绑定小程序</div>
+        <div class="bui-bar-right"> </div>
+    </header>
+
+    <main>
+
+	  <div class="bui-hint success">需绑定小程序后方可查看报名信息<br> <span style="color: red;">! 若未绑定直接进入小程序会要求重填信息 !</span><br><span>如遇上述情况请联系客服</span><br><br> 长按二维码识别<br><br>
+		<div id="codeDiv" class="" style="display:none">
+			
+		</div>
+		<div  class="" id="qrcode"></div>
+	  </div>
+	  
+	  
+	  
+
+      
+
+    </main>
+
+
+    </div>
+<script>
+
+var webop_url = {{webopenid|safe}}[0]
+
+
+
+
+
+bui.ready(function(){
+
+
+// var qrcode = new QRCode(document.getElementById("qrcode"), {
+// 	width : 150,
+// 	height : 150
+// });
+
+// function makeCode () {		  
+// 	qrcode.makeCode("http://www.w3cschool.cc");
+// }
+
+// makeCode();
+
+var qrcode = new QRCode("codeDiv", {
+        text: "https://www.ahaven.cn/static/bind/"+webop_url,
+        render: "canvas",  //渲染方式指定canvas方式
+        width: 128,
+        height: 128,
+        typeNumber:-1,//计算模式
+        colorDark : "#000000",   
+        colorLight : "#ffffff",   
+        correctLevel : QRCode.CorrectLevel.H  
+    });
+    var canvas=document.getElementsByTagName('canvas')[0];
+    var img = convertCanvasToImage(canvas);
+    $('#qrcode').append(img);// 添加DOM
+    //从 canvas 提取图片 image  
+    function convertCanvasToImage(canvas) {  
+     //新建Image对象
+     var image = new Image();  
+     // canvas.toDataURL 返回的是一串Base64编码的URL
+     image.src = canvas.toDataURL("image/png");  
+     return image;  
+   }     
+
+
+
+
+
+})
+
+$(function(){
+	console.log($('#qrcode>img'));
+	console.log($('#qrcode>img').prop('src'));
+	console.log($('#qrcode>img').attr('src'));
+	console.log($('#qrcode>img')[0]);
+	console.log($('#qrcode>img')[0].style);
+	console.log($('#qrcode>img')[0].src);
+	console.log($('#qrcode>img')[0].currentSrc);
+	// $('#sb').attr('src',$('#qrcode>img').attr('src'))
+	
+})
+
+</script>
+</body>
+</html>

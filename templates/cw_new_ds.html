@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>&#60;CSO&#62;新大使创建</title>
+  <link rel="stylesheet" href="/static/css/css_initialize.css">
+  <link rel="stylesheet" href="/static/layui/css/layui.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/jquery-3.4.1.min.js"></script>
+  <script src="/static/layui/layui.js"></script>
+</head>
+
+<body>
+  <div style="position: absolute; top: 0">
+    &nbsp;&nbsp;&nbsp;<span style="color: #2781d7;">蓝色标题选框</span>&nbsp;&nbsp;&nbsp;为可更改信息<br>
+    <!-- {{stu_id}} -->
+
+  </div>
+
+  <!-- 你的HTML代码 -->
+
+
+
+  <input style="display: none" type="text" readonly name="id" id="yincang" value="">
+
+  <div class="main layui-container">
+    <div class="layui-row">
+
+      <div class="layui-col-md5">
+        <div class="layui-form-item">
+          <label class="layui-form-label">姓名</label>
+          <div class="layui-input-block">
+            <input type="text" name="username" required disabled placeholder=" " autocomplete="off"
+              class="layui-input ">
+          </div>
+        </div>
+      </div>
+
+      <div class="layui-col-md5">
+        <div class="layui-form-item">
+          <label class="layui-form-label">性别</label>
+          <div class="layui-input-block">
+            <input type="text" name="username" required disabled placeholder=" " autocomplete="off"
+              class="layui-input ">
+          </div>
+        </div>
+      </div>
+
+      <div class="layui-col-md5">
+        <div class="layui-form-item">
+          <label class="layui-form-label">电话</label>
+          <div class="layui-input-block">
+            <input type="text" name="username" required disabled placeholder=" " autocomplete="off"
+              class="layui-input ">
+          </div>
+        </div>
+      </div>
+
+      <div class="layui-col-md5">
+        <div class="layui-form-item">
+          <label class="layui-form-label">身份证号</label>
+          <div class="layui-input-block">
+            <input type="text" name="username" required disabled placeholder=" " autocomplete="off"
+              class="layui-input ">
+          </div>
+        </div>
+      </div>
+      <form id="biaodan" class="layui-form" >
+
+
+          <input style="display: none" type="text" readonly name="id" value="{{stu_id}}">
+          <input style="display: none" type="text" readonly name="judge" value="ds_reg">
+
+          
+
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label style="color: #2781d7" class="layui-form-label">市场负责人</label>
+            <div class="layui-input-block">
+              <select id="fzr1" required lay-verify="required" id="" name="fzr1" lay-verify="">
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="layui-col-md5">
+            <div class="layui-form-item">
+              <label style="color: #2781d7" class="layui-form-label">区域负责人</label>
+              <div class="layui-input-block">
+                <select id="fzr2" required lay-verify="required" id="" name="fzr2" lay-verify="">
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="layui-col-md10">
+              <div class="layui-form-item">
+                <label style="color: #2781d7" class="layui-form-label">职位</label>
+                <div class="layui-input-block">
+                  <select required lay-verify="required" id="" name="zw" lay-verify="">
+                    <option value='驳回'>驳回</option>
+                    <option value='大使'>大使</option>
+                    <option value='市场负责人'>市场负责人</option>
+                    <option value='兼职区域负责人'>兼职区域负责人</option>
+                    <option value='全职区域负责人'>全职区域负责人</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+
+        <div class="layui-col-md12">
+
+          <div class="layui-form-item">
+            <div class="layui-input-block">
+              <button onclick="tijiao()" class="layui-btn layui-btn-normal">确认</button>
+              <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <script>
+
+    function tijiao() {
+
+    var formObject = {};
+    var formArray = $("#biaodan").serializeArray();
+    $.each(formArray, function (i, item) {
+      formObject[item.name] = item.value;
+    });
+
+    if (formObject['zw']=='大使') {
+      formObject['fzr'] = formObject['fzr1'];
+    };
+
+    if (formObject['zw']=='市场负责人') {
+      formObject['fzr'] = formObject['fzr2'];
+    };
+
+    $.ajax({
+      url: "/v1/users/{{ast_name}}",
+      type: 'put',
+      data: JSON.stringify(formObject),
+      dataType: 'json',
+      success: function (json) {
+        if (json.code == 200) {
+          window.close()
+        } else {
+          alert('提交错误')
+        }
+      },
+      error: function () {
+        alert('提交错误')
+      }
+    })
+    }
+
+
+
+    function show(num) {
+      num = '#LOP_' + num
+      // console.log(num); 
+      layer.open({
+        type: 1,
+        title: false,
+        closeBtn: 0,
+        area: '900px',
+        skin: 'layui-layer-nobg', //没有背景色
+        shadeClose: true,
+        content: $(num)
+      });
+    }
+
+    $.get('/v1/users/drop?scfz', function (json) {
+      // console.log(json)
+      var html = '<option value="">无</option>';
+      for (var i = 0; i < json.data.length; i++) {
+        // console.log(json.data[i].counselor);
+        html += '<option value="' + json.data[i] + '">' + json.data[i] + '</option>';
+      };
+      $('#fzr1').html(html);
+
+      layui.use(['layer', 'form'], function () {
+      var layer = layui.layer,
+        form = layui.form;
+      form.on('submit(formDemo)', function (data) {
+        layer.msg(JSON.stringify(data.field));
+        return false;
+      });
+
+      // layer.msg('Hello World!');
+    });
+
+    layui.use('laydate', function () {
+      var laydate = layui.laydate;
+
+      //执行一个laydate实例
+      laydate.render({
+        elem: '#time1', //指定元素
+      });
+    });
+
+    });
+
+
+      $.get('/v1/users/drop?qyfz', function (json) {
+      // console.log(json)
+      var html = '<option value="">无</option>';
+      for (var i = 0; i < json.data.length; i++) {
+        // console.log(json.data[i].counselor);
+        html += '<option value="' + json.data[i] + '">' + json.data[i] + '</option>';
+      };
+      $('#fzr2').html(html);
+
+    });
+
+
+
+
+
+
+
+
+    // console.log({{data|safe}})
+    $.get('/v1/users/{{ast_name}}?{{stu_id}}', function (json) {
+      console.log(json)
+      // var a = $("input[name='username']").attr('placeholder',json.data.username)
+      // console.log(a)
+      $("input[name='username']").attr('placeholder', json.data.username);
+      $("input[name='gender']").attr('placeholder', json.data.gender);
+      $("input[name='birth']").attr('placeholder', json.data.birth);
+      $("input[name='IDCard']").attr('placeholder', json.data.IDCard);
+      $("input[name='major']").attr('placeholder', json.data.major);
+      $("input[name='grade']").attr('placeholder', json.data.grade);
+      $("input[name='school']").attr('placeholder', json.data.school);
+      $("input[name='domesticAddress']").attr('placeholder', json.data.domesticAddress);
+      $("input[name='domesticTelephone']").attr('placeholder', json.data.domesticTelephone);
+      $("input[name='firstEmail']").attr('placeholder', json.data.firstEmail);
+      $("input[name='secondEmail']").attr('placeholder', json.data.secondEmail);
+      $("input[name='foreignAddress']").attr('placeholder', json.data.foreignAddress);
+      $("input[name='foreignTelephone']").attr('placeholder', json.data.foreignTelephone);
+      $("input[name='school']").attr('placeholder', json.data.school);
+      $("input[name='school']").attr('placeholder', json.data.school);
+      $("input[name='school']").attr('placeholder', json.data.school);
+    });
+
+
+    // console.log($($('#distribution')))
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $(function () {
+
+      // console.log($("#distribution").parent().children())
+      $('body').fadeIn(500);
+    });
+  </script>
+</body>
+
+</html>

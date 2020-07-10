@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>&#60;CSO&#62;登录页</title>
+    <link rel="stylesheet" href="/static/css/css_initialize.css">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <style>
+        #login {
+            color: #2781d7;
+            font-size: 5vw;
+            line-height: 5vw;
+            position: absolute;
+            left: 34vw;
+            top: 3vw;
+            text-align: center;
+            width: 30vw;
+        }
+
+        .msg_inp {
+            position: absolute;
+            left: 63.2vw;
+            height: 2.8vw;
+            line-height: 3vw;
+            width: 19.3vw;
+            border-radius: 0.2vw;
+            border: 0.1vw solid #9B9B9B;
+            border: none;
+            outline: none;
+            padding-left: 3vw;
+            font-size: 1vw;
+            background: transparent;
+        }
+
+
+        #button {
+            text-align: center;
+            cursor: pointer;
+            border: 0;
+            border-radius: 0.5vw;
+            color: white;
+            font-size: 1vw;
+            background: #024B82;
+            position: absolute;
+            top: 31.5vw;
+            left: 63.2vw;
+            border: 0.1vw solid #024B82;
+            line-height: 2.5vw;
+            width: 22.5vw;
+            outline: none;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        #button:hover {
+            line-height: 2.5vw;
+            background: white;
+            color: #2781d7;
+            border: 0.1vw solid #024B82;
+        }
+
+        img{
+            width: 100vw;
+        }
+
+
+    </style>
+</head>
+
+<body style="display: none">
+
+    {% if request.session.userinfo %}
+    <script>
+        window.location.href = 'assistant_index'
+    </script>
+    {% else %}
+        <img src="/static/images/login_bg.jpg" alt="">
+    <form action="assistant_login" method="post">
+        
+        <input autocomplete="new-password" placeholder="请输入账号" style="top: 20.2vw;" class="msg_inp" type="text" name="ast_name">
+        <input autocomplete="new-password" placeholder="请输入密码" style="top: 25.5vw;" class="msg_inp" type="password" name="password">
+        <input id="button" type="submit" value="一键登录">
+
+    </form>
+
+    {% endif %}
+</body>
+
+
+<script>
+    $(function () {
+        $('body').fadeIn(500);
+        $.get('assistant', function (json) {
+            if (json.data.new_stu_num != 0) {
+                $('#count').fadeIn(700);
+                $('#count').html(json.data.new_stu_num);
+            };
+
+        });
+    })
+</script>
+
+
+</html>

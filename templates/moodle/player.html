@@ -1,0 +1,315 @@
+{%extends "moodle/base.html" %}
+
+{% block title %}
+CSO Moodle
+{% endblock %}
+
+
+{% block css/js %}
+
+<script src="/static/moodle/js/player.js"></script>
+<link rel="stylesheet" href="/static/moodle/css/player.css">
+
+<style>
+  /* body {
+    background-image: url('/static/课程详情.jpg');
+    background-size: 100%;
+  } */
+
+  #info_line_father{
+    display: none;
+  }
+
+  .v_card{
+    cursor: pointer;
+  }
+
+  #msg{
+    margin: 0 auto;
+    font-size: 1vw;
+    position: relative;
+    top: -9vw;
+    margin-left: 19.5vw;
+    width: 42vw;
+    height: 8vw;
+    overflow-y: auto;
+  }
+
+  #msg::-webkit-scrollbar {
+  width: 5px;
+  background-color: rgba(255, 255, 255, 0);
+  }
+
+  #msg::-webkit-scrollbar-thumb {
+    background-color: #042955;
+    border-radius: 2px;
+  }
+
+  #doc_box a{
+    display: none;
+  }
+
+  /* #doc_box a:first-child{
+    display: block;
+  } */
+
+
+</style>
+
+{% endblock %}
+
+
+
+{% block main %}
+
+
+<main name='course'>
+
+  <div id="c_name">
+    <p style="position: relative;text-align: center;top: 1vw;font-size: 2vw;font-weight: 700;margin-bottom: 0vw;">{{ course_info.subject.s_name }}</p>
+    <p style="text-align: center;position: relative;top: 1vw;font-size: 1.3vw;">{{ course_info.c_name }}</p>
+    <div style="    width: 4.5vw;height: 0.6vw;background: #042955;position: relative;margin: 0 auto;top: 1vw;"></div>
+  </div>
+  <div id="div_1">
+    <div class="left_div">
+      <img
+        style="    display: block;width: 5vw;height: 5vw;position: absolute;background: black;top: 3vw;left: 31vw;border-radius: 50%;"
+        src="{% if course_info.getProfessor.moodle_user.avatar %}{{ course_info.getProfessor.moodle_user.avatar.url }}{% endif %}" alt="">
+      <p style="position: absolute;top: 9.5vw;left: 11vw;font-size: 1.4vw;text-align: center;width: 45vw;">{{ course_info.getProfessor.moodle_user.nick }}</p>
+      
+      <p style="position: absolute;top: 13vw;left: 18vw;width: 32.5vw;line-height: 2vw;font-size: 1vw;">
+        {{ course_info.getProfessor.moodle_user.info|linebreaksbr }}
+      </p>
+    </div>
+    <div class="right_div">
+      <img src="/static/moodle/img/video/考试.png" alt="">
+      <!-- <div style="position: absolute;width: 24vw;height: 0.15vw;background-color: #d7d7d7;top: 9.5vw;left: 4.5vw;"></div> -->
+
+      <div id="exam_box">
+          {% for exam_end in exam_list_end %}
+            <a href="{% url 'correct' course_info.id exam_end.exam_name %}">
+              <div data="{{ exam_end.exam_name }}" class="exam" style="background-color: #F56C6A; color: #fff;">
+                <p>{{ exam_end.exam_name }}</p>
+                <p>{{ exam_end.start_time }} - {{ exam_end.end_time }}</p>
+              </div>
+            </a>
+          {% endfor %}
+
+
+          {% for exam_open in exam_list_open %}
+            <a href="{% url 'correct' course_info.id exam_open.exam_name %}">
+              <div data="{{ exam_open.exam_name }}" class="exam">
+                <p>{{ exam_open.exam_name }}</p>
+                <p>{{ exam_open.start_time }} - {{ exam_open.end_time }}</p>
+              </div>
+            </a>
+          {% endfor %}
+
+          {% for exam_start in exam_list_start %}
+            <a href="{% if user.role == 'prof' %}{% url 'correct' course_info.id exam_start.exam_name %}{% endif %}">
+            <div data="{{ exam_start.exam_name }}" class="exam" style="background-color: grey; color: #fff;{% if user.role == 'prof' %}{% else %}cursor:not-allowed{% endif %}">
+                <p>{{ exam_start.exam_name }}</p>
+                <p>{{ exam_start.start_time }} - {{ exam_start.end_time }}</p>
+              </div>
+            </a>
+          {% endfor %}
+
+            
+          <script>
+
+            {% for item in exam_list_kaowan%}
+              $("[data='{{item.exam_name}}']").css({'background-color': "#B2F0B2",'color':'white'})
+            {% endfor %}
+          </script>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div id="div_2">
+    <div class="left_div">
+      <div id="play"></div>
+      <p style="font-size: 1vw;font-weight: 700;margin-top: .3vw;">Video by : {{ course_info.video_prof }}</p>
+    </div>
+    <div class="right_div">
+      <p id="topicTitle">{{ video_list.0.v_name }}</p>
+      <div id="doc_box">
+
+          {% for file in file_list %}
+
+            <a name='{{ file.cs_name }}' href="{{ file.file.url }}" target="_blank">
+              <div class="doc">{{ file.cs_name }}
+                <svg t="1587018810843" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                  p-id="2844" width="200" height="200">
+                  <path
+                    d="M968.704 135.168h-430.08v752.64h430.08c15.36 0 26.624-12.288 26.624-26.624V162.816c0-15.36-11.264-27.648-26.624-27.648z"
+                    fill="#FF8A65" p-id="2845"></path>
+                  <path
+                    d="M512 646.144h376.832v53.248H512z m0 107.52h376.832v54.272H512z m161.792-483.328c-89.088 0-161.792 72.704-161.792 161.792C512 521.216 584.704 593.92 673.792 593.92s161.792-72.704 161.792-161.792H673.792V270.336z"
+                    fill="#FBE9E7" p-id="2846"></path>
+                  <path d="M727.04 216.064v161.792h161.792c0-89.088-72.704-161.792-161.792-161.792z" fill="#FBE9E7"
+                    p-id="2847"></path>
+                  <path d="M592.896 996.352L28.672 888.832V135.168L592.896 27.648z" fill="#E64A19" p-id="2848"></path>
+                  <path
+                    d="M319.488 327.68H192.512v368.64h78.848V569.344h40.96c44.032 0 78.848-11.264 104.448-34.816 25.6-22.528 38.912-53.248 38.912-90.112C455.68 366.592 409.6 327.68 319.488 327.68z m-14.336 178.176h-33.792V391.168h33.792c43.008 0 64.512 18.432 64.512 56.32 0 39.936-21.504 58.368-64.512 58.368z"
+                    fill="#FFFFFF" p-id="2849"></path>
+                </svg>
+              </div>
+            </a>
+
+          {% endfor %}
+
+
+
+      </div>
+    </div>
+    <div id="zuo">
+      &lt;
+    </div>
+    <div id="you">
+      &gt;
+    </div>
+  </div>
+
+  <!-- <p></p> -->
+  <p id="msg">
+
+    {{ course_info.info }}
+  </p>
+
+
+  <div id="gz">
+    <div id="div_3">
+        {% for video in video_list %}
+
+          <a {% if forloop.first %} class="cur" {% endif %} v-link="{{ video.video_add }}"  index="{{ video.v_name }}">
+            <div class="v_card">
+              <div class="tuo">
+                <div></div>
+              </div>
+              <div class="xian"></div>
+              <p class="topic">{{ video.v_name }}</p>
+
+              <img class="c_img" src="{% if course_info.subject.sub_img %}{{ course_info.subject.sub_img.url }}{% endif %}" alt="">
+
+            </div>
+          </a>
+
+        {% endfor %}
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+
+</main>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block base_script %}
+<script>
+
+  $(() => {
+
+    
+
+    let course_a = $('#doc_box a')
+
+    for(let i = 0 ;i<course_a.length;i++){
+      let a_name = course_a[i].name
+      if( a_name.indexOf($('#topicTitle').html()) != -1){
+        $(course_a[i]).css('display','block')
+      }
+    }
+
+
+    let player = new Player({
+      "id": "play",
+      "url": "{{ video_list.0.video_add|safe }}",
+      "playsinline": true,
+      // "fitVideoSize": 'fixWidth',
+      "cssFullscreen": true,
+      "videoInit": true,
+      "playbackRate": [
+        0.5,
+        0.75,
+        1,
+        1.5,
+        2
+      ],
+      // "autoplay": true,
+      "fluid": true
+    });
+
+    player.once('ready',()=>{$('video').bind('contextmenu',function() { return false; });})
+
+
+    $('#div_3 a').click(function(){
+
+
+        $('#div_3 .cur').removeClass("cur")
+        $(this).addClass("cur")
+
+        // console.log($(this).attr('v-link'))
+        player.src= $(this).attr('v-link')
+
+        $('#msg').html($(this).attr('msg'))
+        $('#topicTitle').html($(this).attr('index'))
+        player.play()
+
+
+        let course_name = $(this).attr('index')
+        let course_a = $('#doc_box a')
+        $('#doc_box a').css('display','none')
+
+        for(let i = 0 ;i<course_a.length;i++){
+          let a_name = course_a[i].name
+          if( a_name.indexOf(course_name) != -1){
+            $(course_a[i]).css('display','block')
+          }
+        }
+
+
+        // $(`#doc_box a[name="${course_name}"]`).css('display','block')
+        
+        
+    })
+
+
+
+    $('#div_3').width($('.v_card').length * ($('.v_card').width() + 0.5))
+
+    $('#zuo').click(() => {
+      $('#gz').animate({
+        scrollLeft: '-=200'
+      }, 500)
+    })
+
+    $('#you').click(() => {
+      $('#gz').animate({
+        scrollLeft: '+=200'
+      }, 500)
+    })
+
+
+  })
+  
+  
+</script>
+
+
+{% endblock %}

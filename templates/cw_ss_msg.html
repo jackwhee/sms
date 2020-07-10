@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>&#60;CSO&#62;{{title}}列表</title>
+    <link rel="stylesheet" href="/static/css/css_initialize.css">
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <style>
+        /* body {
+        background-image: url(../static/stu_search.jpg);
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background-size: 100%;
+    } */
+
+        #search_inp {
+            position: absolute;
+            top: 5vw;
+            left: 24.5vw;
+            height: 3vw;
+            line-height: 3vw;
+            width: 37vw;
+            border-radius: 2vw;
+            border: 0.2vw solid #2781d7;
+            outline: none;
+            padding-left: 2vw;
+            font-size: 1.2vw;
+
+        }
+
+        #search_btn {
+            cursor: pointer;
+            border: 0;
+            border-radius: 0.5vw;
+            color: white;
+            font-size: 1vw;
+            background: #2781d7;
+            position: absolute;
+            top: 5.2vw;
+            left: 65vw;
+            border: 0.2vw solid #2781d7;
+            line-height: 2.4vw;
+            width: 5vw;
+            outline: none;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        #search_btn:hover {
+            line-height: 2.4vw;
+            background: white;
+            color: #2781d7;
+            border: 0.2vw solid #2781d7;
+        }
+
+        #show {
+            position: absolute;
+            top: 9vw;
+            left: 23vw;
+        }
+
+        tr {
+            cursor: pointer;
+            background: #2781d7;
+            width: 48.5vw;
+            height: 3.5vw;
+            margin: 1.2vw 0;
+            border-radius: 0.5vw;
+            display: block;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        tr:hover {
+            height: 3.1vw;
+            width: 48.1vw;
+            background: white;
+            border: 0.2vw solid #2781d7;
+        }
+
+        tr:hover td {
+            color: #2781d7;
+            line-height: 3.1vw;
+        }
+
+        .col1 {
+            display: inline-block;
+            color: white;
+            line-height: 3.5vw;
+            font-size: 1.2vw;
+            padding-left: 5vw;
+            width: 10vw;
+        }
+
+        .col2 {
+            display: inline-block;
+            color: white;
+            line-height: 3.5vw;
+            font-size: 1.2vw;
+            padding-left: 5vw;
+            width: 12vw;
+        }
+
+        #jishu {
+            position: absolute;
+            font-size: 1.3vw;
+            left: 32vw;
+            top: 1.5vw;
+        }
+    </style>
+
+</head>
+
+<body style="display: none">
+    <div style="position: relative">
+        <input autocomplete="off" placeholder="输入姓名进行模糊搜索" id="search_inp" type="text" name="" id="">
+        <button id="search_btn">搜索</button>
+    </div>
+    <div id="jishu">
+        <div style="display: inline-block;width: 15vw;text-align: right;" id="dangqian">
+            <span >当前{{title}}数量:</span>
+            <span id="jishu_num"></span>
+            <span style="color:#2781d7 ;">&nbsp;/&nbsp;</span>
+        </div>
+        
+        <div style="display: inline-block;width: 15vw;" id="quanbu">
+            <span>总{{title}}数量:</span>
+            <span id="all_num"></span>
+        </div>
+    </div>
+    <table id="show">
+
+    </table>
+
+
+</body>
+<script>
+    $(function () {
+        $('body').fadeIn(500);
+    })
+
+    var jump = function (data) {
+        // console.log(data)
+        // console.log('assistant_msg?search_msg='+JSON.stringify(data))
+        window.location.href = 'assistant_msg?search_msg=' + data
+    };
+
+
+
+    if ('{{title}}' == '学生') {
+        $("#show").fadeOut(300);
+        var msg = $('#search_inp').val();
+        s_url = '/v1/users/{{ast_name}}?search_stu_pay=&search_stu_time=&search_stu_msg=' + msg
+        $.get(s_url, function (json) {
+            // console.log(json)
+            var html = "";
+            for (var i = 0; i < json.data.length; i++) {
+
+                html +=
+                    `<tr class="line" onclick="window.open('cw_stu_msg/${json.data[i].id}')"><td class="col1">已缴:${json.data[i].pay}</td><td class="col1">${json.data[i].username}</td><td class="col2">${json.data[i].school}</td></tr>`
+            };
+            setTimeout(function () {
+                $("#show").html(html);
+                $('#jishu_num').html(json.stu_num);
+                $('#all_num').html(json.all_num);
+            }, 300)
+        })
+        $("#show").fadeIn(300);
+
+        $('#search_btn').click(function () {
+
+            $("#show").fadeOut(300);
+            var msg = $('#search_inp').val();
+            s_url = '/v1/users/{{ast_name}}?search_stu_pay=&search_stu_time=&search_stu_msg=' + msg
+            $.get(s_url, function (json) {
+                // console.log(json)
+                
+                var html = "";
+                for (var i = 0; i < json.data.length; i++) {
+
+                    html +=
+                        `<tr class="line" onclick="window.open('cw_stu_msg/${json.data[i].id}')"><td class="col1">已缴:${json.data[i].pay}</td><td class="col1">${json.data[i].username}</td><td class="col2">${json.data[i].school}</td></tr>`
+                };
+                setTimeout(function () {
+                    $("#show").html(html);
+                    $('#jishu_num').html(json.stu_num);
+                    $('#all_num').html(json.all_num);
+                }, 300)
+            })
+            $("#show").fadeIn(300);
+
+        });
+
+        $(document).keydown(function (e) {
+            if (e.keyCode == 13) {
+                // console.log(1)
+
+                $("#show").fadeOut(300);
+                var msg = $('#search_inp').val();
+                s_url = '/v1/users/{{ast_name}}?search_stu_pay=&search_stu_time=&search_stu_msg=' + msg
+                $.get(s_url, function (json) {
+                    // console.log(json)
+                    var html = "";
+                    for (var i = 0; i < json.data.length; i++) {
+
+                        html +=
+                            `<tr class="line" onclick="window.open('cw_stu_msg/${json.data[i].id}')"><td class="col1">已缴:${json.data[i].pay}</td><td class="col1">${json.data[i].username}</td><td class="col2">${json.data[i].school}</td></tr>`
+                    };
+                    setTimeout(function () {
+                        $('#jishu_num').html(json.stu_num);
+                        $('#all_num').html(json.all_num);
+                        $("#show").html(html);
+                    }, 300)
+                })
+                $("#show").fadeIn(300);
+            }
+        })
+    } else if ('{{title}}' == '大使') {
+        $("#show").fadeOut(300);
+        var msg = $('#search_inp').val();
+        s_url = '/v1/users/{{ast_name}}?search_amb=' + msg
+        $.get(s_url, function (json) {
+            console.log(json)
+            var html = "";
+            for (var i = 0; i < json.data.length; i++) {
+                var role = '';
+                if (json.data[i].role=='ds'){
+                    role = '大使';
+                }else if(json.data[i].role=='scfz'){
+                    role = '市场负责人';
+                }else{
+                    role = '区域负责人'
+                }
+
+                html +=
+                    `<tr class="line" onclick="window.open('cw_ds_msg/${json.data[i].id}')"><td class="col1">${json.data[i].username}</td><td class="col2">${role}</td></tr>`
+            };
+            setTimeout(function () {
+                $('#jishu_num').html(json.stu_num);
+                $('#all_num').html(json.all_num);
+                $("#show").html(html);
+            }, 300)
+        })
+        $("#show").fadeIn(300);
+
+        $('#search_btn').click(function () {
+
+            $("#show").fadeOut(300);
+            var msg = $('#search_inp').val();
+            s_url = '/v1/users/{{ast_name}}?search_amb=' + msg
+            $.get(s_url, function (json) {
+                // console.log(json)
+                var html = "";
+                for (var i = 0; i < json.data.length; i++) {
+                    var role = '';
+                    if (json.data[i].role=='ds'){
+                        role = '大使';
+                    }else if(json.data[i].role=='scfz'){
+                        role = '市场负责人';
+                    }else{
+                        role = '区域负责人'
+                    }
+
+                    html +=
+                        `<tr class="line" onclick="window.open('cw_ds_msg/${json.data[i].id}')"><td class="col1">${json.data[i].username}</td><td class="col2">${role}</td></tr>`
+                };
+                setTimeout(function () {
+                    $('#jishu_num').html(json.stu_num);
+                    $('#all_num').html(json.all_num);
+                    $("#show").html(html);
+                }, 300)
+            })
+            $("#show").fadeIn(300);
+
+        });
+
+        $(document).keydown(function (e) {
+            if (e.keyCode == 13) {
+                // console.log(1)
+
+                $("#show").fadeOut(300);
+                var msg = $('#search_inp').val();
+                s_url = '/v1/users/{{ast_name}}?search_amb=' + msg
+                $.get(s_url, function (json) {
+                    // console.log(json)
+                    var html = "";
+                    for (var i = 0; i < json.data.length; i++) {
+                        var role = '';
+                        if (json.data[i].role=='ds'){
+                            role = '大使';
+                        }else if(json.data[i].role=='scfz'){
+                            role = '市场负责人';
+                        }else{
+                            role = '区域负责人'
+                        }
+
+                        html +=
+                            `<tr class="line" onclick="window.open('cw_ds_msg/${json.data[i].id}')"><td class="col1">${json.data[i].username}</td><td class="col2">${role}</td></tr>`
+                    };
+                    setTimeout(function () {
+                        $("#show").html(html);
+                        $('#jishu_num').html(json.stu_num);
+                        $('#all_num').html(json.all_num);
+                    }, 300)
+                })
+                $("#show").fadeIn(300);
+            }
+        })
+    }
+</script>
+
+</html>

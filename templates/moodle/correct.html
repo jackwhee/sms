@@ -1,0 +1,92 @@
+{%extends "moodle/base.html" %}
+
+{% block title %}
+CSO Moodle
+{% endblock %}
+
+
+{% block css/js %}
+
+
+
+<link rel="stylesheet" href="/static/moodle/css/style.css">
+
+{% endblock %}
+
+
+
+
+{% block main %}
+
+<main name='course'>
+    <div class="stu">
+        <div class="title">
+            <h3>{{ exam_info.moodle_course.subject.s_name }}</h3>
+            <h4>{{ exam_info.moodle_course.c_name }}</h4>
+            <div class="hen"></div>
+        </div>
+
+        <div>
+            <p style="text-align: center;font-size: 1.5vw;margin-top: 2.5vw;">{{ exam_list|length }} responses</p>
+        </div>
+
+        <div class="stu-list">
+            <ul>
+                {% for stu in exam_list %}
+                <li>
+                    <i></i><span>{{ stu.moodle_user.nick }}-{{stu.moodle_user.users.pinyin}}</span>
+                    {% if stu.exam_results %}
+                    <a href="{{ stu.exam_results.url }}" target="_blank">Review</a>
+                    {% else %}
+                    <!-- <a href="{% url 'marking' stu.moodle_course.id stu.id %}">Correction</a> -->
+                    <a href="/v1/moodle/marking/{{stu.moodle_course.id}}/{{stu.id}}?stu_id={{stu.moodle_user.id}}&exam_name={{exam_info.exam_name}}">Correction</a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+
+            </ul>
+
+            
+
+            {% if show %}
+
+            <hr style="height: 0.5vw;border: none;border-top: 0.5vw solid #042955;">
+
+            <p style="text-align: center;font-size: 1.5vw;margin-top: 2.5vw;">{{ no_sub|length }} Have not been submitted</p>
+
+            <ul>
+                {% for stu in no_sub %}
+                <li>
+                    <i></i><span>{{ stu.moodle_user.nick }}-{{stu.moodle_user.users.pinyin}}</span>
+                    {% if stu.exam_results %}
+                    <a href="{{ stu.exam_results.url }}" target="_blank">Review</a>
+                    {% else %}
+                    <a href="/v1/moodle/marking/{{stu.moodle_course.id}}/None?stu_id={{stu.moodle_user.id}}&exam_name={{exam_info.exam_name}}">Correction</a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+
+            </ul>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+
+</main>
+
+{% endblock %}
+
+
+
+
+{% block base_script %}
+
+<script>
+    // console.log('{{no_sub}}')
+    // console.log('{{exam_info.exam_name}}')
+    // console.log('{{all_stu_list}}')
+</script>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+.main{
+  margin-top: 100px;
+}
+.search{
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+.search input{
+  display: inline-block;
+  width: 80%;
+  border-radius: 20px;
+  padding: 0 20px;
+}
+
+.layui-input-block{
+  margin-left: 160px;
+}
+
+label.layui-form-label{
+  width: 120px;
+}
+
+.footer-btn{
+  width: 35%;
+  margin: 20px auto 0;
+}
+button{
+  /* background-color: #042955; */
+  border-radius: 8px !important;
+}
+
+.layui-form-select dl dd.layui-this{
+  background-color: #1E9FFF;
+}

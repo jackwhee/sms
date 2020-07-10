@@ -1,0 +1,1374 @@
+{%extends "moodle/base.html" %}
+
+{% block title %}
+CSO Moodle Exam
+{% endblock %}
+
+
+{% block css/js %}
+
+<link rel="stylesheet" href="/static/moodle/css/exam.css">
+<script src="/static/moodle/js/pdf.worker.js"></script>
+<script src="/static/moodle/js/pdf.js"></script>
+<script src="/static/moodle/js/html2canvas.min.js"></script>
+
+
+<style>
+
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
+  #zzc {
+    width: 100%;
+    background-color: rgba(0, 0, 0, .2);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10000;
+    transition: .3s;
+  }
+
+  #zzc div {
+    position: fixed;
+    left: 25vw;
+    width: 50vw;
+    height: 30vw;
+    margin-top: 20vh;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 10px grey;
+    display: none;
+    z-index: 10001;
+  }
+  #zzc div p{
+    text-align: center;
+    line-height: 30vw;
+    font-size: 4vw;
+    margin: 0;
+  }
+  
+
+  #move_shadow{
+    opacity:.5;
+    cursor: move;
+  }
+
+  .annotation{
+    cursor: move;
+  }
+
+  .pdf_class{
+      width: 53vw;
+  }
+
+  /* .an_cancel{
+      color: red;
+      font-size: 3vw;
+      top: -4.5vw;
+      font-weight: 700;
+  } */
+
+  /* .text_an_cancel{
+      color: red;
+      font-size: 3vw;
+      font-weight: 700;
+      left: -0.7vw;
+      top: -2vw;
+  } */
+
+  #info_line{
+      display: none;
+  }
+
+  {% if user.role == 'prof' %}
+  
+  .dis_stu{
+    display: none;
+  }
+
+
+
+  .ann_text {
+    border-radius: 0.5vw;
+    border: 0.1vw solid rgba(165, 42, 42, .7);
+    color: red;
+    background-color: rgba(245, 222, 179, .7);
+    cursor: move;
+    position: absolute;
+    font-size: .8vw;
+    padding: 0.3vw;
+    line-height: 1vw;
+    max-width: 52vw;
+  }
+
+  .stu_answer{
+    color: black;
+    background-color: rgba(255,255,255);
+    border-color: black;
+    cursor: default;
+    
+  }
+
+
+  {% else %}
+
+  .ann_text {
+    border-radius: 0.5vw;
+    border: 0.1vw solid rgba(0, 0, 0, .7);
+    color: black;
+    background-color: white;
+    cursor: move;
+    position: absolute;
+    font-size: .8vw;
+    padding: 0.3vw;
+    line-height: 1vw;
+    max-width: 52vw;
+  }
+
+  .dis_tea{
+    display: none;
+  }
+
+  {% endif %}
+
+</style>
+
+
+
+{% endblock %}
+
+
+
+{% block main %}
+
+<div id="vw_px" style="width: 1vw;height: 0;"></div>
+
+<div id="zzc">
+  <div id="fullzc">
+    <p>请最大化窗口进行答题</p>
+  </div>
+  <div  id="subzc">
+    <p style="line-height: 5vw;margin-top: 5vw;padding: 0 1vw;">数据传输中，请勿关闭/滚动/缩放此页面 <br>  请耐心等候直至出现成功/失败弹窗</p>
+  </div>
+</div>
+
+
+{% if exam_info.exam_type == 'offline' %}
+
+
+<main>
+
+  <p style="text-align: center;margin: 3vw 0 1vw 0;font-size: 2.5vw;font-weight: 700;">{% if exam_state == 'open' %} {{ exam_info.moodle_course.c_name }}{% else %}{{ stu_exam.moodle_course.c_name }}{% endif %} (离线)
+  </p>
+  <p style="text-align: center;font-size: 2vw;">学生姓名：<span>{% if exam_state == 'open' %}{{ user.nick }}-{{user.users.pinyin}}{% else %}{{ stu_exam.moodle_user.nick }}-{{stu_exam.moodle_user.users.pinyin}}{% endif %}</span> </p>
+  <p style="text-align: center;font-size: 2vw;">{{ exam_info.exam_name }}</p>
+  <div style="width: 7vw;height: 0.9vw;margin: 0 auto;background: #042955;margin-top: 3vw;margin-bottom: 5vw;"></div>
+
+  {% if user.role == 'prof' %}
+
+  <div class="main_left">
+    <p style="text-align: center;font-size: 2vw;margin-bottom: 0;">Download the examination paper</p>
+    <div style="width: 8vw;height: 0.3vw;margin: 0 auto;background: #042955;"></div>
+
+
+    <a href="{% if stu_exam.exam_answer %}{{ stu_exam.exam_answer.url }}{% endif %}" target="_blank">
+      <svg style="width: 5vw;height: 5vw;margin-left: 22.5vw;margin-top: 3vw;" t="1591255149896" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4670" width="200" height="200"><path d="M640 0H128a64 64 0 0 0-64 64v896a64 64 0 0 0 64 64h768a64 64 0 0 0 64-64V320L640 0z" fill="#3AAD73" p-id="4671"></path><path d="M640 0v256a64 64 0 0 0 64 64h256L640 0z" fill="#434854" p-id="4672"></path><path d="M704 320l256 256v-256z" fill="" p-id="4673"></path><path d="M748.8 471.808c-24.544-24.512-70.624-18.112-95.136 6.368l-202.304 202.304-88.736-88.736a62.784 62.784 0 0 0-88.768 88.736l133.152 133.152a62.784 62.784 0 0 0 88.736 0l255.264-251.232c24.448-24.448 22.272-66.08-2.208-90.592z" fill="#FFFFFF" p-id="4674"></path></svg>
+      <span style="margin-left: 22.8vw;">Click download (right click to save as)</span>
+    </a>
+
+  </div>
+  <div class="main_right">
+    <p style="text-align: center;font-size: 2vw;margin-bottom: 0;">Results</p>
+    <div style="width: 8vw;height: 0.3vw;margin: 0 auto;background: #042955;"></div>
+    <form action="{% url 'marking' stu_exam.moodle_course.id stu_exam.id %}" method="POST"  enctype="multipart/form-data">
+      <!-- {{stu_exam.moodle_course.id}} - {{stu_exam.id}} -->
+      {% csrf_token %}
+      <!-- <input type="text" name="image" id="" value="" style="display: none;"> -->
+      <input placeholder="grade" style="width: 30vw;margin-top: 3vw;height: 2vw;margin-left: 10vw;margin-bottom: 1vw;border-radius: 0.5vw;text-align: center;font-size: 1vw;display: block;" type="text" required='required' name="score" >
+      <input style="display: block;margin: 6vh 10vw;"   type="file" name="image" >
+      <button style="transition: .3s; width: 5.5vw;height: 2vw;margin-left: 10vw;margin-bottom: 1vw;border-radius: 0.5vw;text-align: center;border: none;cursor: pointer;font-size: 1vw;color: white;background-color: #aebbcb;display: block" id="sc_btn" type="submit" disabled="disabled">Submit</button>
+
+    </form>
+
+    <input style="margin-left: 10vw;" type="checkbox" name="" id="baoxian"> Make sure the file is correct
+
+
+
+
+
+  </div>
+
+  {% else %}
+
+  <div class="main_left">
+    <p style="text-align: center;font-size: 2vw;margin-bottom: 0;">试卷下载</p>
+    <div style="width: 8vw;height: 0.3vw;margin: 0 auto;background: #042955;"></div>
+
+
+    <a href="/media/{{exam_info.exam_subject}}" target="_blank">
+      <svg style="width: 5vw;height: 5vw;margin-left: 22.5vw;margin-top: 3vw;" t="1591255149896" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4670" width="200" height="200"><path d="M640 0H128a64 64 0 0 0-64 64v896a64 64 0 0 0 64 64h768a64 64 0 0 0 64-64V320L640 0z" fill="#3AAD73" p-id="4671"></path><path d="M640 0v256a64 64 0 0 0 64 64h256L640 0z" fill="#434854" p-id="4672"></path><path d="M704 320l256 256v-256z" fill="" p-id="4673"></path><path d="M748.8 471.808c-24.544-24.512-70.624-18.112-95.136 6.368l-202.304 202.304-88.736-88.736a62.784 62.784 0 0 0-88.768 88.736l133.152 133.152a62.784 62.784 0 0 0 88.736 0l255.264-251.232c24.448-24.448 22.272-66.08-2.208-90.592z" fill="#FFFFFF" p-id="4674"></path></svg>
+      <span style="margin-left: 22.8vw;">点击下载(可右键直接另存为)</span>
+    </a>
+
+  </div>
+  <div class="main_right">
+    <p style="text-align: center;font-size: 2vw;margin-bottom: 0;">答卷上传</p>
+    <div style="width: 8vw;height: 0.3vw;margin: 0 auto;background: #042955;"></div>
+
+    
+
+    <form method="POST" action="{% url 'correct' exam_info.moodle_course.id exam_info.exam_name %}" enctype="multipart/form-data">
+
+      {% csrf_token %}
+
+      <input style="display: block;margin: 6vh 10vw;"  required="required"  type="file" name="image" >
+      <button style="transition: .3s; width: 5.5vw;height: 2vw;margin-left: 10vw;margin-bottom: 1vw;border-radius: 0.5vw;text-align: center;border: none;cursor: pointer;font-size: 1vw;color: white;background-color: #aebbcb;display: block;" id="sc_btn" type="submit" disabled>确定</button>
+    </form>
+
+    <input style="margin-left: 10vw;" type="checkbox" name="" id="baoxian"> 确定文件正确 (上传无法修改，请检查选择的文件是否正确)
+    <p style="color: red;margin-left: 10vw;margin-bottom: 0;font-size: .7vw;">建议上传文件小于20MB，过大会影响上传速度</p>
+    <p style="margin-left: 10vw;margin-bottom: 0;font-size: .7vw;">左下角有上传进度百分比显示</p>
+
+  </div>
+
+  {% endif %}
+
+
+  <p style="clear: both;"></p>
+
+
+
+</main>
+
+{% else %}
+
+<main name='course'>
+
+  <!-- 提供vw转px尺寸微调 -->
+  <!-- <p id="vw_px" style="width: 1vw;"></p> -->
+
+  <!-- 标记框 -->
+  <div id="kuang">
+
+    <div id="t_dui" class="k_bt dis_tea">✔️
+      <div class="shadow" style="left:-2.6vw;">
+        ✔️
+      </div>
+    </div>
+
+    <div id="t_cuo" class="k_bt dis_tea">❌
+      <div class="shadow" style="left:-7vw;">
+        ❌
+      </div>
+    </div>
+
+    <div id="s_dui" class="k_bt dis_stu">√
+      <div class="shadow" style="left:-2.6vw;">
+        √
+      </div>
+    </div>
+
+    <div id="s_cuo" class="k_bt dis_stu">×
+      <div class="shadow" style="left:-7vw;">
+        ×
+      </div>
+    </div>
+
+    <div id="correcting" class="k_bt_txt">📝
+      <div class="shadow" style="left:-10vw;top:-3.2vw;">
+        {% if user.role == 'prof' %}
+        <div
+          style="border-radius: 0.5vw 0 0 0;border-top: 0.2vw solid rgba(165, 42, 42, .7);border-left: 0.2vw solid rgba(165, 42, 42, .7);color: red;cursor: default;position: absolute;font-size: 1.2vw;font-weight: 700; padding: 0.5vw;">
+          ABC</div>
+        {% else %}
+        <div
+        style="border-radius: 0.5vw 0 0 0;border-top: 0.2vw solid rgba(0,0,0, .7);border-left: 0.2vw solid rgba(0,0,0, .7);color: black;cursor: default;position: absolute;font-size: 1.2vw;font-weight: 700; padding: 0.5vw;">
+        ABC</div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div id="btn_A" class="k_bt dis_stu">A
+      <div class="shadow" style="left:-2.6vw;top: -6.5vw;">
+        A
+      </div>
+    </div>
+
+    <div id="btn_B" class="k_bt dis_stu">B
+      <div class="shadow" style="left:-7vw;top: -6.5vw;">
+        B
+      </div>
+    </div>
+
+    <div id="btn_C" class="k_bt dis_stu">C
+      <div class="shadow" style="left:-11.4vw;top: -6.5vw;">
+        C
+      </div>
+    </div>
+
+    <div id="btn_D" class="k_bt dis_stu">D
+      <div class="shadow" style="left:-2.6vw;top: -9.1vw;">
+        D
+      </div>
+    </div>
+
+
+    <div style="clear: both;"></div>
+    <textarea id="correcting_input" type="text" name="" id=""></textarea>
+    {% if user.role == 'prof' %}
+    <div class="correcting_btn" id="correcting_sub">Mark</div>
+    <div class="correcting_btn" id="correcting_cler">Empty</div>
+    {% else %}
+    <div class="correcting_btn" id="correcting_sub">标注</div>
+    <div class="correcting_btn" id="correcting_cler">清空</div>
+    {% endif %}
+  </div>
+
+
+
+
+
+
+
+  <p style="text-align: center;margin: 3vw 0 1vw 0;font-size: 2.5vw;font-weight: 700;">{% if exam_state == 'open' %} {{ exam_info.moodle_course.c_name }}{% else %}{{ stu_exam.moodle_course.c_name }}{% endif %} (在线)
+  </p>
+  <p style="text-align: center;font-size: 2vw;">学生姓名：<span>{% if exam_state == 'open' %}{{ user.nick }}-{{user.users.pinyin}}{% else %}{{ stu_exam.moodle_user.nick }}-{{stu_exam.moodle_user.users.pinyin}}{% endif %}</span> </p>
+  <div style="width: 7vw;height: 0.9vw;margin: 0 auto;background: #042955;margin-top: 3vw;"></div>
+
+  {% if user.role == 'prof' %}
+    <div id="d_left">
+      {% if stu_exam.exam_answer %}
+      <img style="width: 54vw;" src="{% if stu_exam.exam_answer %}{{ stu_exam.exam_answer.url }}{% endif %}" alt="">
+      {% else %}
+      <div id="my_canvas"></div>
+      {% endif %}
+    </div>
+  {% else %}
+    <div id="d_left">
+      <div id="my_canvas"></div>
+    </div>
+  {% endif %}
+
+  <div id="d_right">
+    {% if user.role == 'prof' %}
+    <form id="t_kuai">
+
+
+      <P>Results</P>
+      <input class="tianxie" type="text" name="" id="">
+      <input id="sub" value="Submit">
+
+    </form>
+    {% elif exam_state == 'open' %}
+
+    <div id="s_kuai">
+      <p>答题时间还剩</p>
+      <p id="time"></p>
+      <div style="margin-bottom: 1vw;" id="sbsb" class="kuai_btn">临时保存</div>
+      <p style="transition: .3s;opacity: 0;position: absolute;top: 4vw;left: 15vw;font-size: .9vw;font-weight: 500;width: 9vw;background-color: rgb(248, 215, 218);padding: 1vw;"><span style="color: red;font-weight: 700;">若未弹窗提示保存成功请重试</span> <br> 临时保存后再次进行答题建议使用 <span style="color: red;">相同电脑设备</span> ，更换设备可能会造成答案位置偏差，但答案内容不会消失 <br> 若答案位置产生偏差，可点击答案自行移动到准确位置。</p>
+      <input style="margin-left: 4vw;" type="checkbox" name="" id="exam_baoxian"> 确定提交
+      <button style="margin-top: 0;display: block;border: 0;background-color: #aebbcb;" id="tijiao" class="kuai_btn" disabled>提交</button>
+    </div>
+    {% endif %}
+
+
+
+  </div>
+
+</main>
+
+{% endif %}
+
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block base_script %}
+
+
+<script>//------------------------------------共有设置------------------------------------
+
+  
+  let vw_px = $('#vw_px').width()
+  
+  function zzc(selector) {
+    if (window.screen.availWidth - document.body.offsetWidth > 30) {
+      $('#zzc').height('100vh')
+      $(selector).fadeIn()
+    } else {
+      $('#zzc').height(0)
+      $(selector).fadeOut()
+    }
+  }
+
+  $(()=>{
+    zzc('#fullzc')
+
+    $(window).resize(() => {
+      zzc('#fullzc')
+    })
+  })
+
+</script>
+
+
+
+{% if exam_info.exam_type == 'offline' %}<!-- ------------------------------------离线答题设置------------------------------------ -->
+
+
+<script>//------------------------------------提交保险------------------------------------
+  $('#baoxian').change(function(){
+    if($(this).is(':checked')){
+      $("#sc_btn").removeAttr("disabled");
+      $("#sc_btn").css('background-color','#042955')
+    }else{
+      $("#sc_btn").attr("disabled",'disabled');
+      $("#sc_btn").css('background-color','#aebbcb')
+    }
+  })
+
+
+</script>
+
+
+{% else %}<!-- ------------------------------------在线答题设置------------------------------------ -->
+
+<script>//------------------------------------提交保险------------------------------------
+
+$('#exam_baoxian').change(function(){
+    // console.log(33)
+    if($(this).is(':checked')){
+      // console.log(1)
+      $("#tijiao").removeAttr("disabled");
+      $("#tijiao").css('background-color','#042955')
+    }else{
+      // console.log(2)
+      $("#tijiao").attr("disabled",'disabled');
+      $("#tijiao").css('background-color','#aebbcb')
+    }
+  })
+
+</script>
+
+
+<script>//------------------------------------PDF转成图片------------------------------------
+  let url = '{{ exam_info.exam_subject.url }}';
+  console.log('{{ exam_info }}')
+  pdfjsLib.workerSrc = '/static/moodle/js/pdf.worker.js';
+
+  //创建
+  function createPdfContainer(id, className) {
+    let pdfContainer = document.getElementById("my_canvas");
+    let canvasNew = document.createElement('canvas');
+    // $("my_canvas").on("click", function () {
+    //     let url = '/static/js/asdfaf12345.pdf';
+    //     window.open(url);
+    // })
+    canvasNew.id = id;
+    canvasNew.className = className;
+    pdfContainer.appendChild(canvasNew);
+  };
+
+  //渲染pdf
+  //建议给定pdf宽度
+  let body_width = $('body').css('width').split('px')[0]
+
+  function renderPDF(pdf, i, id) {
+    pdf.getPage(i).then(function (page) {
+      let viewport = page.getViewport({
+        scale: body_width / 630
+      });
+
+      //
+      //  准备用于渲染的 canvas 元素
+      //
+
+      let canvas = document.getElementById(id);
+      let context = canvas.getContext('2d');
+      canvas.height = viewport.height;
+      canvas.width = document.documentElement.clientWidth;
+
+      //
+      // 将 PDF 页面渲染到 canvas 上下文中
+      //
+      let renderContext = {
+        canvasContext: context,
+        viewport: viewport
+      };
+      page.render(renderContext);
+    });
+  };
+  //创建和pdf页数等同的canvas数
+  function createSeriesCanvas(num, template) {
+    let id = '';
+    for (let j = 1; j <= num; j++) {
+      id = template + j;
+      createPdfContainer(id, 'pdf_class');
+    }
+  }
+  //读取pdf文件，并加载到页面中
+  function loadPDF(fileURL) {
+    pdfjsLib.getDocument({
+      'url': fileURL,
+      'cMapUrl': '/static/moodle/js/cmaps/',
+      'cMapPack': true
+
+
+    }).promise.then(function (pdf) {
+      //用 promise 获取页面
+      let id = '';
+      let idTemplate = 'pdf-';
+      let pageNum = pdf.numPages;
+      //根据页码创建画布
+      createSeriesCanvas(pageNum, idTemplate);
+      //将pdf渲染到画布上去
+      for (let i = 1; i <= pageNum; i++) {
+        id = idTemplate + i;
+        renderPDF(pdf, i, id);
+      }
+    });
+  }
+  loadPDF(url)
+</script>
+
+
+<script>//------------------------------------标签事件/标签读取------------------------------------
+
+  //点击位置
+  let m_x = null
+  let m_y = null
+
+  let bj_num = 0
+
+
+  {% if user.role == 'stu' %}
+
+  let lsbc = ``
+  let lsbc_json = []
+
+  function stu_linshi(tc){
+    vw_px = $('#vw_px').width()
+    if (! vw_px){
+      vw_px = 1
+    }
+    lsbc_json = []
+
+    for(let i =0 ; i < $('#my_canvas').nextAll().length;i++){
+      let ann = $($('#my_canvas').nextAll()[i])
+      let ann_msg = ann.text().split('Ⓧ')[0]
+      // console.log('-------',ann,'-------',ann.css('top'),'-------',ann.css('left'))
+      lsbc_json.push(
+        {"id":ann.attr('id'),
+        "class":ann.attr('class'),
+        "msg":ann_msg.replace(/\"/g,"＂").replace(/\\`/g,'´').replace(/\n|\t|\r|\b|\f|\\n|\\t|\\f/g,' ').replace(/\\/g,"╲"),
+        "top":ann.css('top').split('px')[0]/vw_px,
+        "left":ann.css('left').split('px')[0]/vw_px,
+        })
+    }
+
+
+    $.ajax({
+        type: "POST",
+        url: "{% url 'exam' exam_info.moodle_course.id exam_info.exam_name %}",
+        data: {'bj_num': bj_num, 'lsbc': JSON.stringify(lsbc_json)},
+        dataType: "json",
+        success: function(data){
+          
+          
+          $('#subzc').fadeOut(()=>{
+            $('#zzc').height(0)
+            if(tc == 'no'){
+              console.log('临时保存成功')
+            }else{
+              alert('临时保存成功')
+            }
+            
+          })
+        },
+        error:function(){
+          
+          $('#subzc').fadeOut(()=>{
+            $('#zzc').height(0)
+            if(tc == 'no'){
+              console.log('临时保存失败，请重试')
+            }else{
+              alert('临时保存失败，请重试')
+            }
+          })
+        }
+     });
+  
+  }
+
+  $('#sbsb').click(()=>{
+
+    $('#zzc').height('100vh')
+    $('#subzc').fadeIn()
+
+    stu_linshi('yes')
+
+
+  })
+
+    {% if linshi %}
+    bj_num = {{ linshi.number }}
+    // console.log(1)
+
+    $(()=>{
+
+      try{
+        let linshi_json = JSON.parse(`{{ linshi.content | safe }}`)
+
+        let huabu = $('#d_left')
+
+        for(let bj=0 ; bj<linshi_json.length;bj++){
+          let this_bj = linshi_json[bj]
+          // console.log(this_bj)
+          huabu.append(`<div id="${this_bj.id}" class="${this_bj.class}" onclick="move(event,this)" style="top: ${this_bj.top}vw; left: ${this_bj.left}vw;"></div>`)
+          let add_bj = $(`#${this_bj.id}`)
+          add_bj.text(this_bj.msg)
+          if(this_bj.class == 'annotation'){
+            add_bj.append(`<div onclick=dele_ann(event,this) class="an_cancel">Ⓧ</div>`)
+          }else{
+            add_bj.append(`<div onclick=dele_ann(event,this) class="text_an_cancel">Ⓧ</div>`)
+          }
+          
+        }
+
+        // console.log(JSON.parse(`{{ linshi.content | safe }}`));
+      }
+      catch(err){
+        console.log(err)
+        $('#d_left').append(`{{ linshi.content | safe }}`)
+        bj_num = {{ linshi.number }}
+      }
+      
+    })
+
+    {% endif %}
+
+
+  {% else %}
+
+    $(()=>{
+
+      // console.log(`{{ stu_exam.content | safe }}`)
+      let answer_json = JSON.parse(`{{ stu_exam.content | safe }}`)
+      let huabu = $('#d_left')
+
+      for(let bj=0 ; bj<answer_json.length;bj++){
+        let this_bj = answer_json[bj]
+        // console.log(this_bj)
+        huabu.append(`<div id="answer_${this_bj.id}" class="${this_bj.class} stu_answer" style="top: ${this_bj.top}vw; left: ${this_bj.left}vw;"></div>`)
+        let add_bj = $(`#answer_${this_bj.id}`)
+        add_bj.text(this_bj.msg)
+
+        
+      }
+
+
+      
+    })
+    
+
+  {% endif %}
+
+
+
+
+  //删除添加的标记
+  function dele_ann(event, obj) {
+    event.stopPropagation()
+    // console.log(obj)
+    $(obj).parent().remove()
+  }
+
+
+
+
+  // 文字添加框内容清除
+  $('#correcting_cler').click(function () {
+    $(this).parent().find('textarea').val('')
+  })
+
+  //阻止冒泡
+  $('#kuang').click(function (event) {
+    event.stopPropagation()
+  })
+  $('.shadow').click(function (event) {
+    event.stopPropagation()
+  })
+
+
+
+
+  //标记移动step1--创建移动阴影 删除标记
+  function move(event, obj){
+    if($('#move_shadow').length){
+      // console.log(1111111)
+    }else{
+      event.stopPropagation()
+      if($(obj).attr('class') == 'annotation'){
+        $('main').append(`<div id='move_shadow' class="annotation" onclick=del_move(event,this) ></div>`)
+      }else{
+        $('main').append(`<div id='move_shadow' class="ann_text" onclick=del_move(event,this) ></div>`)
+      }
+      
+      
+
+      let bj_nr = $(obj).html().split('<d')[0]
+
+      $('#move_shadow').html(bj_nr)
+      
+      $(obj).remove()
+      $(document).mousemove(function(event){
+        if($('#move_shadow').length){
+          $('#move_shadow').offset({top:event.pageY - $("#move_shadow").height() / 2,left:event.pageX - $("#move_shadow").width() / 2})
+        }
+        
+      })
+    }
+
+  }
+
+
+  //标记移动step2--删除移动阴影 新增标记
+  function del_move(event,obj){
+
+    if($(obj).attr('class') == 'annotation'){
+      $('#d_left').append(
+      `<div id='bj_${bj_num}' class="annotation" onclick=move(event,this)></div>`
+      );
+    }else{
+      $('#d_left').append(
+      `<div id='bj_${bj_num}' class="ann_text" onclick=move(event,this)></div>`
+      );
+    }
+
+   
+
+    let m_s_zb=$("#move_shadow").offset();
+
+    $(`#bj_${bj_num}`).offset({
+      top:m_s_zb.top,
+      left:m_s_zb.left
+    })
+
+    if($(obj).attr('class') == 'annotation'){
+      $(`#bj_${bj_num}`).html(`${$('#move_shadow').html()}<div onclick=dele_ann(event,this) class="an_cancel">Ⓧ</div>`)
+    }else{
+      $(`#bj_${bj_num}`).html(`${$('#move_shadow').html()}<div onclick=dele_ann(event,this) class="text_an_cancel">Ⓧ</div>`)
+    }
+
+    
+
+
+    $("#move_shadow").remove()
+
+
+    bj_num = bj_num + 1
+
+  }
+
+
+
+
+  //------------------------------------点击出现标记功能框------------------------------------
+
+  $('#d_left').click(function (event) {
+
+    if($('#move_shadow').length){
+
+      
+    }else{
+          //标记功能框未显示 或 两次点击不在同一位置 根据鼠标位置显示标记功能框
+      if ((m_x != event.pageX && m_y != event.pageY) || $('#kuang').css('opacity') == 0) {
+        // $('#correcting_input').css({
+        //         'height': '0',
+        //         'padding': '0 1vw',
+        //     }),
+        //     $('#correcting_sub').fadeOut(100)
+        // $('#correcting_cler').fadeOut(100)
+        $('#kuang').css({
+          'opacity': 1,
+          'left': event.pageX,
+          'top': event.pageY,
+          'z-index': 1000
+        })
+        shadow_x = $('.shadow').eq(0).offset().top;
+        shadow_y = $('.shadow').eq(0).offset().left;
+
+        //两次点击同一位置 隐藏标记功能框
+      } else {
+        // $('#correcting_input').css({
+        //         'height': '0',
+        //         'padding': '0 1vw'
+        //     }),
+        //     $('#correcting_sub').fadeOut(100)
+        // $('#correcting_cler').fadeOut(100)
+        $('#kuang').css({
+          'opacity': '0',
+          'z-index': -1
+        })
+    }
+
+    //记录此次点击位置供下次点击判断
+    m_x = event.pageX
+    m_y = event.pageY
+    }
+
+
+
+
+
+  })
+
+
+  //添加文字标记功能伸缩
+  // $('#correcting').click(function () {
+
+  //     if ($('#correcting_input').css('height') == '0px') {
+  //         $('#correcting_input').css({
+  //             'height': '10vw',
+  //             'padding': '1vw 1vw',
+  //         })
+  //         $('#correcting_sub').fadeIn(100)
+  //         $('#correcting_cler').fadeIn(100)
+  //     } else {
+  //         $('#correcting_input').css({
+  //             'height': '0',
+  //             'padding': '0 1vw'
+  //         })
+  //         $('#correcting_sub').fadeOut(100)
+  //         $('#correcting_cler').fadeOut(100)
+  //     }
+  // })
+
+
+  //'教授正确'标记添加
+  $('#t_dui').click(function () {
+    $('#d_left').append(
+      `<div id='bj_${bj_num}' class="annotation" onclick=move(event,this)>✔️<div onclick=dele_ann(event,this) class="an_cancel">Ⓧ</div></div>`
+    );
+    $(`#bj_${bj_num}`).offset({
+      top: $('.shadow').eq(0).offset().top,
+      left: $('.shadow').eq(0).offset().left
+    })
+    $('#kuang').css({
+      'opacity': '0',
+      'z-index': -1
+    });
+    bj_num = bj_num + 1
+  })
+
+  //'教授错误'标记添加
+  $('#t_cuo').click(function () {
+    $('#d_left').append(
+      `<div id='bj_${bj_num}' class="annotation" onclick=move(event,this)>❌<div onclick=dele_ann(event,this) class="an_cancel">Ⓧ</div></div>`
+    );
+    $(`#bj_${bj_num}`).offset({
+      top: $('.shadow').eq(1).offset().top,
+      left: $('.shadow').eq(1).offset().left
+    })
+    $('#kuang').css({
+      'opacity': '0',
+      'z-index': -1
+    });
+    bj_num = bj_num + 1
+  })
+
+  //'学生正确'标记添加
+  $('#s_dui').click(function () {
+
+    $('#d_left').append(
+      `<div id='bj_${bj_num}' class="annotation" onclick=move(event,this) >√<div onclick=dele_ann(event,this) class="an_cancel">Ⓧ</div></div>`
+    );
+    $(`#bj_${bj_num}`).offset({
+      top: $('.shadow').eq(2).offset().top,
+      left: $('.shadow').eq(2).offset().left
+    })
+    $('#kuang').css({
+      'opacity': '0',
+      'z-index': -1
+    });
+    bj_num = bj_num + 1
+  })
+
+  //'学生错误'标记添加
+  $('#s_cuo').click(function () {
+
+    $('#d_left').append(
+      `<div id='bj_${bj_num}' class="annotation" onclick=move(event,this) >×<div onclick=dele_ann(event,this) class="an_cancel">Ⓧ</div></div>`
+    );
+    $(`#bj_${bj_num}`).offset({
+      top: $('.shadow').eq(3).offset().top,
+      left: $('.shadow').eq(3).offset().left
+    })
+    $('#kuang').css({
+      'opacity': '0',
+      'z-index': -1
+    });
+    bj_num = bj_num + 1
+  })
+
+
+  //文字标记添加
+  $('#correcting_sub,#correcting').hover(()=>{
+    $('#correcting .shadow').css('display','block')
+  },()=>{
+    $('#correcting .shadow').css('display','none')
+  })
+
+  $('#correcting_sub').click(function () {
+
+
+    if($(this).parent().find('textarea').val().split(' ')[0]){
+      $('#d_left').append(
+        `<div id='bj_${bj_num}' class="ann_text" onclick=move(event,this)><div onclick=dele_ann(event,this) class="text_an_cancel">Ⓧ</div></div>`
+      );
+      // console.log($(this).parent().find('textarea').val().replace(/\n/g,' '))
+      $(`#bj_${bj_num}`).text($(this).parent().find('textarea').val().replace(/"/g,"＂").replace(/`/g,'´').replace(/\n|\t|\r|\b|\f/g,' ').replace(/\\/g,"╲"))
+      $(`#bj_${bj_num}`).offset({
+        top: $('.shadow').eq(4).offset().top,
+        left: $('.shadow').eq(4).offset().left
+      })
+      $('#kuang').css({
+        'opacity': '0',
+        'z-index': -1
+      });
+      bj_num = bj_num + 1
+    }else{
+      alert('第一个单词不能为空格 \r\n The first word cannot be a space')
+    }
+
+
+  })
+
+
+  $('#correcting').click(function () {
+
+    if($(this).parent().find('textarea').val().split(' ')[0]){
+
+      $('#d_left').append(
+      `<div id='bj_${bj_num}' class="ann_text" onclick=move(event,this)>${$(this).parent().find('textarea').val()}<div onclick=dele_ann(event,this) class="text_an_cancel">Ⓧ</div></div>`
+      );
+      $(`#bj_${bj_num}`).offset({
+        top: $('.shadow').eq(4).offset().top,
+        left: $('.shadow').eq(4).offset().left
+      })
+      $('#kuang').css({
+        'opacity': '0',
+        'z-index': -1
+      });
+      bj_num = bj_num + 1
+
+
+    }else{
+      alert('第一个单词不能为空格 \r\n The first word cannot be a space')
+    }
+
+    
+  })
+
+
+  //A标记添加
+  $('#btn_A').click(function () {
+
+    $('#d_left').append(
+      `<div id='bj_${bj_num}' class="annotation" onclick=move(event,this) >A<div onclick=dele_ann(event,this) class="an_cancel">Ⓧ</div></div>`
+    );
+    $(`#bj_${bj_num}`).offset({
+      top: $('.shadow').eq(5).offset().top,
+      left: $('.shadow').eq(5).offset().left
+    })
+    $('#kuang').css({
+      'opacity': '0',
+      'z-index': -1
+    });
+    bj_num = bj_num + 1
+  })
+
+  //B标记标记添加
+  $('#btn_B').click(function () {
+
+    $('#d_left').append(
+      `<div id='bj_${bj_num}' class="annotation" onclick=move(event,this) >B<div onclick=dele_ann(event,this) class="an_cancel">Ⓧ</div></div>`
+    );
+    $(`#bj_${bj_num}`).offset({
+      top: $('.shadow').eq(6).offset().top,
+      left: $('.shadow').eq(6).offset().left
+    })
+    $('#kuang').css({
+      'opacity': '0',
+      'z-index': -1
+    });
+    bj_num = bj_num + 1
+  })
+
+  //C标记添加
+  $('#btn_C').click(function () {
+
+    $('#d_left').append(
+      `<div id='bj_${bj_num}' class="annotation" onclick=move(event,this) >C<div onclick=dele_ann(event,this) class="an_cancel">Ⓧ</div></div>`
+    );
+    $(`#bj_${bj_num}`).offset({
+      top: $('.shadow').eq(7).offset().top,
+      left: $('.shadow').eq(7).offset().left
+    })
+    $('#kuang').css({
+      'opacity': '0',
+      'z-index': -1
+    });
+    bj_num = bj_num + 1
+  })
+
+  $('#btn_D').click(function () {
+
+    $('#d_left').append(
+      `<div id='bj_${bj_num}' class="annotation" onclick=move(event,this) >D<div onclick=dele_ann(event,this) class="an_cancel">Ⓧ</div></div>`
+    );
+    $(`#bj_${bj_num}`).offset({
+      top: $('.shadow').eq(8).offset().top,
+      left: $('.shadow').eq(8).offset().left
+    })
+    $('#kuang').css({
+      'opacity': '0',
+      'z-index': -1
+    });
+    bj_num = bj_num + 1
+  })
+
+
+
+
+</script>
+
+<script>//------------------------------------提交事件------------------------------------
+  {% if user.role == 'stu' %}
+
+
+  function sendExam(){
+    vw_px = $('#vw_px').width()
+    if (! vw_px){
+      vw_px = 1
+    }
+    answer_json = []
+
+    for(let i =0 ; i < $('#my_canvas').nextAll().length;i++){
+      let ann = $($('#my_canvas').nextAll()[i])
+      let ann_msg = ann.text().split('Ⓧ')[0]
+      // console.log('-------',ann,'-------',ann.css('top'),'-------',ann.css('left'))
+      answer_json.push(
+        {"id":ann.attr('id'),
+        "class":ann.attr('class'),
+        "msg":ann_msg.replace(/\"/g,"＂").replace(/\\`/g,'´').replace(/\n|\t|\r|\b|\f|\\n|\\t|\\f/g,' ').replace(/\\/g,"╲"),
+        "top":ann.css('top').split('px')[0]/vw_px,
+        "left":ann.css('left').split('px')[0]/vw_px,
+        })
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "{% url 'correct' exam_info.moodle_course.id exam_info.exam_name %}",
+      data: {'image': JSON.stringify(answer_json),'type':'online'},
+      dataType: "json",
+      success: function(data){                
+        $('#subzc').fadeOut(()=>{
+          $('#zzc').height(0)
+            alert('提交成功') 
+            window.location.href=document.referrer;         
+        })
+      },
+      error:function(){          
+        $('#subzc').fadeOut(()=>{
+          $('#zzc').height(0)
+            alert('提交失败，请重试')
+        })
+      }
+     });
+  
+
+    // document.body.scrollTop = 0
+    // document.documentElement.scrollTop = 0
+    // window.pageYOffset = 0
+
+    // var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+
+    // if( scrollTop == 0){
+    //   new html2canvas(document.getElementById('d_left')).then(canvas => {
+    //     // canvas为转换后的Canvas对象
+    //     let oImg = new Image();
+
+        
+
+    //     oImg.src = canvas.toDataURL("image/jpeg", 1); // 导出图片
+    //     // {#document.body.appendChild(oImg); // 将生成的图片添加到body#}
+
+    //     // console.log(oImg)
+
+    //     var score = $('.tianxie').val()
+
+    //     $.ajax({
+    //       type: "POST",
+    //       url: "{% url 'correct' exam_info.moodle_course.id exam_info.exam_name %}",
+    //       data: {'image':oImg.src,'type':'online'},
+    //       dataType: "json",
+    //       success: function(data){
+    //         $('#subzc').fadeOut(()=>{
+    //           $('#zzc').height(0)
+    //           alert('提交成功')
+    //           window.location.href=document.referrer;
+    //         })
+
+              
+    //       },
+    //       error:function(){
+    //         $('#subzc').fadeOut(()=>{
+    //           $('#zzc').height(0)
+    //           alert('网络连接错误，请重试')
+    //         })
+    //       }
+    //     });
+
+    //   });
+    // }else{
+    //   $('#subzc').fadeOut(()=>{
+    //       $('#zzc').height(0)
+    //       alert('无法进行答卷图片生成，请重试')
+    //     })
+    // }
+  }
+
+
+  var oSpan = $('#time');
+  
+  function tow(n) {
+      return n >= 0 && n < 10 ? '0' + n : '' + n;
+    }
+
+    
+  function getChazhi(){
+    // 服务器当前时间
+    var server_time = '{{ this_time }}'.replace(/['年','月']/g,'/').replace(/['日']/g,'')
+
+    // 服务器当前时间戳
+    var serverTime = new Date(server_time).getTime()
+
+    // 浏览器当前时间
+    var browser_time = new Date();//获取日期对象
+
+    // 浏览器当前时间戳
+    var browserTime = browser_time.getTime()
+
+    // 时间戳差
+    var chazhi = serverTime - browserTime
+
+    return chazhi
+  }
+
+  var chazhi = getChazhi()
+
+  function getDate() {
+
+    // 服务器结束时间
+    var end_time = '{{ exam_info.end_time }}'.replace(/['年','月']/g,'/').replace(/['日']/g,'')
+    
+    // 服务器结束时间戳
+    var newTime = new Date(end_time).getTime();
+
+    // 浏览器结束时间戳
+    var browserEndTime = newTime - chazhi
+
+    // 浏览器当前时间戳
+    var oldTime = new Date().getTime();//获取日期对象
+    
+    var second = Math.floor((browserEndTime - oldTime) / 1000);//未来时间距离现在的秒数
+    var day = Math.floor(second / 86400);//整数部分代表的是天；一天有24*60*60=86400秒 ；
+    second = second % 86400;//余数代表剩下的秒数；
+    var hour = Math.floor(second / 3600);//整数部分代表小时；
+    second %= 3600; //余数代表 剩下的秒数；
+    var minute = Math.floor(second / 60);
+    second %= 60;
+    var str = tow(day) + '天'
+        + tow(hour) + ':'
+        + tow(minute) + ':'
+        + tow(second);
+    oSpan.html(str);
+
+
+    if((day<=0)&&(hour<=0)&&(minute<=0)&&(second<=0)){
+      clearInterval(interval);
+      sendExam()
+    };
+  }
+  getDate();
+  var interval = setInterval(getDate, 1000);
+
+  $('#tijiao').click(() => {
+
+    $('#zzc').height('100vh')
+    $('#subzc').fadeIn()
+
+    // lsbc = ``
+    //   for(let i =0 ; i < $('#my_canvas').nextAll().length;i++){
+    //     lsbc += $('#my_canvas').nextAll()[i].outerHTML
+    //   }
+
+    // $.ajax({
+    //   type: "POST",
+    //   url: "{% url 'exam' exam_info.moodle_course.id exam_info.exam_name %}",
+    //   data: {'bj_num': bj_num, 'lsbc': lsbc},
+    //   dataType: "json",
+    //   success: function(data){
+        
+        
+        
+    //   },
+    //   // error:function(){
+        
+    //   //   $('#subzc').fadeOut(()=>{
+    //   //     $('#zzc').height(0)
+    //   //     alert('无法进行提交前的临时保存，请重试')
+    //   //   })
+    //   // }
+    // });
+    stu_linshi('no')
+    sendExam()
+
+    // console.log(lsbc)
+
+
+
+   
+
+    // $('html').animate({scrollTop: 0}, 100, () => {
+
+    //   console.log(1)
+
+
+    //   new html2canvas(document.getElementById('d_left')).then(canvas => {
+    //     // canvas为转换后的Canvas对象
+    //     let oImg = new Image();
+    //     oImg.src = canvas.toDataURL("image/jpeg", 1); // 导出图片
+    //     // {#document.body.appendChild(oImg); // 将生成的图片添加到body#}
+
+    //       var score = $('.tianxie').val()
+
+    //           $.ajax({
+    //              type: "POST",
+    //              url: "{% url 'correct' exam_info.moodle_course.id exam_info.exam_name %}",
+    //              data: {'image':oImg.src},
+    //              dataType: "json",
+    //              success: function(data){
+    //                 window.history.go(-1)
+    //             }
+    //          });
+
+    //   });
+    // });
+  })
+
+{% else %}
+
+
+
+
+
+
+  $('#sub').click(() => {
+
+    $('#zzc').height('100vh')
+
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0
+    window.pageYOffset = 0
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+
+
+    if(scrollTop == 0){
+      new html2canvas(document.getElementById('d_left')).then(canvas => {
+          // canvas为转换后的Canvas对象
+          let oImg = new Image();
+          oImg.src = canvas.toDataURL("image/jpeg", 0.2); // 导出图片
+          // {#document.body.appendChild(oImg); // 将生成的图片添加到body#}
+
+            var score = $('.tianxie').val()
+            if(!score){
+              alert('No score')
+            }
+            else{
+              $.ajax({
+                  type: "POST",
+                  url: "{% url 'marking' stu_exam.moodle_course.id stu_exam.id %}",
+                  data: {'image':oImg.src, 'score': score ,'type':'online' },
+                  dataType: "json",
+                  success: function(data){
+                    $('#zzc').height(0)
+                    alert('success')
+                    window.location.href=document.referrer;
+                  },
+                  error:function(){
+                    $('#zzc').height(0)
+                    alert('error')
+                  }
+              });
+            }
+
+
+        });
+    }else{
+      alert('提交失败')
+    }
+    
+
+      // $('html').animate({scrollTop: 0}, 100, () => {
+      //   console.log(1)
+
+
+      // new html2canvas(document.getElementById('d_left')).then(canvas => {
+      //   // canvas为转换后的Canvas对象
+      //   let oImg = new Image();
+      //   oImg.src = canvas.toDataURL("image/jpeg", 1); // 导出图片
+      //   // {#document.body.appendChild(oImg); // 将生成的图片添加到body#}
+
+      //     var score = $('.tianxie').val()
+      //     $.ajax({
+      //         type: "POST",
+      //         url: "{% url 'marking' stu_exam.moodle_course.id stu_exam.id %}",
+      //         data: {'image':oImg.src, 'score': score},
+      //         dataType: "json",
+      //         success: function(data){
+      //           window.history.go(-1)
+      //       }
+      //     });
+
+
+      //   });
+
+
+      // });
+
+    })
+
+{% endif %}
+</script>
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+{% endblock %}

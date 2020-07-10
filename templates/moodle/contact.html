@@ -1,0 +1,122 @@
+{%extends "moodle/base.html" %}
+
+{% block title %}
+CSO Moodle
+{% endblock %}
+
+
+{% block css/js %}
+
+
+
+<link rel="stylesheet" href="/static/moodle/css/contact.css">
+<style>
+  /* body{
+    background-image: url('/static/联系我们.jpg');
+    background-size: 100%;
+  } */
+</style>
+
+{% endblock %}
+
+
+
+
+{% block main %}
+
+<main style="height: 45vw;" name='contact'>
+
+    <div id="contact_title">
+      <img src="/static/moodle/img/contact/联系簿.png" alt="">
+      <p>联系我们</p>
+    </div>
+
+    <div id="contact_body">
+
+      <div style="position: relative;transition: .3s;top: 0;">
+        <img class="tb" src="/static/moodle/img/contact/联系我们.png" alt="">
+        <p class="big_p">CSO暑校教务</p>
+        <div class="shu"></div>
+        <p class="small_p">主要处理教学相关问题，课程设置，沟通教授，成绩复议等。</p>
+        <p class="small_p">覃老师（Melaine），邮箱：admisssion@canadasummer.ca</p>
+        <!-- <div class="QR_btn">联系教务</div> -->
+      </div>
+
+      <div style="position: relative;transition: .3s;top: 0;">
+        <img class="tb" src="/static/moodle/img/contact/联系我们.png" alt="">
+        <p class="big_p">加拿大小助手</p>
+        <div class="shu"></div>
+        <p class="small_p" style="top:1vw">主要沟通协调加拿大的CSO学生的转学分相关所有问题。</p>
+        <p class="small_p" style="top:1vw">小助手：Ann，微信账号：CSOshuxiao</p>
+        <p class="small_p" style="top:1vw">小助手：Cocoa，微信账号：CSO-55</p>
+
+        <div class="QR_bg">
+          <div class="QR_btn">联系小助手</div>
+
+          <img class="QR" style="left: 63.5vw" src="/static/moodle/img/contact/ann.png" alt="">
+          <img class="QR" style="left: 69vw" src="/static/moodle/img/contact/cocoa.png" alt="">
+        </div>
+      </div>
+
+      <div style="position: relative;transition: .3s;top: 0;">
+        <img class="tb" src="/static/moodle/img/contact/联系我们.png" alt="">
+        <p class="big_p">美国小助手</p>
+        <div class="shu"></div>
+        <p class="small_p" style="top:1vw">主要沟通协调美国的CSO学生的转学分相关所有问题。</p>
+        <p class="small_p" style="top:1vw">小助手：Tony，微信账号：CSO-99</p>
+        <p class="small_p" style="top:1vw">小助手：grace，微信账号：CSO-1010</p>
+
+        <div class="QR_bg">
+          <div class="QR_btn">联系小助手</div>
+
+          <img class="QR" style="left: 63.5vw" src="/static/moodle/img/contact/Tony.png" alt="">
+          <img class="QR" style="left: 69vw" src="/static/moodle/img/contact/grace.png" alt="">
+        </div>
+      </div>
+
+
+       <div style="position: relative;transition: .3s;top: 0;">
+        <img class="tb" src="/static/moodle/img/contact/联系我们.png" alt="">
+        <p class="big_p">CSO暑校HR</p>
+        <div class="shu"></div>
+        <p class="small_p">期待您的加入！</p>
+        <p class="small_p">CSO HR:  Xinyi，微信号：CSO-HR</p>
+        <div class="QR_bg">
+          <div class="QR_btn">联系HR</div>
+
+          <img class="QR" style="left: 69vw"  src="/static/moodle/img/contact/csohr.png" alt="">
+        </div>
+      </div>
+
+    </div>
+
+</main>
+
+{% endblock %}
+
+
+
+
+{% block base_script %}
+
+<script>
+  $('.QR_bg').hover(function(){
+    // console.log($(this).children('.QR_btn'))
+    $(this).parent().prevAll().css('top','-1vw')
+    $(this).children('.QR_btn').css({
+      'margin-top':'-4vw',
+      'margin-bottom':'4vw'
+    })
+    $(this).children('.QR_btn').nextAll().css('opacity', 1)
+
+  },function(){
+    $(this).parent().prevAll().css('top','0')
+    $(this).children('.QR_btn').css({
+      'margin-top':'0',
+      'margin-bottom':'0'
+    })
+    $(this).children('.QR_btn').nextAll().css('opacity', 0)
+  })
+</script>
+
+{% endblock %}

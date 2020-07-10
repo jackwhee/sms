@@ -1,0 +1,292 @@
+#lb_line {
+  background-color: #042b57;
+  border-radius: 10px;
+  margin-top: 20px;
+  height: 24.5vw;
+}
+
+.course_msg {
+  transition: 0.3s;
+  font-size: 1vw;
+  text-align: center;
+  height: 3.5vw;
+  background-color: #042b57;
+  line-height: 3.5vw;
+}
+
+
+
+.course_msg:hover {
+  background-color: #0066b9;
+  border-right: 2px solid #05fcff;
+}
+
+#lb_1 {
+  width: 100%;
+  height: 24.5vw;
+  border-radius: 10px;
+}
+
+#demo .carousel-item>img {
+  width: 100%;
+  height: 24.5vw;
+}
+
+#school_line {
+  width: 74vw;
+    height: 12vw;
+    margin: 2vw auto 0;
+    background-image: url(/static/moodle/img/index/school.jpg);
+    background-size: 100%;
+}
+
+#school_line img {
+  margin: 0 2vw 0;
+  width: 11vw;
+  height: 3.4vw;
+  vertical-align: middle;
+}
+
+#course_history {
+  margin-bottom: 10px;
+}
+
+#hot_course {
+  margin-bottom: 10px;
+}
+
+#demo2 {
+  margin: 20px 0 20px 0;
+}
+
+
+#interactive_line {
+  margin-bottom: 20px;
+}
+
+.que_card {
+  height: 80px;
+  background-color: #0066b9b7;
+  color: white;
+  margin: 0 -15px;
+  padding: 0 15px;
+}
+
+.card {
+
+  cursor: default;
+  color: #042b57;
+  font-size: 13px;
+  border-radius: 10px;
+  background-color: white;
+  height: 200px;
+  margin-right: 1vw;
+  overflow: hidden;
+}
+
+
+
+.card img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #042b57;
+  /* display: inline-block; */
+  float: left;
+  margin-right: 10px;
+}
+
+.lb_2_div {
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+
+/* 课程卡牌 */
+/* .card-body {
+  background-color: white !important;
+  position: relative;
+  height: 100px;
+  padding: 10px 20px;
+  border-radius: 0 0 10px 10px;
+} */
+
+.his_card {
+  height: 80px;
+}
+
+.card-img-top {
+  border-radius: 10px 10px 0 0;
+  transition: 0.3s;
+}
+
+
+.course_card {
+  top: 0;
+  position: relative;
+  margin-bottom: 30px;
+  transition: 0.2s;
+
+}
+
+.course_card>div {
+  border-radius: 10px 10px 10px 10px;
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+
+.img_play {
+  transition: 0.3s;
+  position: absolute;
+  z-index: 100;
+  width: 50px;
+  height: 50px;
+  opacity: 0.7;
+  margin-left: calc(50% - 40px);
+  margin-top: calc(30% - 40px);
+}
+
+
+.course_card:hover>div {
+  box-shadow: 0 5px 15px #888888;
+
+}
+
+.course_card:hover .card-img-top {
+  transform: scale(1.1);
+}
+
+.course_card:hover .img_play {
+  opacity: 1;
+}
+
+.course_card:hover {
+  margin-top: -3px;
+  margin-bottom: 33px;
+
+}
+
+
+.cour_name {
+  color: #042b57;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 13px;
+}
+
+
+.teacher_name {
+  color: #042b57;
+  font-size: 9px;
+  display: inline-block;
+
+}
+
+.watch_img {
+  width: 17px;
+  height: 17px;
+}
+
+.card-body {
+  background-color: white !important;
+  position: relative;
+  height: 5vw;
+  padding: 0 20px 10px;
+  border-radius: 0 0 10px 10px;
+}
+
+.his_card{
+  text-align: center;
+}
+
+.card-img-top {
+  border-radius: 10px 10px 0 0;
+  transition: 0.3s;
+}
+
+
+.course_card {
+  top: 0;
+  position: relative;
+  margin-bottom: 30px;
+  transition: 0.2s;
+}
+
+.course_card>div {
+  border-radius: 10px 10px 10px 10px;
+  transition: 0.5s;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+
+.img_play {
+  transition: 0.3s;
+  position: absolute;
+  z-index: 100;
+  width: 50px;
+  height: 50px;
+  opacity: 0.7;
+  margin-left: calc(50% - 40px);
+  margin-top: calc(30% - 40px);
+}
+
+
+.course_card:hover>div {
+  box-shadow: 0 5px 15px #888888;
+
+}
+
+.course_card:hover .card-img-top {
+  transform: scale(1.1);
+}
+
+.course_card:hover .img_play {
+  opacity: 1;
+}
+
+.course_card:hover {
+  margin-top: -3px;
+  margin-bottom: 33px;
+
+}
+
+
+.cour_name {
+  color: #042b57;
+  font-weight: 500;
+  font-size: 1vw;
+  line-height: 1.5vw;
+  margin: 0;
+}
+
+.s_cour_name {
+  color: #042b57;
+  font-weight: 500;
+  font-size: .7vw;
+  line-height: 1vw;
+  margin: 0;
+}
+
+.cour_cn_name {
+  color: #042b57;
+  font-weight: 700;
+  font-size: 0.8vw;
+  line-height: 1vw;
+  margin-top: 1vw;
+}
+
+
+.teacher_name {
+  color: #042b57;
+  font-size: 9px;
+  display: inline-block;
+
+}
+
+.watch_img {
+  width: 17px;
+  height: 17px;
+}

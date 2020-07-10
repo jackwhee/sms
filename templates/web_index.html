@@ -1,0 +1,866 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CSO暑校学生系统</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="/static/css/bui.css">
+		<script src="/static/js/zepto.js"></script>
+		<script src="/static/js/bui.js"></script>
+		<style></style>
+	</head>
+	<body>
+	<div class="bui-page page-form">
+    <header class="bui-bar">
+        <div class="bui-bar-left"> <a class="bui-btn btn-back"><i class="icon-back"></i></a> </div>
+        <div class="bui-bar-main">学生报名</div>
+        <div class="bui-bar-right"> </div>
+    </header>
+
+    <!-- 中间自定义弹出框结构	 -->
+    <div id="dialogCenter" class="bui-dialog" style="display: none;">
+        <div class="bui-dialog-head">报名须知</div>
+        <div class="bui-dialog-main" style="text-align: left;">
+            <article id="panel" class="bui-article">
+                <h2 style="text-align: center;">CSO暑校学生报名须知</h2>
+                <section>
+                    <h4>1. 学生需要根据学费付款方式缴纳申请费2184 元（420 CAD）或全额学费，并将付款凭证提交，CSO暑期学校收到并确认付款信息后，小助手将在 1-2个工作日添加微信，核对基本信息，并对接专属课程顾问进行课程咨询。</h4>
+                    <br>
+                    <h4>2. 学生需要确保提供的微信号、邮箱真实有效，用于及时接收CSO暑校相关通知（如需更换联系方式请于开课前及时沟通CSO暑校小助手。）</h4>
+                    <br> 
+                    <h4>3. 学生应该积极配合CSO暑校小助手，便于沟通，收取材料，确保审课/上课/转学分的顺利进行。</h4>
+                    <br>    
+                    <h4>4. 申请费2184 RMB（420 CAD）为不可退款费用（NON-REFUNDABLE）；CSO暑校学生统一以最终缴纳总学费（申请费和学费）时间来计算优惠费用</h4>
+                    <br>  
+                    <h4>5. 审课/转学分个人问题不给予退费，例如：在校成绩不达标；在校费用未交齐等</h4>
+                    <br>  
+                    <h4>6. 暑校所有相关问题以CSO暑校官网信息为准，CSO暑校官网： www.canadasummer.ca </h4>
+                    <br>
+                    <h4>7. CSO暑校保有最终解释权</h4>
+                    <br>
+                </section>
+
+                <h2 style="text-align: center;">CSO Summer School Registration Instructions</h2>
+                <section>
+                    <h4>1. Students are required to pay an application fee of RMB 2,184 (420 CAD) or full tuition fee according to the tuition payment method and submit the payment voucher. After the CSO Summer School receives and confirms the payment information, the CSO assistant will add students in 1-2 business days on WeChat, check basic information, and consult with the exclusive course consultants.</h4>
+                    <br>
+                    <h4>2. Students need to ensure that the WeChat account number and id and Email address provided are true and valid and are used to receive timely notifications from CSO Summer School.
+                            (If you need to change the contact information, please communicate with CSO Summer School Assistant in advance before the start of the course.)</h4>
+                    <br> 
+                    <h4>3. Students should actively cooperate with the CSO Summer School Assistant to facilitate communication and collect materials to ensure the smooth progress of the lecture/class/transfer credit.</h4>
+                    <br>    
+                    <h4>4. The application fee of 2184 RMB (420 CAD) is non-refundable (NON-REFUNDABLE); CSO Summer School students will calculate the preferential fee by paying the total tuition fee (application fee and tuition fee).</h4>
+                    <br>  
+                    <h4>5. No refunds will be given for individual issues in the course/transfer credits, for example: there is not a good academic standard; there is an outstanding debts on your University account.</h4>
+                    <br>  
+                    <h4>6. All relevant issues of the summer school are subject to the information of CSO Summer School website. CSO Summer School official website: www.canadasummer.ca</h4>
+                    <br>
+                    <h4>7. CSO Summer School reserves the right of final interpretation</h4>
+                </section>
+            </article>
+        </div>
+        <div class="bui-dialog-foot">
+            <div class="bui-box">
+                <div class="span1">
+                    <div class="bui-btn">取消</div>
+                </div>
+                <div class="span1">
+                    <div class="bui-btn blue">确定</div>
+                </div>
+            </div>
+        </div>
+        <div class="bui-dialog-close"><i class="icon-close"></i></div>
+    </div>
+
+
+    <main>
+        <form id="form" method="POST" action="">
+            <ul class="bui-list bui-select-form">
+                
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="username">姓名:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="username" name="username" type="text" class="bui-input" value="" placeholder="请与身份证姓名保持一致">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="pinyin">拼音:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="pinyin" name="pinyin" type="text" class="bui-input" value="" placeholder="请填写姓名拼音">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="wechat">微信号:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="wechat" name="wechat" type="text" class="bui-input" value="" placeholder="微信号（必填）">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box">
+                    <label>学习签证到期时间</label>
+                    <div class="span1"><input name="study" type="text" id="datepicker_week" readonly class="bui-input" style="text-align:right"></div>
+                    &nbsp;&nbsp;<i class="icon-listright"></i>
+                </li>
+
+                <li>
+                    <div class="section-title">
+                        GPA/成绩单上传:
+                    </div>
+                    <div id="buiGPAPhoto" class="bui-upload bui-fluid-space-4">
+                        <div class="span1">
+                            <div id="btnGPAUpload" class="bui-btn">
+                                <i class="icon-plus large"></i>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li class="bui-btn bui-box">
+                    <label class="bui-label" for="wechat">性别:</label>
+                    <input id="gender1" type="radio" class="bui-radio" name="gender" value="" text="" checked="checked">
+                    <div class="span1">
+                        <label for="gender1">&nbsp;&nbsp;男</label>
+                    </div>
+
+                    <input id="gender2" type="radio" class="bui-radio" name="gender" value="" text="">
+                    <div class="span1">
+                        <label for="gender2">&nbsp;&nbsp;女</label>
+                    </div>
+                </li>
+
+
+                <li class="bui-btn bui-box">
+                    <label>出生日期</label>
+                    <div class="span1"><input name="birth" type="text" id="datepicker_week" readonly class="bui-input" style="text-align:right"></div>
+                    &nbsp;&nbsp;<i class="icon-listright"></i>
+                </li>
+
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="IDcard">身份证号:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="IDcard" maxlength="18" name="IDcard" type="text" class="bui-input" value="" placeholder="身份证号（必填）">
+                        </div>
+                    </div>
+                </li>
+
+
+                <li>
+                    <div class="section-title">
+                        身份证正反面照片上传:
+                    </div>
+                    <div id="buiIDPhoto" class="bui-upload bui-fluid-space-4">
+                        <div class="span1">
+                            <div id="btnIDUpload" class="bui-btn">
+                                <i class="icon-plus large"></i>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="major">专业:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="major" name="major" type="text" class="bui-input" value="" placeholder="专业（必填）">
+                        </div>
+                    </div>
+                </li>
+
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="grade">年级:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="grade" name="grade" type="text" class="bui-input" value="" placeholder="年级（必填）">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box">
+                    <label>学校</label>
+                    <div class="span1"><input type="text" name="DXpicker" id="datepicker_input2" readonly class="bui-input" style="text-align:right"></div>
+                    &nbsp;&nbsp;<i class="icon-listright"></i>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="tel_c" style="width: 150px;">电话（中国）:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="tel_c" name="tel_c" type="text" class="bui-input" value="" placeholder="请输入中国联系方式（必填）">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="tel_f" style="width: 150px;">电话（加拿大）:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="tel_f" name="tel_f" type="text" class="bui-input" value="" placeholder="请输入加拿大联系方式（必填）">
+                        </div>
+                    </div>
+                </li>
+
+                <hr>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">中国地址</label>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="add_c_1">城市/区域</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="add_c_1" name="add_c_1" type="text" class="bui-input" value="" placeholder="请输入">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="add_c_2">详细地址</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="add_c_2" name="add_c_2" type="text" class="bui-input" value="" placeholder="请输入">
+                        </div>
+                    </div>
+                </li>
+
+                <hr>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">加拿大地址</label>
+                </li>
+
+                <li class="bui-btn bui-box">
+                    <label>省份</label>
+                    <div class="span1"><input type="text" name="SFpicker" id="SFpicker" readonly class="bui-input" style="text-align:right"></div>
+                    &nbsp;&nbsp;<i class="icon-listright"></i>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="add_f_1">城市</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="add_f_1" name="add_f_1" type="text" class="bui-input" value="" placeholder="请输入">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="add_f_2">邮编</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="add_f_2" maxlength="6" name="add_f_2" type="text" class="bui-input" value="" placeholder="请输入">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="add_f_3">详细地址</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="add_f_3" name="add_f_3" type="text" class="bui-input" value="" placeholder="请输入">
+                        </div>
+                    </div>
+                </li>
+
+                <hr>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="email1">邮箱</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="email1" name="email1" type="text" class="bui-input" value="" placeholder="请确保该邮箱在中国可用">
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" for="email2">备用邮箱</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <input id="email2" name="email2" type="text" class="bui-input" value="" placeholder="请确保该邮箱在中国可用">
+                        </div>
+                    </div>
+                </li>
+
+
+                <li>
+                    <div class="section-title">
+                        缴费凭证上传:
+                    </div>
+                    <div id="buiPZPhoto" class="bui-upload bui-fluid-space-4">
+                        <div class="span1">
+                            <div id="btnPZUpload" class="bui-btn">
+                                <i class="icon-plus large"></i>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li class="bui-btn bui-box">
+                    <input type="checkbox" class="bui-choose" name="interester" value="" text="" checked="checked">
+                    <div class="span1">
+                        <label>&nbsp;&nbsp;我同意<span id="btnOpen" style="color:blue">【相关协议】</span></label>
+                    </div>
+                </li>
+
+                <li>
+                    <button class="bui-btn primary">提交</button>
+                </li>
+
+                
+            </ul>
+        </form>
+
+
+    </main>
+
+
+    </div>
+<script>
+var webop_url = {{webopenid|safe}}[0]
+// console.log(webop_url)
+$('#form').attr('action',webop_url)
+
+bui.ready(function(){
+
+
+    // 自定义居中弹出框
+    var uiDialog = bui.dialog({
+        id: "#dialogCenter",
+        height: 700,
+        // mask: false,
+        callback: function(e) {
+            console.log(e.target)
+        }
+    });
+
+    $('#btnOpen').on("click", function() {
+        uiDialog.open();
+    })
+
+    // 拍照上传
+    var $faceGPAPhoto = $("#buiGPAPhoto");
+    var $uploadGPABtn = $("#btnGPAUpload").parent();
+
+    var $faceIDPhoto = $("#buiIDPhoto");
+    var $uploadIDBtn = $("#btnIDUpload").parent();
+
+
+    var $facePZPhoto = $("#buiPZPhoto");
+    var $uploadPZBtn = $("#btnPZUpload").parent();
+
+    var uiUpload = bui.upload({
+        showProgress: false
+    });
+
+    // GPA图片上传上拉菜单 js 初始化:
+    var uiActionsheet = bui.actionsheet({
+        trigger: "#btnGPAUpload",
+        buttons: [{ name: "拍照上传", value: "camera" }, { name: "从相册选取", value: "photo" }],
+        callback: function(e) {
+            var ui = this;
+            var val = $(e.target).attr("value");
+
+            switch (val) {
+                case "camera":
+                    ui.hide();
+                    uiUpload.add({
+                        "from": "camera",
+                        "needCompress": true, // 1.5.3新增压缩
+                        "width": 300,
+                        "destinationType": "file", //  file | blob | data 
+                        "onSuccess": function(val, data) {
+
+                            this.start({
+                                header: {},
+                                // console.log({{webopenid|safe}}),
+                                url: webop_url+"/web_GPA_img",
+                                onSuccess: function(data) {
+                                    // console.log(data, "success");
+                                    // console.log(1);
+                                    // 成功
+                                },
+                                onFail: function(data) {
+                                    console.log(data, "fail");
+                                    // console.log(2);
+                                    // 失败
+                                },
+                            });
+
+
+                            // 展示base64本地图片 建议直接调用start方法上传以后再展示远程地址,避免应用崩溃
+                            this.toBase64({
+                                onSuccess: function(url) {
+                                    $uploadGPABtn.before(templatePhoto(url,{{id|safe}}))
+                                }
+                            });
+                            // 直接调用start上传图片
+
+                        }
+                    })
+
+                    break;
+                case "photo":
+                    ui.hide();
+                    uiUpload.add({
+                        "from": "",
+                        "onSuccess": function(val, data) {
+
+                            // 展示base64本地图片 建议直接调用start方法上传以后再展示远程地址,避免应用崩溃
+                            this.toBase64({
+                                onSuccess: function(url) {
+                                    $uploadGPABtn.before(templatePhoto(url,{{id|safe}}))
+
+                                }
+                            });
+                            // 直接调用start上传图片
+                            this.start({
+                                header: {},
+                                url: webop_url+"/web_GPA_img",
+                                onSuccess: function(data) {
+                                    // console.log(1)
+                                    // console.log(data, "success");
+                                    // 成功
+                                },
+                                onFail: function(data) {
+                                    // console.log(2)
+                                    console.log(data, "fail");
+                                    // 失败
+                                },
+                            })
+                        }
+                    })
+
+                    break;
+                case "cancel":
+                    ui.hide();
+                    break;
+            }
+        }
+    })
+
+    
+
+    // ID图片上传上拉菜单 js 初始化:
+    var uiActionsheet = bui.actionsheet({
+        trigger: "#btnIDUpload",
+        buttons: [{ name: "拍照上传", value: "camera" }, { name: "从相册选取", value: "photo" }],
+        callback: function(e) {
+            var ui = this;
+            var val = $(e.target).attr("value");
+
+            switch (val) {
+                case "camera":
+                    ui.hide();
+                    uiUpload.add({
+                        "from": "camera",
+                        "needCompress": true, // 1.5.3新增压缩
+                        "width": 300,
+                        "destinationType": "file", //  file | blob | data 
+                        "onSuccess": function(val, data) {
+                            // 展示base64本地图片 建议直接调用start方法上传以后再展示远程地址,避免应用崩溃
+
+                            // 直接调用start上传图片
+
+                            this.start({
+                                header: {},
+                                url: webop_url+"/web_card_img",
+                                onSuccess: function(data) {
+                                    // console.log(data, "success");
+                                    $uploadIDBtn.before(templatePhoto('/media/'+{{id|safe}}+'/card_img/'+data.path[0],data.path[0]))
+                                    // 成功
+                                },
+                                onFail: function(data) {
+                                    console.log(data, "fail");
+                                    // 失败
+                                },
+                            });
+
+
+                            // this.toBase64({
+                            //     onSuccess: function(url) {
+                            //         $uploadIDBtn.before(templatePhoto(url,{{id|safe}}))
+                            //         console.log(1)
+                            //     }
+                            // });
+                        }
+                    })
+
+                    break;
+                case "photo":
+                    ui.hide();
+                    uiUpload.add({
+                        "from": "",
+                        "onSuccess": function(val, data) {
+
+                            // 展示base64本地图片 建议直接调用start方法上传以后再展示远程地址,避免应用崩溃
+                            // this.toBase64({
+                            //     onSuccess: function(url) {
+                            //         $uploadIDBtn.before(templatePhoto(url,))
+
+                            //     }
+                            // });
+                            // 直接调用start上传图片
+                            this.start({
+                                header: {},
+                                url: webop_url+"/web_card_img",
+                                onSuccess: function(data) {
+                                    // console.log(data, "success");
+                                    $uploadIDBtn.before(templatePhoto('/media/'+{{id|safe}}+'/card_img/'+data.path[0],data.path[0]))
+                                    // 成功
+                                },
+                                onFail: function(data) {
+                                    console.log(data, "fail");
+                                    // 失败
+                                },
+                            })
+                        }
+                    })
+
+                    break;
+                case "cancel":
+                    ui.hide();
+                    break;
+            }
+        }
+    })
+
+
+    // PZ图片上传上拉菜单 js 初始化:
+    var uiActionsheet = bui.actionsheet({
+        trigger: "#btnPZUpload",
+        buttons: [{ name: "拍照上传", value: "camera" }, { name: "从相册选取", value: "photo" }],
+        callback: function(e) {
+            var ui = this;
+            var val = $(e.target).attr("value");
+
+            switch (val) {
+                case "camera":
+                    ui.hide();
+                    uiUpload.add({
+                        "from": "camera",
+                        "needCompress": true, // 1.5.3新增压缩
+                        "width": 300,
+                        "destinationType": "file", //  file | blob | data 
+                        "onSuccess": function(val, data) {
+                            // 展示base64本地图片 建议直接调用start方法上传以后再展示远程地址,避免应用崩溃
+                            // this.toBase64({
+                            //     onSuccess: function(url) {
+                            //         $uploadPZBtn.before(templatePhoto(url,{{id|safe}}))
+                            //     }
+                            // });
+                            // 直接调用start上传图片
+
+                            this.start({
+                                header: {},
+                                url: webop_url+"/web_voucher",
+                                onSuccess: function(data) {
+                                    // console.log(data, "success");
+                                    $uploadPZBtn.before(templatePhoto('/media/'+{{id|safe}}+'/voucher/'+data.path[0],data.path[0]))
+                                    // 成功
+                                },
+                                onFail: function(data) {
+                                    console.log(data, "fail");
+                                    // 失败
+                                },
+                            })
+                        }
+                    })
+
+                    break;
+                case "photo":
+                    ui.hide();
+                    uiUpload.add({
+                        "from": "",
+                        "onSuccess": function(val, data) {
+
+                            // 展示base64本地图片 建议直接调用start方法上传以后再展示远程地址,避免应用崩溃
+                            // this.toBase64({
+                            //     onSuccess: function(url) {
+                            //         $uploadPZBtn.before(templatePhoto(url,{{id|safe}}))
+
+                            //     }
+                            // });
+                            // 直接调用start上传图片
+                            this.start({
+                                header: {},
+                                url: webop_url+"/web_voucher",
+                                onSuccess: function(data) {
+                                    // console.log(data, "success");
+                                    $uploadPZBtn.before(templatePhoto('/media/'+{{id|safe}}+'/voucher/'+data.path[0],data.path[0]))
+                                    // 成功
+                                },
+                                onFail: function(data) {
+                                    console.log(data, "fail");
+                                    // 失败
+                                },
+                            })
+                        }
+                    })
+
+                    break;
+                case "cancel":
+                    ui.hide();
+                    break;
+            }
+        }
+    })
+
+
+
+
+    function templatePhoto(url,name) {
+        return `<div class="span1" data-index="${uiUpload.currentIndex()}" data-name="${uiUpload.currentName()}">
+                <div class="bui-upload-thumbnail"><img src="${url}" alt="" /><i id=${name} class="icon-removefill"></i></div>
+            </div>`
+    }
+
+
+    // 选择图片文件
+    $("#getSelect").on("click", function(argument) {
+
+        bui.alert(uiUpload.data());
+
+    })
+
+    // 选择GPA图片文件
+    $faceGPAPhoto.on("click", ".icon-removefill", function(e) {
+        var $item = $(this).parents(".span1");
+        var index = $item.attr("data-index");
+        // 删除对应的上传数据
+        uiUpload.remove(index);
+        // 删除dom显示
+        $item.remove();
+        e.stopPropagation();
+        $.ajax({
+        url: webop_url+"/web_GPA_img",
+        type: 'DELETE',
+        data: JSON.stringify({'path':{{id|safe}} + '/GPA_img/GPA.jpg'}),
+        processData: false, // ⑧告诉jQuery不要去处理发送的数据
+        contentType: false, // ⑨告诉jQuery不要去设置Content-Type请求头
+        success: function (data) {
+          console.log('ok')
+        },
+        error: function (data) {
+          //12出错后的动作
+          alert("出错啦");
+        }
+      });
+
+    })
+
+    // 选择ID图片文件
+    $faceIDPhoto.on("click", ".icon-removefill", function(e) {
+        var $item = $(this).parents(".span1");
+        var index = $item.attr("data-index");
+        // 删除对应的上传数据
+        uiUpload.remove(index);
+        // 删除dom显示
+        $item.remove();
+        e.stopPropagation();
+        console.log(this.id)
+        $.ajax({
+        url: webop_url+"/web_card_img",
+        type: 'DELETE',
+        data: JSON.stringify({'path':{{id|safe}} + '/card_img/'+this.id}),
+        processData: false, // ⑧告诉jQuery不要去处理发送的数据
+        contentType: false, // ⑨告诉jQuery不要去设置Content-Type请求头
+        success: function (data) {
+          console.log('ok')
+        },
+        error: function (data) {
+          //12出错后的动作
+          alert("出错啦");
+        }
+      });
+
+    })
+
+    // 选择PZ图片文件
+    $facePZPhoto.on("click", ".icon-removefill", function(e) {
+        var $item = $(this).parents(".span1");
+        var index = $item.attr("data-index");
+        // 删除对应的上传数据
+        uiUpload.remove(index);
+        // 删除dom显示
+        $item.remove();
+        e.stopPropagation();
+        $.ajax({
+        url: webop_url+"/web_voucher",
+        type: 'DELETE',
+        data: JSON.stringify({'path':{{id|safe}} + '/voucher/'+this.id}),
+        processData: false, // ⑧告诉jQuery不要去处理发送的数据
+        contentType: false, // ⑨告诉jQuery不要去设置Content-Type请求头
+        success: function (data) {
+          console.log('ok')
+        },
+        error: function (data) {
+          //12出错后的动作
+          alert("出错啦");
+        }
+      });
+
+    })
+
+
+
+    var pageview = {};
+
+    pageview.bind = function () {
+        
+        // 手机号,帐号是同个样式名, 获取值的时候,取的是最后一个focus的值
+        bui.input({
+            id: ".user-input",
+            callback: function (e) {
+                // 清空数据
+                this.empty();
+            }
+        })
+
+
+            // 星期示例
+        var weeks = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天"];
+
+        var uiPickerdateWeek = bui.pickerdate({
+            handle: "#datepicker_week",
+            bindValue: true, // 1.5.3 新增, 修改的值会自动绑定到 handle, 不再需要自己去绑定
+            // input 显示的日期格式
+            formatValue: "yyyy-MM-dd",
+            onChange: function(value) {
+                var date = new Date(value);
+                var index = date.getDay();
+
+                $("#week").text(weeks[index])
+                    // 修改列
+                this.cols({
+                    hour: "none",
+                    minute: "none",
+                    second: {
+                        values: [index],
+                        displayValues: [weeks[index]]
+                    }
+                })
+            },
+            callback: function(e) {
+                console.log(e.target)
+                console.log(this.value())
+            },
+            // 如果不需要按钮,设置为空
+            // buttons: null
+        });
+        // 初始化星期
+        var date = new Date();
+        var index = date.getDay();
+        uiPickerdateWeek.cols({
+            hour: "none",
+            minute: "none",
+            second: {
+                values: [index],
+                displayValues: [weeks[index]]
+            }
+        })
+
+        // 一种自定义自定义取值示例,最多60个
+        var arrs = ['阿尔伯塔大学', '阿萨巴斯卡大学', '艾里森山大学', '阿卡迪亚大学', '爱德华王子岛大学', '不列颠哥伦比亚大学', '北哥伦比亚大学', '布兰顿大学', '布兰顿大学学院', '布鲁克大学', '戴尔豪斯大学', '多伦多大学', '圭尔夫大学', '湖岸大学', '怀雅逊大学', '滑铁卢大学', '加拿大皇家大学', '卡尔加里大学', '卡尔顿大学', '魁北克大学', '魁北克大学校本部', '魁北克大学蒙特利尔分校', '魁北克大学特瓦河分校', '魁北克大学史库蒂密分校', '魁北克大学瑞姆斯基分校', '莱斯桥大学', '劳伦特大学', '拉瓦尔大学', '里贾纳大学', '曼尼托巴大学', '曼克顿大学', '麦克马斯特大学', '麦吉尔大学', '蒙特利尔大学', '纽芬兰纪念大学', '尼波星大学', '女皇大学', '圣托玛斯大学', '圣温森特山大学', '圣安娜大学', '圣法兰西斯-萨维尔大学', '圣玛莉大学', '施尔布鲁克大学', '萨斯卡彻温大学', '特莱特大学', '维多利亚大学', '温尼伯大学', '渥太华大学', '温莎大学', '韦尔福瑞德-劳瑞大学', '西蒙佛蕾泽大学', '新布朗斯维克大学', '西安大略大学', '协和大学', '约克大学', '主教大学']
+;
+        // 检测设置的值在哪个索引
+        var valIndex = bui.array.index(arrs, '阿尔伯塔大学')
+        var input2 = $("#datepicker_input2");
+
+        var uiPickerdate2 = bui.pickerdate({
+            handle: "#datepicker_input2",
+            // input 显示的日期格式
+            formatValue: "ss",
+            cols: {
+                year: "none",
+                month: "none",
+                date: "none",
+                hour: "none",
+                minute: "none",
+                second: {
+                    values: [0, 1, 2, 3, 4, 5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55],
+                    displayValues: arrs
+                }
+            },
+            value: "2019-01-01 01:00:" + valIndex, // 最后秒数的02 则是设置在第3个值
+            onChange: function(value) {
+                var index = parseInt(value);
+                var val = arrs[index];
+                input2.val(val);
+            },
+            callback: function(e) {
+                console.log(e.target)
+                console.log(this.value())
+            },
+            // 如果不需要按钮,设置为空
+            buttons: null
+        });
+
+
+
+
+
+        // 一种自定义自定义取值示例,最多60个
+        var SFpickerarrs = ['AB','BC','MB','NB','NL','NT','NS','NU','ON','PE','QC','SK','YT'];
+        // 检测设置的值在哪个索引
+        var SFpickervalIndex = bui.array.index(SFpickerarrs, "AB")
+        var SFpicker = $("#SFpicker");
+
+        var uiPickerdate2 = bui.pickerdate({
+            handle: "#SFpicker",
+            // input 显示的日期格式
+            formatValue: "ss",
+            cols: {
+                year: "none",
+                month: "none",
+                date: "none",
+                hour: "none",
+                minute: "none",
+                second: {
+                    values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                    displayValues: SFpickerarrs
+                }
+            },
+            value: "2019-01-01 01:00:" + SFpickervalIndex, // 最后秒数的02 则是设置在第3个值
+            onChange: function(value) {
+                var index = parseInt(value);
+                var val = SFpickerarrs[index];
+                SFpicker.val(val);
+            },
+            callback: function(e) {
+                console.log(e.target)
+                console.log(this.value())
+            },
+            // 如果不需要按钮,设置为空
+            buttons: null
+        });
+        
+
+    }
+
+    pageview.init = function () {
+
+        // 绑定事件
+        this.bind();
+    }
+
+
+    pageview.init();
+})
+
+</script>
+</body>
+</html>

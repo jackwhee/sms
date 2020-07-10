@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>&#60;CSO&#62;已报名学生搜索</title>
+    <link rel="stylesheet" href="/static/css/css_initialize.css">
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <style>
+        /* body {
+        background-image: url(../static/stu_search.jpg);
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background-size: 100%;
+    } */
+
+        #search_inp {
+            position: absolute;
+            top: 5vw;
+            left: 24.5vw;
+            height: 3vw;
+            line-height: 3vw;
+            width: 37vw;
+            border-radius: 2vw;
+            border: 0.2vw solid #002854;
+            outline: none;
+            padding-left: 2vw;
+            font-size: 1.2vw;
+
+        }
+
+        #search_btn {
+            cursor: pointer;
+            border: 0;
+            border-radius: 25vw !important;
+            color: white;
+            font-size: 1vw;
+            background: #002854;
+            position: absolute;
+            top: 5.2vw;
+            left: 65vw;
+            border: 0.2vw solid #002854;
+            line-height: 2.4vw;
+            width: 5vw;
+            outline: none;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        #search_btn:hover {
+            line-height: 2.4vw;
+            background: white;
+            color: #002854;
+            border: 0.2vw solid #002854;
+        }
+
+        #show {
+            position: relative;
+        }
+        #table_scroll{
+            position: relative;
+            width: 52vw;
+            left: 23vw;
+            height: 40vw;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+
+        #table_scroll::-webkit-scrollbar{
+            width: 1.5vw;
+            background-color: #F1F1F1;
+        }
+
+        ::-webkit-scrollbar-thumb{
+            width: 1.5vw;
+            background-color: #002953;
+        }
+
+        tr {
+            cursor: pointer;
+            background: #fff;
+            width: 48.5vw;
+            height: 3.5vw;
+            border-bottom: 2px solid #F1F1F1;
+            display: block;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        tr:hover {
+            background: #F1F1F1;
+        }
+
+        tr:hover td {
+            color: #000;
+        }
+
+        td {
+            color: #000;
+            line-height: 3.5vw;
+            font-size: 1vw;
+            padding: 0px 1vw;
+            width: 13vw;
+        }
+
+        img{
+            width: 100vw;
+        }
+    </style>
+
+</head>
+
+<body style="display: none;background-color:#F1F1F1">
+    <img src="/static/images/search_banner.jpg" alt="">
+
+    <div style="position: relative; height: 10vw">
+        <input autocomplete="off" placeholder="从&lt;邮箱/手机号/姓名&gt;模糊查询 从&lt;大学名称&gt;精准查询" id="search_inp" type="text" name="" id="">
+        <button id="search_btn">搜索</button>
+    </div>
+
+    <div id="table_scroll">
+        <table id="show">
+
+        </table>
+    </div>
+    <br>
+    <br>
+    <img src="/static/images/footer.jpg" alt="">
+
+
+</body>
+<script>
+    var x = document.cookie;
+    var cookieStartAt = x.indexOf('username' + "=");
+    if(cookieStartAt != -1){        
+        console.log(cookieStartAt)
+        var valueStartAt = x.indexOf("=", cookieStartAt) + 1;
+        var valueEndAt = x.indexOf(";", cookieStartAt);
+        if (valueEndAt == -1) {
+            valueEndAt = x.length;
+        }
+        var cookieValue = unescape(x.substring(valueStartAt, valueEndAt));
+        $("#show").html(cookieValue)
+        // console.log(cookieValue);
+    };
+    
+
+
+
+    $(function () {
+        $('body').fadeIn(500);
+    })
+
+    var jump = function (data) {
+        // console.log(data)
+        // console.log('assistant_msg?search_msg='+JSON.stringify(data))
+        window.location.href = 'assistant_msg?search_msg=' + data
+    };
+
+    $('#search_btn').click(function () {
+
+        
+        
+
+        if ($('#search_inp').val() != '' &  $('#search_inp').val().indexOf(' ')!=0 ) {
+            $("#show").fadeOut(300);
+            var msg = $('#search_inp').val();
+            var msg2 = 'assistant?fuzzy_search=' + msg;
+            $.get(msg2, function (json) {
+                // console.log(json.data)
+                var html = "";
+                for (var i = 0; i < json.data.length; i++) {
+                    {#html += "<tr onclick='jump(" + json.data[i].id + ")'>";#}
+                    html += `<tr class="line" onclick="window.open('assistant_msg?search_msg=${json.data[i].id}')">`;
+                    html += "<td>学号 : " + json.data[i].stu_num + "</td>";
+                    html += "<td>姓名 : " + json.data[i].username + "</td>";
+                    html += "<td>学校 : " + json.data[i].school_zs + "</td>";
+                    html += "</tr>";
+                };
+                setTimeout(function () {
+                    $("#show").html(html);
+                    // var data_html = $('#show').html();
+                    document.cookie="username="+html;
+                }, 300)
+            });
+            $("#show").fadeIn(300);
+        } else {
+            alert('搜索条件不能为空')
+        };
+
+        
+        
+         
+
+
+    })
+
+    $(document).keydown(function (e) {
+        if (e.keyCode == 13) {
+            // console.log(1)
+
+            if ($('#search_inp').val() != '' &  $('#search_inp').val().indexOf(' ')!=0) {
+            $("#show").fadeOut(300);
+            var msg = $('#search_inp').val();
+            var msg2 = 'assistant?fuzzy_search=' + msg;
+            $.get(msg2, function (json) {
+                
+                var html = "";
+                for (var i = 0; i < json.data.length; i++) {
+                    html += "<tr  onclick='jump(" + json.data[i].id + ")'>";
+                    html += "<td>学号 : " + json.data[i].stu_num + "</td>";
+                    html += "<td>姓名 : " + json.data[i].username + "</td>";
+                    html += "<td>学校 : " + json.data[i].school_zs + "</td>";
+                    html += "</tr>";
+                };
+                setTimeout(function () {
+                    $("#show").html(html);
+                    // var data_html = $('#show').html();
+                    document.cookie="username="+html;
+                }, 300)
+            });
+            $("#show").fadeIn(300);
+        } else {
+            alert('搜索条件不能为空')
+        };
+
+        }
+    })
+
+ 
+//     window.onpopstate = function(){
+//         if(window.history.state){
+//             document.getElementById("html").innerHTML = window.history.state.html;
+//             document.title = window.history.state.pageTitle;
+//     }
+// };
+
+</script>
+
+</html>

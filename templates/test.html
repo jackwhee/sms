@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <form method="POST" action="http://192.168.1.23:8000/v1/users/2">
+    
+    姓名: <input name='username' type="text">
+    <br>
+    职位: <input name='position' type="text">
+    <br>
+    性别: <input name='gender' type="text">
+    <br>
+    学校: <input name='school' type="text">
+    <br>
+    电话: <input name='domesticTelephone' type="text">
+    <br>
+    身份证: <input name='IDCard' type="text">
+    <br>
+    市场负责人: <input name='head' type="text">
+    <br>
+    <input type="submit">
+    <br>
+
+
+    <select id="sb">
+        <option value ="volvo">Volvo</option>
+        <option value ="saab">Saab</option>
+        <option value="opel">Opel</option>
+        <option value="audi">Audi</option>
+      </select>
+    
+    
+    </form>
+</body>
+
+<script>
+    var html = '<option value="volvo">sb</option><option value="saab">sb1</option><option value="opel">sb2</option><option value="audi">sb3</option>'
+    $('#sb').click(function(){
+        console.log($('#sb').html(html))
+    })
+
+
+
+</script>
+
+</html>

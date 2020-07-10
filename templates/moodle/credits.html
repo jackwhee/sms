@@ -1,0 +1,163 @@
+{%extends "moodle/base.html" %}
+
+{% block title %}
+CSO Moodle
+{% endblock %}
+
+
+{% block css/js %}
+
+<style>
+    /* body{
+        background-image: url('/static/学分认证.jpg');
+        background-size: 100%;
+    } */
+    label{
+        padding: 0.5vw;
+        font-weight: bold;
+    }
+</style>
+
+<link rel="stylesheet" href="/static/moodle/css/style.css">
+
+{% endblock %}
+
+
+
+
+{% block main %}
+
+<main name='credits'>
+    <div class="renzheng">
+        <div class="title">
+            <img style="width: 3vw;" src="/static/moodle/img/icon/renzheng.png" alt="">
+            <span>学分认证</span>
+        </div>
+
+        <div class="grade-search">
+            <div class="title">
+                <div class="shu"></div>
+                <span>学生成绩查询</span>
+            </div>
+
+            <div class="grade-list">
+                <ul>
+                    {% for item in grade_list %}
+                        <li>
+                            <img src="{% if item.moodle_course.subject.sub_img %}{{ item.moodle_course.subject.sub_img.url }}{% else %}/static/moodle/img/icon/img.png{%endif%}" alt="">
+                            <div class="course-name" style="width: 41vw;">
+                                <h3>{{ item.moodle_course.subject.s_name }}</h3>
+                                <h4>{{ item.moodle_course.c_name }}</h4>
+
+                                {% for exam in item.moodle_user.getAllscore %}
+
+                                    {% if exam.moodle_course.c_name  == item.moodle_course.c_name %}
+                                        <label>{{ exam.exam_name }}： {{ exam.exam_score }}</label>
+                                    {% endif %}
+
+                                {% endfor %}
+                            </div>
+                            <div class="course-grade">
+                                <h3>成绩：{{ item.grade }}</h3>
+                            </div>
+                        </li>
+
+                    {% endfor %}
+
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="process">
+            <div class="content">
+                <div class="title">
+                    <div class="shu"></div>
+                    <span>成绩单寄送流程</span>
+                </div>
+                <div style="text-align: center">
+                    <img style="width: 41vw;
+                    position: relative;
+                    top: 1vw;" src="/static/moodle/img/icon/process.jpg" alt="">
+                </div>
+                <br>
+                <br>
+
+                <div class="info">
+                    <div class="left">
+                        <i></i>
+                        <span>核实成绩：</span>
+                    </div>
+                    <p class="right" >请同学们认真核对自己的成绩，如有问题请通过“联系我们”向教务反应。</p>
+                </div>
+
+                <div class="info">
+                    <div class="left">
+                        <i></i>
+                        <span>核实寄送地址：</span>
+                    </div>
+                    <p class="right" >由于各学校寄送情况不同，请认真核对各自学校要求的寄送地址，如遇问题请在“联系我们”页面联系指定小助手。</p>
+                </div>
+
+                <div class="info">
+                    <div class="left">
+                        <i></i>
+                        <span>核实快递单号：</span>
+                    </div>
+                    <p class="right" >请认真核对单号，并在指定物流公司及时查看快递运送信息。</p>
+                </div>
+
+                <div class="info">
+                    <div class="left">
+                        <i></i>
+                        <span>等待：</span>
+                    </div>
+                    <p class="right" >成绩单寄送后，大学开始处理的时间一般为寄到后的四到六周，如遇问题请在“联系我们”页面咨询指定小助手。</p>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="service">
+            <div style="text-align: center">
+                <img style="width: 100%;" src="/static/moodle/img/icon/lc.jpg" alt="">
+            </div>
+            <div class="content">
+                <div class="address">
+                    <h3>寄送地址</h3>
+                    <p>{{ user.address }}</p>
+                </div>
+
+                <div class="No">
+                    <h3>寄送单号</h3>
+                    <p>{{ user.number }}</p>
+                </div>
+
+                <div class="date">
+                    <h3>寄送日期</h3>
+                    <p>{{ user.date }}</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</main>
+
+{% endblock %}
+
+
+
+
+{% block base_script %}
+
+<script>
+
+</script>
+
+{% endblock %}

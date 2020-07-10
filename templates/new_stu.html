@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>&#60;CSO&#62;{{title}}</title>
+    <link rel="stylesheet" href="/static/css/css_initialize.css">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+
+    <style>
+        body{
+            background-color: #F1F1F1;
+        }
+        #show {
+            margin:2vw 0;
+            position: relative;
+            height: 31vw;
+            width: 62vw;
+            top: 0;
+            left: 19vw;
+            overflow: hidden;
+            overflow-y: scroll;
+            scrollbar-arrow-color:#f4ae21;
+        }
+        
+
+        #show::-webkit-scrollbar{
+            width: 1.5vw;
+            background-color: #F1F1F1;
+        }
+
+        ::-webkit-scrollbar-thumb{
+            width: 1.5vw;
+            background-color: #002953;
+        }
+
+
+        .line {
+            cursor: pointer;
+            background: #fff;
+            width: 62vw;
+            height: 4.6vw;
+            line-height: 4.6vw;
+            display: block;
+            border: 1px solid #93989C;
+            border-left: 0px;
+            border-right: 0px;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        .line:hover {
+            background: #002953;
+        }
+
+        .line:hover .col {
+            display: inline-block;
+            color: #fff;
+            line-height: 3.1vw;
+        }
+
+        .col {
+            display: inline-block;
+            color: #000;
+            line-height: 3.5vw;
+            font-size: 1.2vw;
+            padding: 0px 2vw;
+            width: 18vw;
+        }
+
+        img{
+            width: 100vw;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+{#    <img src="/static/images/un_distribution_bg.jpg" alt="">#}
+    <img src="/static/images/un_distribution.jpg" alt="">
+    <div style="display: none" id="show">
+        <!-- {{data}} -->
+        {% for i in data %}
+        <div class="line">
+            <p style="display: none">{{i.first}}</p>
+            <p class="col">{{i.last}}</p>
+            <p class="col">{{i.school}}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <img src="/static/images/footer.jpg" alt="">
+</body>
+
+<script>
+    $(function(){
+        $("#show").fadeIn(500);
+        $('.line').click(function(){
+            window.location.href='assistant_distribution?id='+$(this).children('p').html();
+            // console.log($(this).children('p').html())
+        });
+        
+    })
+</script>
+
+</html>

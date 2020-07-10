@@ -1,0 +1,40 @@
+{%extends "moodle/base.html" %}
+
+{% block title %}
+CSO Moodle
+{% endblock %}
+
+
+{% block css/js %}
+
+{% endblock %}
+
+
+
+
+{% block main %}
+
+<main name='course'>
+
+    <div style="width: 71vw; margin: 0 auto ;text-align: center;">
+        {% if stu_exam.exam_results %}
+        <!-- <img src="" alt="" width="100%"> -->
+        <a style="display: block;font-size: 1.5vw;margin: 5vw;" href="{{ stu_exam.exam_results.url }}" target="_blank">点击查看批阅结果</a>
+        {% else %}
+        <h2 style="font-size: 1.2vw; margin: 2vw 0; text-align: center">暂时未出批阅结果，请等待教授批阅</h2>
+        {% endif %}
+    </div>
+</main>
+
+{% endblock %}
+
+
+
+
+{% block base_script %}
+
+<script>
+
+</script>
+
+{% endblock %}

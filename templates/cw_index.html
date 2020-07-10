@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>&#60;CSO&#62;财务首页</title>
+    <link rel="stylesheet" href="/static/css/css_initialize.css">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <style>
+        /* body {
+            background-image: url(./index.jpg);
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-size: 100%;
+        } */
+
+        #row {
+            width: 100%;
+        }
+
+        button {
+            line-height: 6vw;
+            outline: none;
+            cursor: pointer;
+            width: 15vw;
+            height: 6vw;
+            border: 0;
+            background: #2781d7;
+            border-radius: 0.7vw;
+            color: white;
+            font-size: 2vw;
+            transition: background 0.5s, color 0.5s;
+
+        }
+
+        button:hover {
+            line-height: 5.6vw;
+            background: white;
+            color: #2781d7;
+            border: 0.2vw solid #2781d7;
+        }
+
+        #count {
+            z-index: 999;
+            position: absolute;
+            border-radius: 50%;
+            width: 3vw;
+            height: 3vw;
+            line-height: 3vw;
+            background: red;
+            color: white;
+            font-size: 2vw;
+            text-align: center;
+            left: 20.5vw;
+            top: 17.5vw;
+
+        }
+
+        #count2 {
+            z-index: 999;
+            position: absolute;
+            border-radius: 50%;
+            width: 3vw;
+            height: 3vw;
+            line-height: 3vw;
+            background: red;
+            color: white;
+            font-size: 2vw;
+            text-align: center;
+            left: 74.5vw;
+            top: 17.5vw;
+
+        }
+
+        #count3 {
+            z-index: 999;
+            position: absolute;
+            border-radius: 50%;
+            width: 3vw;
+            height: 3vw;
+            line-height: 3vw;
+            background: red;
+            color: white;
+            font-size: 2vw;
+            text-align: center;
+            left: 92.5vw;
+            top: 17.5vw;
+
+        }
+
+        #b1 {
+            position: absolute;
+            top: 19vw;
+            left: 7vw;
+        }
+
+        #b2 {
+            position: absolute;
+            top: 19vw;
+            left: 25vw;
+
+        }
+
+        #b3 {
+            position: absolute;
+            top: 19vw;
+            left: 43vw;
+
+        }
+
+        #b4 {
+            position: absolute;
+            top: 19vw;
+            left: 61vw;
+
+        }
+
+        #b5 {
+            position: absolute;
+            top: 19vw;
+            left: 79vw;
+
+        }
+    </style>
+</head>
+
+<body style="display: none">
+
+    <div id="row">
+        
+        <a target="view_window" href="cw_new"><button id="b1">新学生</button></a>
+        <div id="count" style="display: block">0</div>
+
+        <a target="view_window" href="cw_search"><button id="b2">已报名学生</button></a>
+
+        <a target="view_window" href="cw_ds"><button id="b3">大使列表</button></a>
+
+        <a target="view_window" href='cw_nds'><button id="b4">新大使申请</button></a>
+        <div id="count2" style="display: block">0</div>
+
+        <a target="view_window" href="cw_refunds"><button id="b5">退费申请</button></a>
+        <div id="count3" style="display: block">0</div>
+    </div>
+</body>
+<script>
+    $(function () {
+        $('body').fadeIn(500);
+        $.get('users/{{ast_name|safe}}', function (json) {
+            if (json.data.new_stu_num != 0) {
+                $('#count').fadeIn(700);
+                $('#count').html(json.data.news);
+                $('#count2').html(json.data.nds);
+                $('#count3').html(json.data.refunds);
+            };
+
+        });
+        // $.get('assistant', function (json) {
+        //     if (json.data.new_stu_num != 0) {
+        //         $('#count2').fadeIn(700);
+        //         $('#count2').html(json.data.false_stu_num);
+        //     };
+
+        // });
+    })
+</script>
+
+</html>

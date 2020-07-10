@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>&#60;CSO&#62;{{title}}</title>
+    <link rel="stylesheet" href="/static/css/css_initialize.css">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+
+    <style>
+        #show {
+            position: absolute;
+            top: 7vw;
+            left: 23vw;
+        }
+
+        .line {
+            cursor: pointer;
+            background: #2781d7;
+            width: 46vw;
+            height: 3.5vw;
+            margin: 1.2vw 0;
+            border-radius: 0.5vw;
+            display: block;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        .line:hover {
+            height: 3.1vw;
+            width: 45.6vw;
+            background: white;
+            border: 0.2vw solid #2781d7;
+        }
+
+        .line:hover .col1 {
+            display: inline-block;
+            color: #2781d7;
+            line-height: 3.1vw;
+        }
+
+        .line:hover .col2 {
+            display: inline-block;
+            color: #2781d7;
+            line-height: 3.1vw;
+        }
+
+        .col1 {
+            display: inline-block;
+            color: white;
+            line-height: 3.5vw;
+            font-size: 1.2vw;
+            padding: 0 2vw 0 17.5vw;
+            width: 7vw;
+        }
+
+        .col2 {
+            display: inline-block;
+            color: white;
+            line-height: 3.5vw;
+            font-size: 1.2vw;
+            /* padding: 0px 2vw; */
+            width: 10vw;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div style="display: none" id="show">
+        <!-- {{ast_name}} -->
+        <!-- {% for i in data %}
+        <div class="line">
+            <p style="display: none">{{i.first}}</p>
+            <p class="col">{{i.last}}</p>
+            <p class="col">{{i.school}}</p>
+        </div>
+        {% endfor %} -->
+    </div>
+</body>
+
+<script>
+    
+    if ('{{title}}' == '新学生'){
+        $.get(`users/${"{{ast_name}}"}?all_new=id username`,function(json){
+            var html = '';
+            // console.log(json);
+            for(var i =0 ;i<json.data.length;i++){
+                // console.log(json.data[i]);
+                html+= `<div class="line" onclick="window.open('cw_new_msg/${json.data[i].id}')"><p class="col1">学生姓名</p><p class="col2">${json.data[i].username}</p></div>`
+            };
+            $('#show').html(html)
+            
+        });
+    }else if ('{{title}}' == '新大使申请'){
+        $.get(`users/${"{{ast_name}}"}?new_ds=id username`,function(json){
+            var html = '';
+            console.log(json);
+            for(var i =0 ;i<json.data.length;i++){
+                // console.log(json.data[i]);
+                html+= `<div class="line" onclick="window.open('cw_new_ds/${json.data[i].id}')"><p class="col1">学生姓名</p><p class="col2">${json.data[i].username}</p></div>`
+            };
+            $('#show').html(html)
+            
+        });
+    }else{
+        $.get(`users/${"{{ast_name}}"}?all_ref=id username`,function(json){
+            var html = '';
+            console.log(json);
+            for(var i =0 ;i<json.data.length;i++){
+                // console.log(json.data[i]);
+                html+= `<div class="line" onclick="window.open('cw_ref_msg/${json.data[i].id}')"><p class="col1">学生姓名</p><p class="col2">${json.data[i].username}</p></div>`
+            };
+            $('#show').html(html)
+            
+        });
+    }
+
+
+
+
+
+
+    // $.get(`users/${"{{ast_name|safe}}"}?all_new=id username`,function(json){
+    //         var html = '';
+    //         // console.log(json);
+    //         for(var i =0 ;i<json.data.length;i++){
+    //             // console.log(json.data[i]);
+    //             html+= `<div class="line" onclick="window.open('cw_new_msg/${json.data[i].id}')"><p class="col1">学生姓名</p><p class="col2">${json.data[i].username}</p></div>`
+    //         };
+    //         $('#show').html(html)
+            
+    //     });
+
+
+
+
+
+    $(function(){
+        $("#show").fadeIn(500);
+
+    })
+
+</script>
+
+</html>

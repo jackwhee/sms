@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>&#60;CSO&#62;学生信息表</title>
+  <link rel="stylesheet" href="/static/layui/css/layui.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/jquery-3.4.1.min.js"></script>
+  <!-- <script src="js/index.js"></script> -->
+</head>
+<body>
+ 
+  <div>
+    &nbsp;&nbsp;&nbsp;此页数据可导出&nbsp;&nbsp;&nbsp;<span style="color: #2781d7;">Excel文件</span><br>
+
+  </div>
+<!-- 你的HTML代码 -->
+<!-- <a href="assistant_msg?search_msg=62">xxx</a>
+<a href="assistant_msg?search_msg=62">xxx</a> -->
+<table id="mytable" lay-filter="test"></table>
+
+
+<script src="/static/layui/layui.js"></script>
+<script>
+layui.use('table', function(){
+  var search_msg = {{data | safe}};
+  var table = layui.table;
+  var url = '';
+  
+  // console.log(search_msg);
+
+
+  if(search_msg.all == 'all'){
+    url = 'all';
+  }else{
+    for(var i in search_msg){
+    // console.log(search_msg[i])
+      if(search_msg[i] != ''){
+        // console.log(search_msg[i])
+        url+= i + '=' +search_msg[i]
+        // json_obj[i] = data.field[i]
+        url += '&'
+      };
+    };
+    
+    console.log(url)
+
+    url = url.slice(0,url.length-1)
+    console.log('assistant?'+url)
+  }
+
+
+  
+  
+  //第一个实例
+  table.render({
+    elem: '#mytable'
+    ,height: 700
+    ,url: 'assistant?'+url //数据接口
+    ,page: false //开启分页
+    ,toolbar: true 
+    ,cols: [[ //表头
+      {field: 'stu_num', title: '学号', width:80, sort: true, fixed: 'left'}
+      ,{field: 'username', title: '学生姓名', width:120,fixed: 'left'}
+      ,{field: 'zs_school', title: '所在学校', width:120, sort: true}
+      ,{field: 'grade', title: '年级', width:80}
+      ,{field: 'IDCard', title: '身份证号', width: 200}
+      ,{field: 'ambassador', title: '大使', width: 120, sort: true}
+      ,{field: 'wechat', title: '微信号', width: 200}
+      ,{field: 'study', title: '签证到期时间', width: 200,sort: true}
+      ,{field: 'firstEmail', title: '第一邮箱', width:200}
+      ,{field: 'secondEmail', title: '第二邮箱', width:200} 
+      ,{field: 'sk_school', title: '上课校区', width: 200, sort: true}
+      ,{field: 'counselor', title: '对接学姐', width: 120, sort: true}
+      ,{field: 'allotTime', title: '分配时间', width: 120,sort: true}
+      ,{field: 'wk_num', title: '网课数', width: 100, sort: true}
+      ,{field: 'ms_num', title: '面授数', width: 100, sort: true}
+      ,{field: 'course_wk_1', title: '网课1', width: 90, sort: true}
+      ,{field: 'course_wk_2', title: '网课2', width: 90, sort: true}
+      ,{field: 'course_wk_3', title: '网课3', width: 90, sort: true}
+      ,{field: 'course_wk_4', title: '网课4', width: 90, sort: true}
+      ,{field: 'course_wk_5', title: '网课5', width: 90, sort: true}
+      ,{field: 'course_ms_1', title: '面授1', width: 90, sort: true}
+      ,{field: 'course_ms_2', title: '面授2', width: 90, sort: true}
+      ,{field: 'course_ms_3', title: '面授3', width: 90, sort: true}
+      ,{field: 'course_ms_4', title: '面授4', width: 90, sort: true}
+      ,{field: 'course_ms_5', title: '面授5', width: 90, sort: true}
+      ,{field: 'sh_school', title: '审课大纲大学', width:120, sort: true}
+      ,{field: 'payStates', title: '缴费状态', width: 120, sort: true}
+      ,{field: 'subTime', title: '提交课程时间', width: 150,sort: true}
+      ,{field: 'passTime', title: '课程通过时间', width: 150,sort: true}
+      ,{field: 'LOPTime', title: 'LOP通过时间', width: 150,sort: true}
+    ]]
+  });
+  
+});
+</script> 
+</body>
+</html>

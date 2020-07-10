@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>&#60;CSO&#62;学员个人信息</title>
+  <link rel="stylesheet" href="/static/css/css_initialize.css">
+  <link rel="stylesheet" href="/static/layui/css/layui.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/jquery-3.4.1.min.js"></script>
+
+  <style>
+    /* body{
+      font-size: 15px;
+    } */
+
+    .course_ms,
+    .course_wk,
+    .sub_ms,
+    .sub_wk,
+    .pass_ms,
+    .pass_wk,
+    .LOP_ms,
+    .LOP_wk {
+      float: left;
+      margin: 0 0 0 2.5vw;
+      width: 14vw;
+      height: 40px;
+      border-color: gainsboro;
+      border-radius: 2px;
+      padding: 0 10px;
+      color: rgb(177, 177, 177);
+      transition: 0.5s;
+    }
+
+    option {
+      color: black;
+    }
+
+    .cha{
+      position: absolute;
+      right: 3px;
+      top: 3px;
+      opacity:0.5;
+      font-size: 2vw;
+      width: 2vw;
+      height: 2vw;
+      transition: 0.5s;
+    }
+
+    .cha:hover{
+      opacity:1;
+    }
+
+
+    .my_label {
+      float: left;
+    }
+
+    .one_row {
+      padding: 10px 0 10px 80px;
+      width: 90%;
+      float: left;
+    }
+  </style>
+
+  <!-- <script src="/static/js/index.js"></script> -->
+</head>
+
+<script>
+  console.log({{data|safe}})
+  // 判断课程数据是否存在
+
+  function course_select(){
+    $.get('assistant?course_show='+{{data|safe}},function(data){
+    if(data){
+      var no_sub_ms = data.data['no_sub_ms'];
+      var no_sub_wk = data.data['no_sub_wk'];
+      var sub_ms = data.data['sub_ms'];
+      var sub_wk = data.data['sub_wk'];
+      var pass_ms = data.data['pass_ms'];
+      var pass_wk = data.data['pass_wk'];
+      var LOP_ms = data.data['LOP_ms'];
+      var LOP_wk = data.data['LOP_wk'];
+
+
+      $.get('assistant?dp_menu=course_ms', function (json) {
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+      var html_gai = '<option value="">↓-----更换课程-----↓</option>';
+      for (var g = 0; g < json.data.length; g++) {
+        // console.log(json.data[i].s_name);
+        html_gai += '<option value="' + json.data[g].id + '">' + json.data[g].course +
+          '</option>';
+        };
+
+      for (var i1 = 0; i1 < no_sub_ms.length; i1++) {
+
+        var html1 = '<option value="' + no_sub_ms[i1][0] + '">' + no_sub_ms[i1][1] + '</option>';
+        html1 += html_gai
+        
+        $('.course_ms').eq(i1).html(html1);
+
+        //更改边框颜色
+        if ($('.course_ms').eq(i1).val()) {
+          $('.course_ms').eq(i1).css('color', 'black');
+          $('.course_ms').eq(i1).css('border-color', '#2781d7');
+        } else {
+          $('.course_ms').eq(i1).css('color', 'rgb(177, 177, 177)');
+          $('.course_ms').eq(i1).css('border-color', 'gainsboro');;
+        };
+      };
+
+      //生成全部课程html
+      var html2 = '<option value="">请选择课程</option>';
+      for (var i2 = 0; i2 < json.data.length; i2++) {
+      // console.log(json.data[i].s_name);
+      html2 += '<option value="' + json.data[i2].id + '">' + json.data[i2].course +
+        '</option>';
+      };
+      // console.log(html2)
+
+      //已选课程外区域填入全部课程 以供选择
+      for (var i3 = no_sub_ms.length;i3<5;i3++){
+        $('.course_ms').eq(i3).html(html2)
+      }
+
+      //填入下层提交课程
+      var url = 'assistant?course_name=';
+      for (var i1 = 0; i1 < 5; i1++) {
+        url += $('.course_ms').eq(i1).val() + ' ';
+        // console.log($('.course_ms').eq(i1).val())
+      };
+      // console.log(url);
+      $.get(url, function (json) {
+        var html = '<option value="">请选择课程</option>';
+        for (var i = 0; i < json.data.length; i++) {
+          // console.log(json.data[i].course);
+          html += '<option value="' + json.data[i].id + '">' + json.data[i].course + '</option>';
+        };
+        // console.log(html)
+        // $('.sub_ms').html(html);
+        for (var i4 = sub_ms.length;i4<5;i4++){
+         $('.sub_ms').eq(i4).html(html)
+        }
+
+      });
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+      for (var i1 = 0; i1 < sub_ms.length; i1++) {
+
+        var html1 = '<option value="' + sub_ms[i1][0] + '">' + sub_ms[i1][1] + '</option>';
+        html1 += html_gai
+        $('.sub_ms').eq(i1).html(html1);
+
+        //更改边框颜色
+        if ($('.sub_ms').eq(i1).val()) {
+          $('.sub_ms').eq(i1).css('color', 'black');
+          $('.sub_ms').eq(i1).css('border-color', '#2781d7');
+        } else {
+          $('.sub_ms').eq(i1).css('color', 'rgb(177, 177, 177)');
+          $('.sub_ms').eq(i1).css('border-color', 'gainsboro');;
+        };
+      };
+
+        //填入下层提交课程
+      var url = 'assistant?course_name=';
+      for (var i1 = 0; i1 < 5; i1++) {
+        url += $('.sub_ms').eq(i1).val() + ' ';
+        // console.log($('.sub_ms').eq(i1).val())
+      };
+      // console.log(url);
+      $.get(url, function (json) {
+        var html = '<option value="">请选择课程</option>';
+        for (var i = 0; i < json.data.length; i++) {
+          // console.log(json.data[i].course);
+          html += '<option value="' + json.data[i].id + '">' + json.data[i].course + '</option>';
+        };
+        // $('.pass_ms').html(html);
+        for (var i4 = pass_ms.length;i4<5;i4++){
+          $('.pass_ms').eq(i4).html(html)
+        }
+
+      });
+
+      
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+      
+      for (var i1 = 0; i1 < pass_ms.length; i1++) {
+
+        var html1 = '<option value="' + pass_ms[i1][0] + '">' + pass_ms[i1][1] + '</option>';
+        $('.pass_ms').eq(i1).html(html1);
+
+        //更改边框颜色
+        if ($('.pass_ms').eq(i1).val()) {
+          $('.pass_ms').eq(i1).css('color', 'black');
+          $('.pass_ms').eq(i1).css('border-color', '#2781d7');
+        } else {
+          $('.pass_ms').eq(i1).css('color', 'rgb(177, 177, 177)');
+          $('.pass_ms').eq(i1).css('border-color', 'gainsboro');;
+        };
+        };
+
+      //填入下层通过课程
+      var url = 'assistant?course_name=';
+      for (var i1 = 0; i1 < 5; i1++) {
+        url += $('.pass_ms').eq(i1).val() + ' ';
+        // console.log($('.pass_ms').eq(i1).val())
+      };
+      // console.log(url);
+      $.get(url, function (json) {
+        var html = '<option value="">请选择课程</option>';
+        for (var i = 0; i < json.data.length; i++) {
+          // console.log(json.data[i].course);
+          html += '<option value="' + json.data[i].id + '">' + json.data[i].course + '</option>';
+        };
+        // $('.pass_ms').html(html);
+        for (var i4 = LOP_ms.length;i4<5;i4++){
+          $('.LOP_ms').eq(i4).html(html)
+        }
+
+      });
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+      
+      for (var i1 = 0; i1 < LOP_ms.length; i1++) {
+        var html1 = '<option value="' + LOP_ms[i1][0] + '">' + LOP_ms[i1][1] + '</option>';
+        $('.LOP_ms').eq(i1).html(html1);
+
+        //更改边框颜色
+        if ($('.LOP_ms').eq(i1).val()) {
+          $('.LOP_ms').eq(i1).css('color', 'black');
+          $('.LOP_ms').eq(i1).css('border-color', '#2781d7');
+        } else {
+          $('.LOP_ms').eq(i1).css('color', 'rgb(177, 177, 177)');
+          $('.LOP_ms').eq(i1).css('border-color', 'gainsboro');;
+        };
+      };
+     
+
+    });
+    
+    
+
+
+
+
+
+      $.get('assistant?dp_menu=course_wk', function (json) {
+        var html_gai = '<option value="">↓-----更换课程-----↓</option>';
+        for (var g = 0; g < json.data.length; g++) {
+        // console.log(json.data[i].s_name);
+          html_gai += '<option value="' + json.data[g].id + '">' + json.data[g].course +'</option>';
+        };
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+        for (var i1 = 0; i1 < no_sub_wk.length; i1++) {
+
+          var html1 = '<option value="' + no_sub_wk[i1][0] + '">' + no_sub_wk[i1][1] + '</option>';
+          html1 += html_gai
+          $('.course_wk').eq(i1).html(html1);
+
+          //更改边框颜色
+          if ($('.course_wk').eq(i1).val()) {
+            $('.course_wk').eq(i1).css('color', 'black');
+            $('.course_wk').eq(i1).css('border-color', '#2781d7');
+          } else {
+            $('.course_wk').eq(i1).css('color', 'rgb(177, 177, 177)');
+            $('.course_wk').eq(i1).css('border-color', 'gainsboro');;
+          };
+        };
+
+          //生成全部课程html
+          var html2 = '<option value="">请选择课程</option>';
+          for (var i2 = 0; i2 < json.data.length; i2++) {
+          // console.log(json.data[i].s_name);
+          html2 += '<option value="' + json.data[i2].id + '">' + json.data[i2].course +
+            '</option>';
+          };
+          // console.log(html2)
+
+          //已选课程外区域填入全部课程 以供选择
+          for (var i3 = no_sub_wk.length;i3<5;i3++){
+            $('.course_wk').eq(i3).html(html2)
+          }
+
+          //填入下层提交课程
+          var url = 'assistant?course_name=';
+          for (var i1 = 0; i1 < 5; i1++) {
+            url += $('.course_wk').eq(i1).val() + ' ';
+            // console.log($('.course_wk').eq(i1).val())
+          };
+          // console.log(url);
+          $.get(url, function (json) {
+            var html = '<option value="">请选择课程</option>';
+            for (var i = 0; i < json.data.length; i++) {
+              // console.log(json.data[i].course);
+              html += '<option value="' + json.data[i].id + '">' + json.data[i].course + '</option>';
+            };
+            // $('.sub_wk').html(html);
+            for (var i4 = sub_wk.length;i4<5;i4++){
+              $('.sub_wk').eq(i4).html(html)
+            }
+          });
+
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+        
+        for (var i1 = 0; i1 < sub_wk.length; i1++) {
+
+          var html1 = '<option value="' + sub_wk[i1][0] + '">' + sub_wk[i1][1] + '</option>';
+          html1 += html_gai
+          $('.sub_wk').eq(i1).html(html1);
+
+          //更改边框颜色
+          if ($('.sub_wk').eq(i1).val()) {
+            $('.sub_wk').eq(i1).css('color', 'black');
+            $('.sub_wk').eq(i1).css('border-color', '#2781d7');
+          } else {
+            $('.sub_wk').eq(i1).css('color', 'rgb(177, 177, 177)');
+            $('.sub_wk').eq(i1).css('border-color', 'gainsboro');;
+          };
+        };
+
+          //填入下层提交课程
+          var url = 'assistant?course_name=';
+          for (var i1 = 0; i1 < 5; i1++) {
+            url += $('.sub_wk').eq(i1).val() + ' ';
+            // console.log($('.sub_wk').eq(i1).val())
+          };
+          // console.log(url);
+          $.get(url, function (json) {
+            var html = '<option value="">请选择课程</option>';
+            for (var i = 0; i < json.data.length; i++) {
+              // console.log(json.data[i].course);
+              html += '<option value="' + json.data[i].id + '">' + json.data[i].course + '</option>';
+            };
+            // $('.pass_wk').html(html);
+            for (var i4 = pass_wk.length;i4<5;i4++){
+              $('.pass_wk').eq(i4).html(html)
+            }
+
+          });
+
+
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+        
+          for (var i1 = 0; i1 < pass_wk.length; i1++) {
+
+            var html1 = '<option value="' + pass_wk[i1][0] + '">' + pass_wk[i1][1] + '</option>';
+            $('.pass_wk').eq(i1).html(html1);
+
+            //更改边框颜色
+            if ($('.pass_wk').eq(i1).val()) {
+              $('.pass_wk').eq(i1).css('color', 'black');
+              $('.pass_wk').eq(i1).css('border-color', '#2781d7');
+            } else {
+              $('.pass_wk').eq(i1).css('color', 'rgb(177, 177, 177)');
+              $('.pass_wk').eq(i1).css('border-color', 'gainsboro');;
+            };
+          };
+
+          //填入下层通过课程
+          var url = 'assistant?course_name=';
+          for (var i1 = 0; i1 < 5; i1++) {
+            url += $('.pass_wk').eq(i1).val() + ' ';
+            // console.log($('.pass_wk').eq(i1).val())
+          };
+          // console.log(url);
+          $.get(url, function (json) {
+            var html = '<option value="">请选择课程</option>';
+            for (var i = 0; i < json.data.length; i++) {
+              // console.log(json.data[i].course);
+              html += '<option value="' + json.data[i].id + '">' + json.data[i].course + '</option>';
+            };
+            // $('.pass_wk').html(html);
+            for (var i4 = LOP_wk.length;i4<5;i4++){
+              $('.LOP_wk').eq(i4).html(html)
+            }
+
+          });
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------
+      
+        for (var i1 = 0; i1 < LOP_wk.length; i1++) {
+
+          var html1 = '<option value="' + LOP_wk[i1][0] + '">' + LOP_wk[i1][1] + '</option>';
+          $('.LOP_wk').eq(i1).html(html1);
+
+          //更改边框颜色
+          if ($('.LOP_wk').eq(i1).val()) {
+            $('.LOP_wk').eq(i1).css('color', 'black');
+            $('.LOP_wk').eq(i1).css('border-color', '#2781d7');
+          } else {
+            $('.LOP_wk').eq(i1).css('color', 'rgb(177, 177, 177)');
+            $('.LOP_wk').eq(i1).css('border-color', 'gainsboro');;
+          };
+        };
+        
+    });
+    
+    
+    
+    }else{
+        // 所有面授
+        $.get('assistant?dp_menu=course_ms', function (json) {
+          var html = '<option value="">请选择课程</option>';
+          for (var i = 0; i < json.data.length; i++) {
+            // console.log(json.data[i].s_name);
+            html += '<option value="' + json.data[i].id + '">' + json.data[i].course +
+              '</option>';
+          };
+          $('.course_ms').html(html)
+        });
+
+        // 所有网课
+        $.get('assistant?dp_menu=course_wk', function (json) {
+          var html = '<option value="">请选择课程</option>';
+          for (var i = 0; i < json.data.length; i++) {
+            // console.log(json.data[i].s_name);
+            html += '<option value="' + json.data[i].id + '">' + json.data[i].course +
+              '</option>';
+          };
+          $('.course_wk').html(html)
+        });
+    };
+  });
+  
+  };  
+  
+  course_select()
+
+
+  //学校
+  $.get('assistant?dp_menu=school_sh', function (json) {
+    var html = '<option value="">请选择一个大学</option>';
+    for (var i = 0; i < json.data.length; i++) {
+      // console.log(json.data[i].s_name);
+      html += '<option value="' + json.data[i].id + '">' + json.data[i].s_name + '</option>';
+    };
+    // console.log(html)    
+    $('#school_sh').html(html)
+  });
+
+  $.get('assistant?stu_msg=' + {{data | safe}} + ' base counselor allotTime course_ms course_wk school_zs school_sh count_wk count_ms reason subTime passTime LOPTime feedbackTime', function (
+    json) {
+    // console.log(json.data)
+    var a = $("input[name  ='username']").attr('placeholder', json.data.username)
+    $("input[name='username']").attr('placeholder', json.data.username);
+    $("input[name='pinyin']").attr('placeholder', json.data.pinyin);
+    $("input[name='GPA']").attr('placeholder', json.data.GPA);
+    $("input[name='study']").attr('placeholder', json.data.study);
+    
+    if(json.data.gender == 'w'){
+      var gender = '女';
+    }else{
+      var gender = '男';
+    }
+    // console.log(json.data.school_sh)
+    $("input[name='gender']").attr('placeholder', gender);
+    $("input[name='birth']").attr('placeholder', json.data.birth);
+    $("input[name='IDCard']").attr('placeholder', json.data.IDCard);
+    $("input[name='major']").attr('placeholder', json.data.major);
+    $("input[name='grade']").attr('placeholder', json.data.grade);
+    // console.log(json.data)
+    $("input[name='school']").attr('placeholder', json.data.school_zs);
+    $("input[name='grade']").attr('placeholder', json.data.grade);
+    $("input[name='domesticTelephone']").attr('placeholder', json.data.domesticTelephone);
+    $("input[name='foreignTelephone']").attr('placeholder', json.data.foreignTelephone);
+    $("input[name='domesticAddress']").attr('placeholder', json.data.domesticAddress);
+    $("input[name='foreignAddress']").attr('placeholder', json.data.foreignAddress);
+    $("input[name='wechat']").attr('placeholder', json.data.wechat);
+    $("input[name='balance']").attr('placeholder', json.data.balance);
+    $("input[name='firstEmail']").attr('placeholder', json.data.firstEmail);
+    $("input[name='secondEmail']").attr('placeholder', json.data.secondEmail);
+    $("input[name='ambassador']").attr('placeholder', json.data.ambassador);
+    $("input[name='counselor']").attr('placeholder', json.data.counselor);
+
+    // console.log($('#school_sh').children()[0].text)
+    if(json.data.school_sh){
+      console.log($('#school_sh').attr('disabled','disabled'))
+    }
+    $('#school_sh').children()[0].text = json.data.school_sh
+
+    $("input[name='allotTime']").attr('placeholder', json.data.allotTime);
+    $("input[name='LOPTime']").attr('placeholder', json.data.LOPTime);
+    $("input[name='passTime']").attr('placeholder', json.data.passTime);
+    $("input[name='subTime']").attr('placeholder', json.data.subTime);
+    $("input[name='feedbackTime']").attr('placeholder', json.data.feedbackTime);
+    $("input[name='count_ms']").attr('placeholder', json.data.count_ms);
+    $("input[name='count_wk']").attr('placeholder', json.data.count_wk);
+    $("textarea[name='beizhu']").attr('placeholder', json.data.reason);
+
+
+    // console.log(json.data.course_ms)
+    layui.use(['layer', 'form'], function () {
+      var layer = layui.layer,
+        form = layui.form;
+
+      form.on('submit(formDemo)', function (data) {
+        layer.msg(JSON.stringify(data.field));
+        return false;
+      });
+
+      // layer.msg('Hello World!');
+    });
+
+    layui.use('laydate', function () {
+      var laydate = layui.laydate;
+
+      //执行一个laydate实例
+      laydate.render({
+        elem: '#time1', //指定元素
+      });
+      laydate.render({
+        elem: '#time2', //指定元素
+      });
+      laydate.render({
+        elem: '#time3', //指定元素
+      });
+      laydate.render({
+        elem: '#time4', //指定元素
+      });
+    });
+
+
+  });
+
+  $.get({{data|safe}}+'/LOP_img',function(data){
+    var html = ""
+          for(var i = 0 ; i< data.data.length ; i++){
+            path = data.data[i]
+            html += "<div style='display: inline-block;position: relative;' ><img src='/media/x.png' onclick='del_img("+i+")' alt='' class='cha' ><img src='/media/"+{{data|safe}}+"/LOP_img/"+path+"' onclick='show("+i+")' id='"+path+"' style='width: 12vw;height: 12vw;border: 2px solid #2781d7;margin: 0 0 0 20px;border-radius: 7px'><img src='/media/"+{{data|safe}}+"/LOP_img/"+path+"' id='LOP_"+i+"' style='position: relative;display: none;width:900px'></div>"
+            // console.log(html);
+            
+            
+          };
+          $('#LOP_father').css('display','none');
+          $('#LOP_father').fadeIn(1000).html(html);
+    })
+
+</script>
+
+
+<body style="display: none ; width: 94vw">
+
+  <div style="position: absolute;" >
+    &nbsp;&nbsp;&nbsp;<span style="color: #2781d7;">蓝色标题选框</span>&nbsp;&nbsp;&nbsp;为可更改信息<br>
+    &nbsp;&nbsp;&nbsp;<span style="color: red;">请注意</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOP凭证上传与删除具有<span style="color: red;">及时性</span>,无需提交即会更改数据
+  
+  </div>
+
+  <!-- <button id="sb1">xxx</button> -->
+
+  <form id="boss" class="layui-form" style="width: 94vw;position: absolute" action="assistant" method="POST">
+    <input type="text" name="id" value={{data}} style="display: none" readonly unselectable="on">
+
+    <div class="main layui-fluid">
+      <div class="layui-row">
+        <div class="layui-col-md3">
+          <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+              <input type="text" name="username" required disabled lay-verify="required" placeholder="请输入标题"
+                autocomplete="off" class="layui-input">
+            </div>
+          </div>
+        </div>
+
+        <div class="layui-col-md3">
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名拼音</label>
+                <div class="layui-input-block">
+                  <input type="text" name="pinyin" required disabled lay-verify="required" placeholder="请输入标题"
+                    autocomplete="off" class="layui-input">
+                </div>
+              </div>
+        </div>
+
+        <div class="layui-col-md3">
+          <div class="layui-form-item">
+              <label class="layui-form-label">性别</label>
+              <div class="layui-input-block">
+                <input type="text" name="gender" required disabled lay-verify="required" placeholder="请输入标题"
+                  autocomplete="off" class="layui-input">
+              </div>
+            </div>
+        </div>
+
+        <div class="layui-col-md3">
+          <div class="layui-form-item">
+              <label class="layui-form-label">GPA</label>
+              <div class="layui-input-block">
+                <input type="text" name="GPA" required disabled lay-verify="required" placeholder="请输入标题"
+                  autocomplete="off" class="layui-input">
+              </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="padding-bottom: 16px;padding-left: 160px" class="layui-row">
+          <div style="display: inline-block;position: relative;">
+            <img src="/media/{{data}}/card_img/face.jpg" alt='身份证正面' onclick="show(0)" 
+              style="width: 17vw;height: 150px;border: 2px solid #2781d7;border-radius: 7px">
+            <img src="/media/{{data}}/card_img/face.jpg" id="LOP_0" style="position: relative;display: none;width:900px">
+            
+            <img src="/media/{{data}}/card_img/reverse.jpg" alt='身份证反面' onclick="show(1)"
+              style="width: 17vw;height: 150px;border: 2px solid #2781d7;margin: 0 0 0 3vw;border-radius: 7px">
+            <img src="/media/{{data}}/card_img/reverse.jpg" id="LOP_1" style="position: relative;display: none;width:900px">
+            
+            <img src="/media/{{data}}/GPA_img/GPA.jpg" alt='GPA凭证' onclick="show(2)"
+              style="width: 17vw;height: 150px;border: 2px solid #2781d7;margin: 0 0 0 3vw;border-radius: 7px;margin-left: 8vw">
+            <img src="/media/{{data}}/GPA_img/GPA.jpg" id="LOP_2" style="position: relative;display: none;width:900px">
+          </div>
+      </div>
+      <div class="layui-row">
+
+        <div class="layui-col-md3">
+          <div class="layui-form-item">
+            <label class="layui-form-label">学签到期时间</label>
+            <div class="layui-input-block">
+              <input type="text" name="study" required disabled lay-verify="required" placeholder="请输入标题"
+                autocomplete="off" class="layui-input">
+            </div>
+           
+          </div>
+        </div>
+
+        <div class="layui-col-md3">
+            <div class="layui-form-item">
+                <label class="layui-form-label">专业</label>
+                <div class="layui-input-block">
+                  <input type="text" name="major" required disabled lay-verify="required" placeholder="请输入标题"
+                    autocomplete="off" class="layui-input">
+                </div>
+              </div>
+          </div>
+        
+        
+        
+        <div class="layui-col-md3">
+          <div class="layui-form-item">
+              <label class="layui-form-label">出生年月</label>
+              <div class="layui-input-block">
+                <input type="text" name="birth" required disabled lay-verify="required" placeholder="请输入标题"
+                  autocomplete="off" class="layui-input">
+              </div>
+            </div>
+        </div>
+        
+        <div class="layui-col-md3">
+          <div class="layui-form-item">
+              <label class="layui-form-label">身份证号</label>
+              <div class="layui-input-block">
+                <input style="font-size: 12px" type="text" name="IDCard" required disabled lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+        </div>
+        
+      </div>
+      
+      <div class="layui-row">
+
+
+
+        <div class="layui-col-md3">
+            <div class="layui-form-item">
+                <label class="layui-form-label">年级</label>
+                <div class="layui-input-block">
+                  <input type="text" name="grade" required disabled lay-verify="required" placeholder="请输入标题"
+                    autocomplete="off" class="layui-input">
+                </div>
+              </div>
+        </div>
+        
+        <div class="layui-col-md3">
+            <div class="layui-form-item">
+                <label class="layui-form-label">学校</label>
+                <div class="layui-input-block">
+                  <input type="text" name="school" required disabled lay-verify="required" placeholder="请输入标题"
+                    autocomplete="off" class="layui-input">
+                </div>
+              </div>
+        </div>
+        
+        <div class="layui-col-md3">
+            <div class="layui-form-item">
+                <label class="layui-form-label">电话(国内)</label>
+                <div class="layui-input-block">
+                  <input type="text" name="domesticTelephone" required disabled lay-verify="required" placeholder="请输入标题"
+                    autocomplete="off" class="layui-input">
+                </div>
+              </div>
+        </div>
+        
+        <div class="layui-col-md3">
+            <div class="layui-form-item">
+                <label class="layui-form-label">电话(国外)</label>
+                <div class="layui-input-block">
+                  <input type="text" name="foreignTelephone" required disabled lay-verify="required" placeholder="请输入标题"
+                    autocomplete="off" class="layui-input">
+                </div>
+              </div>
+        </div>
+
+
+
+
+      </div>
+
+      <div class="layui-row">
+
+          <div class="layui-col-md3">
+              <div class="layui-form-item">
+                  <label class="layui-form-label">微信号</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="wechat" required disabled lay-verify="required" placeholder="请输入标题"
+                      autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+          </div>
+          
+          <div class="layui-col-md3">
+              <div class="layui-form-item">
+                  <label class="layui-form-label">欠费金额</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="balance" required disabled lay-verify="required" placeholder="请输入标题"
+                      autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+          </div>
+
+          <div class="layui-col-md3">
+              <div class="layui-form-item">
+                  <label class="layui-form-label">地址(国内)</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="domesticAddress" required disabled lay-verify="required" placeholder="请输入标题"
+                      autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+          </div>
+          
+          <div class="layui-col-md3">
+              <div class="layui-form-item">
+                  <label class="layui-form-label">地址(国外)</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="foreignAddress" required disabled lay-verify="required" placeholder="请输入标题"
+                      autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+          </div>
+
+      </div>
+
+      <div class="layui-row">
+          <div class="layui-col-md3">
+              <div class="layui-form-item">
+                  <label class="layui-form-label">邮件一</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="firstEmail" required disabled lay-verify="required" placeholder="请输入标题"
+                      autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+          </div>
+          
+          <div class="layui-col-md3">
+              <div class="layui-form-item">
+                  <label class="layui-form-label">邮件二</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="secondEmail" required disabled lay-verify="required" placeholder="请输入标题"
+                      autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+          </div>
+          
+          <div class="layui-col-md3">
+              <div class="layui-form-item">
+                  <label class="layui-form-label">校园大使</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="ambassador" required disabled lay-verify="required" placeholder="请输入标题"
+                      autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+          </div>
+          
+          <div class="layui-col-md3">
+              <div class="layui-form-item">
+                  <label class="layui-form-label">课程顾问</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="counselor" required disabled lay-verify="required" placeholder="请输入标题"
+                      autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+      <div class="layui-row">
+
+          <div class="layui-col-md3">
+              <div class="layui-form-item">
+                  <label class="layui-form-label" >分配日期</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="allotTime" required disabled lay-verify="required" placeholder="请输入标题"
+                      autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+          </div>
+
+
+          <div class="layui-col-md3">
+              <div class="layui-form-item">
+                  <label class="layui-form-label" style="color: #2781d7">顾问反馈日期</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="feedbackTime" autocomplete="off" class="layui-input" id="time1">
+                  </div>
+                </div>
+          </div>
+
+          
+          <div class="layui-col-md6">
+              <div class="layui-form-item">
+                  <label class="layui-form-label" disabled='value' style="color: #2781d7">审课大纲大学</label>
+                  <div  class="layui-input-block">
+                    <select id="school_sh" name="school_sh" lay-verify="">
+                      <option value="">网络延迟,请刷新</option>
+                    </select>
+                  </div>
+                </div>
+          </div>
+          
+
+
+      </div>
+
+
+      <div class="layui-row">
+          <div class="layui-col-md6">
+              <div class="layui-form-item">
+                  <label class="layui-form-label">面授课数量</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="count_ms" required disabled lay-verify="required" placeholder="请输入标题"
+                      autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+          </div>
+          
+          <div class="layui-col-md6">
+              <div class="layui-form-item">
+                  <label class="layui-form-label">网络课数量</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="count_wk" required disabled lay-verify="required" placeholder="请输入标题"
+                      autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+          </div>
+
+      </div>
+
+      <div class="layui-row">
+
+
+          <div style="height: 670px">
+            </div>
+
+
+          <div style="position: relative;bottom: 341px;z-index: 999;" class="layui-col-md12">
+              <div class="layui-form-item">
+                  <label class="layui-form-label" style="color: #2781d7">提交日期</label>
+                  <div class="layui-input-block">
+                    <input type="text" autocomplete="off" name="subTime" class="layui-input" id="time2">
+                  </div>
+                </div>
+          </div>
+          
+          <div style="position: relative;bottom: 161px;z-index: 999;" class="layui-col-md12">
+              <div class="layui-form-item">
+                  <label class="layui-form-label" style="color: #2781d7">通过日期</label>
+                  <div class="layui-input-block">
+                    <input type="text" autocomplete="off" name="passTime" class="layui-input" id="time3">
+                  </div>
+                </div>
+          </div>
+          
+          <div style="position: relative; top: 22px; z-index: 999;" class="layui-col-md12">
+              <div class="layui-form-item">
+                  <label class="layui-form-label" style="color: #2781d7">LOP通过日期</label>
+                  <div class="layui-input-block">
+                    <input type="text" autocomplete="off" name="LOPTime" class="layui-input" id="time4">
+                  </div>
+                </div>
+          </div>
+
+      </div>
+
+      <div class="layui-row">
+        <div class="layui-col-md12">
+
+          <!-- 给选课空出位置 -->
+
+
+          <!-- 给LOP图片空出位置 -->
+          <div style="height: 16vw">
+          </div>
+
+
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label" style="color: #2781d7">备注</label>
+            <div class="layui-input-block">
+              <textarea name="beizhu" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-input-block">
+              <button class="layui-btn" style="background-color:#2781d7;border: 1px solid #2781d7">确认并提交</button>
+              <div id="reset" class="layui-btn" style="background-color:gainsboro;color: black;border: 1px solid rgb(177, 177, 177);border-radius: 7px">重置表单信息</div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+
+  <form action="" method="post" enctype="multipart/form-data" class="avatar_form" style="position: relative;top: 1497px;left: 50px;">
+    
+    <div style="float: left;margin: 5vw 7px 0 17px; color: #2781d7;"> 
+      
+      <label style="cursor: pointer" for="LOP_img">LOP凭证上传</label>    &nbsp;&nbsp;&nbsp;
+      <label for="LOP_img"  ><img src="/media/img.png" style="width: 45px;cursor: pointer" alt=""></label>
+    </div>
+    <div id="LOP_father" style="float: left">      
+      <div style="display: inline-block;position: relative;" >        
+      </div>      
+      
+      <!-- <img src="/media/1.jpg" class='LOP_1' alt="" style="width: 180px">
+      <img src="/media/1.jpg" class='LOP_1' alt="" style="width: 180px"> -->
+    </div>
+    
+    <input type="file" name="LOP_img" id="LOP_img" accept=".jpg ,.png" style="display: none" >
+  </form>
+
+
+
+  <div style="height: 570px;position: absolute;top: 635px;" action="">
+    <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+    <label class='one_row' style="margin-left: 12px">课程选择</label>
+    <div class='one_row'>
+
+      <div>
+        <label class='my_label' style="margin: 0 -3px 0 40px;line-height: 40px;color: #2781d7;">面授</label>
+      </div>
+
+      <div>
+        <select style="margin-left: 32px" class="course_ms" form="boss" name="course_ms1">
+
+          <option value="">请选择课程</option>
+
+        </select>
+      </div>
+
+      <div>
+        <select class="course_ms" form="boss" name="course_ms2">
+
+          <option value="">请选择课程</option>
+
+        </select>
+      </div>
+
+      <div>
+        <select class="course_ms" form="boss" name="course_ms3">
+
+          <option value="">请选择课程</option>
+
+        </select>
+      </div>
+
+      <div>
+        <select class="course_ms" form="boss" name="course_ms4">
+
+          <option value="">请选择课程</option>
+
+        </select>
+      </div>
+
+      <div>
+        <select class="course_ms" form="boss" name="course_ms5">
+
+          <option value="">请选择课程</option>
+
+        </select>
+      </div>
+
+
+    </div>
+
+    <div class='one_row'>
+
+      <div>
+        <label class='my_label' style="margin: 0 -3px 0 40px;line-height: 40px;color: #2781d7;">网课</label>
+      </div>
+      <div>
+        <select style="margin-left: 32px" class="course_wk" form="boss" name="course_wk1">
+
+          <option value="">请选择课程</option>
+
+
+        </select>
+      </div>
+      <div>
+        <select class="course_wk" form="boss" name="course_wk2">
+
+          <option value="">请选择课程</option>
+
+        </select>
+      </div>
+
+      <div>
+        <select class="course_wk" form="boss" name="course_wk3">
+
+          <option value="">请选择课程</option>
+
+        </select>
+      </div>
+
+      <div>
+        <select class="course_wk" form="boss" name="course_wk4">
+
+          <option value="">请选择课程</option>
+
+        </select>
+      </div>
+
+      <div>
+        <select class="course_wk" form="boss" name="course_wk5">
+
+          <option value="">请选择课程</option>
+
+        </select>
+      </div>
+
+    </div>
+
+
+    <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+    <label class='one_row' style="margin-left: 12px">提交课程</label>
+    <div class='one_row'>
+
+
+      <div>
+        <label class='my_label' style="margin: 0 -3px 0 40px;line-height: 40px;color: #2781d7;">面授</label>
+      </div>
+      <div>
+        <select style="margin-left: 32px" class="sub_ms" form="boss" name="sub_ms1">
+
+          <option value="">请选择课程</option>
+
+
+        </select>
+      </div>
+      <div>
+        <select class="sub_ms" form="boss" name="sub_ms2">
+
+          <option value="">请选择课程</option>
+
+        </select>
+      </div>
+
+      <div>
+        <select class="sub_ms" form="boss" name="sub_ms3">
+
+          <option value="">请选择课程</option>
+
+        </select>
+      </div>
+
+      <div>
+        <select class="sub_ms" form="boss" name="sub_ms4">
+
+          <option value="">请选择课程</option>
+
+        </select>
+      </div>
+
+      <div>
+        <select class="sub_ms" form="boss" name="sub_ms5">
+
+          <option value="">请选择课程</option>
+
+        </select>
+      </div>
+
+    </div>
+
+    <div class='one_row'>
+
+
+      <div>
+        <label class='my_label' style="margin: 0 -3px 0 40px;line-height: 40px;color: #2781d7;">网课</label>
+      </div>
+      <div>
+        <select style="margin-left: 32px" class="sub_wk" form="boss" name="sub_wk1">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+      <div>
+        <select class="sub_wk" form="boss" name="sub_wk2">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="sub_wk" form="boss" name="sub_wk3">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="sub_wk" form="boss" name="sub_wk4">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="sub_wk" form="boss" name="sub_wk5">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- 给日期占位 -->
+    <div class='one_row' style="height: 55px;" ></div>
+
+    <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+
+    <label class='one_row' style="margin-left: 12px">通过课程</label>
+    <div class='one_row'>
+
+
+      <div>
+        <label class='my_label' style="margin: 0 -3px 0 40px;line-height: 40px;color: #2781d7;">面授</label>
+      </div>
+      <div>
+        <select style="margin-left: 32px" class="pass_ms" form="boss" name="pass_ms1">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+      <div>
+        <select class="pass_ms" form="boss" name="pass_ms2">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="pass_ms" form="boss" name="pass_ms3">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="pass_ms" form="boss" name="pass_ms4">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="pass_ms" form="boss" name="pass_ms5">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class='one_row'>
+
+
+      <div>
+        <label class='my_label' style="margin: 0 -3px 0 40px;line-height: 40px;color: #2781d7;">网课</label>
+      </div>
+      <div>
+        <select style="margin-left: 32px" class="pass_wk" form="boss" name="pass_wk1">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+      <div>
+        <select class="pass_wk" form="boss" name="pass_wk2">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="pass_wk" form="boss" name="pass_wk3">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="pass_wk" form="boss" name="pass_wk4">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="pass_wk" form="boss" name="pass_wk5">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- 给日期占位 -->
+    <div class='one_row' style="height: 55px;" ></div>
+
+    <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+    <label class='one_row' style="margin-left: -15px" >LOP通过状态</label>
+    <div class='one_row'>
+
+
+      <div>
+        <label class='my_label' style="margin: 0 -3px 0 40px;line-height: 40px;color: #2781d7;">面授</label>
+      </div>
+      <div>
+        <select style="margin-left: 32px" class="LOP_ms" form="boss" name="LOP_ms1">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+      <div>
+        <select class="LOP_ms" form="boss" name="LOP_ms2">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="LOP_ms" form="boss" name="LOP_ms3">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="LOP_ms" form="boss" name="LOP_ms4">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="LOP_ms" form="boss" name="LOP_ms5">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class='one_row'>
+
+
+      <div>
+        <label class='my_label' style="margin: 0 -3px 0 40px;line-height: 40px;color: #2781d7;">网课</label>
+      </div>
+      <div>
+        <select style="margin-left: 32px" class="LOP_wk" form="boss" name="LOP_wk1">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+      <div>
+        <select class="LOP_wk" form="boss" name="LOP_wk2">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="LOP_wk" form="boss" name="LOP_wk3">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="LOP_wk" form="boss" name="LOP_wk4">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+      <div>
+        <select class="LOP_wk" form="boss" name="LOP_wk5">
+          <option value="">请选择课程</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- 给日期占位 -->
+    <div class='one_row' style="height: 55px;" ></div>
+
+
+
+  </div>
+
+
+
+
+  <script src="/static/layui/layui.js"></script>
+
+  <script>
+
+    //表单重置
+    $('#reset').click(function(){
+      $('form')[0].reset()
+    });
+
+
+    // 图片无需提交 直接上传
+    $(function () {
+      var $input = $("#LOP_img");
+      // ①为input设定change事件
+      $input.change(function () {
+        //    ②如果value不为空，调用文件加载方法
+        if ($(this).val() != "") {
+          fileLoad(this);
+        };
+      });
+    });
+    //③创建fileLoad方法用来上传文件
+    function fileLoad(ele) {
+      //④创建一个formData对象
+      var formData = new FormData();
+
+      // //⑥获取files
+      var files = $(ele)[0].files[0];
+
+      formData.append("LOP_img", files);
+      $.ajax({
+        url: {{data|safe}}+"/LOP_img",
+        type: 'POST',
+        data: formData,
+        processData: false, // ⑧告诉jQuery不要去处理发送的数据
+        contentType: false, // ⑨告诉jQuery不要去设置Content-Type请求头
+        success: function (data) {
+          
+          //成功后显示图片
+
+          var html = ""
+          for(var i = 0 ; i< data.data.length ; i++){
+            path = data.data[i]
+            html += "<div style='display: inline-block;position: relative;' ><img src='/media/x.png' onclick='del_img("+i+")' alt='' class='cha' ><img src='/media/"+{{data|safe}}+"/LOP_img/"+path+"' onclick='show("+i+")' id='"+path+"' style='width: 12vw;height: 12vw;border: 2px solid #2781d7;margin: 0 0 0 20px;border-radius: 7px'><img src='/media/"+{{data|safe}}+"/LOP_img/"+path+"' id='LOP_"+i+"' style='position: relative;display: none;width:900px'></div>"
+            // console.log(html);
+            
+            
+          };
+          $('#LOP_father').css('display','none');
+          $('#LOP_father').fadeIn(1000).html(html);
+        },
+        error: function (data) {
+          //12出错后的动作
+          alert("出错啦");
+        }
+      });
+    };
+    
+
+
+    
+
+    //整体渐入效果
+    $('body').fadeIn(500);
+
+
+
+    //图片缩略图详情展示效果
+    function show (num) {
+      num = '#LOP_' + num
+      // console.log(num); 
+      layer.open({
+        type: 1,
+        title: false,
+        closeBtn: 0,
+        area: '900px',
+        skin: 'layui-layer-nobg', //没有背景色
+        shadeClose: true,
+        content: $(num)
+      });
+    }
+
+
+
+    //图片删除
+    function del_img(num){
+      if (num == 0){
+        num = 1;
+      }else{
+        num = num *3 +1
+      }
+      // console.log(num);
+      var path = $('#LOP_father').find('img')[num].id;
+      path = {{data|safe}} + '/LOP_img/' + path
+      
+      
+      $.ajax({
+        url: {{data|safe}}+"/LOP_img",
+        type: 'DELETE',
+        data: JSON.stringify({'path':path}),
+        processData: false, // ⑧告诉jQuery不要去处理发送的数据
+        contentType: false, // ⑨告诉jQuery不要去设置Content-Type请求头
+        success: function (data) {
+          //11成功后的动作
+          var html = ""
+          for(var i = 0 ; i< data.data.length ; i++){
+            path = data.data[i]
+            html += "<div style='display: inline-block;position: relative;' ><img src='/media/x.png' onclick='del_img("+i+")' alt='' class='cha' ><img src='/media/"+{{data|safe}}+"/LOP_img/"+path+"' onclick='show("+i+")' id='"+path+"' style='width: 12vw;height: 12vw;border: 2px solid #2781d7;margin: 0 0 0 20px;border-radius: 7px'><img src='/media/"+{{data|safe}}+"/LOP_img/"+path+"' id='LOP_"+i+"' style='position: relative;display: none;width:900px'></div>"
+            // console.log(html);
+            
+            
+          };
+          $('#LOP_father').css('display','none');
+          $('#LOP_father').fadeIn(1000).html(html);
+          
+        },
+        error: function (data) {
+          //12出错后的动作
+          alert("出错啦");
+        }
+      });
+      
+    }
+
+    var no_sub_ms = ""
+    var no_sub_wk = ""
+    var sub_ms = ""
+    var sub_wk = ""
+    var pass_ms = ""
+    var pass_wk = ""
+    var LOP_ms = ""
+    var LOP_wk = ""
+
+    $.get('assistant?course_show='+{{data|safe}},function(data){
+
+      no_sub_ms = data.data['no_sub_ms'];
+      no_sub_wk = data.data['no_sub_wk'];
+      sub_ms = data.data['sub_ms'];
+      sub_wk = data.data['sub_wk'];
+      pass_ms = data.data['pass_ms'];
+      pass_wk = data.data['pass_wk'];
+      LOP_ms = data.data['LOP_ms'];
+      LOP_wk = data.data['LOP_wk'];
+    });
+
+
+
+    $('.course_ms').click(function () {
+ 
+      //更改边框颜色
+      if ($(this).val()) {
+        $(this).css('color', 'black');
+        $(this).css('border-color', '#2781d7');
+      } else {
+        $(this).css('color', 'rgb(177, 177, 177)');
+        $(this).css('border-color', 'gainsboro');;
+      };
+
+      //获取当前课程名称
+      var url = 'assistant?course_name=';
+      for (var i1 = 0; i1 < 5; i1++) {
+        url += $('.course_ms').eq(i1).val() + ' ';
+        // console.log($('.course_ms').eq(i1).val())
+      };
+      // console.log(url);
+
+      //填入下层课程
+      $.get(url, function (json) {
+        var html = '<option value="">请选择课程</option>';
+        for (var i = 0; i < json.data.length; i++) {
+          // console.log(json.data[i].course);
+          html += '<option value="' + json.data[i].id + '">' + json.data[i].course + '</option>';
+        };
+        // console.log(html)
+        // $('.sub_ms').html(html);
+        for (var i4 = sub_ms.length;i4<5;i4++){
+         $('.sub_ms').eq(i4).html(html)
+        }
+
+      });
+    });
+
+    $('.course_wk').click(function () {
+      if ($(this).val()) {
+        $(this).css('color', 'black');
+        $(this).css('border-color', '#2781d7');
+      } else {
+        $(this).css('color', 'rgb(177, 177, 177)');
+        $(this).css('border-color', 'gainsboro');
+      };
+      var url = 'assistant?course_name=';
+      for (var i1 = 0; i1 < 5; i1++) {
+        url += $('.course_wk').eq(i1).val() + ' ';
+      };
+      // console.log(url);
+      $.get(url, function (json) {
+          var html = '<option value="">请选择课程</option>';
+          for (var i = 0; i < json.data.length; i++) {
+            // console.log(json.data[i].course);
+            html += '<option value="' + json.data[i].id + '">' + json.data[i].course + '</option>';
+          };
+          // $('.sub_wk').html(html);
+          for (var i4 = sub_wk.length;i4<5;i4++){
+            $('.sub_wk').eq(i4).html(html)
+          }
+        });
+    });
+
+
+    $('.sub_ms').click(function () {
+      if ($(this).val()) {
+        $(this).css('color', 'black');
+        $(this).css('border-color', '#2781d7');
+      } else {
+        $(this).css('color', 'rgb(177, 177, 177)');
+        $(this).css('border-color', 'gainsboro');;
+      };
+      var url = 'assistant?course_name=';
+      for (var i1 = 0; i1 < 5; i1++) {
+        url += $('.sub_ms').eq(i1).val() + ' ';
+      };
+      // console.log(url);
+      $.get(url, function (json) {
+          var html = '<option value="">请选择课程</option>';
+          for (var i = 0; i < json.data.length; i++) {
+            // console.log(json.data[i].course);
+            html += '<option value="' + json.data[i].id + '">' + json.data[i].course + '</option>';
+          };
+          // $('.pass_ms').html(html);
+          for (var i4 = pass_ms.length;i4<5;i4++){
+            $('.pass_ms').eq(i4).html(html)
+          }
+
+        });
+    });
+
+
+    $('.sub_wk').click(function () {
+      if ($(this).val()) {
+        $(this).css('color', 'black');
+        $(this).css('border-color', '#2781d7');
+      } else {
+        $(this).css('color', 'rgb(177, 177, 177)');
+        $(this).css('border-color', 'gainsboro');;
+      };
+      var url = 'assistant?course_name=';
+      for (var i1 = 0; i1 < 5; i1++) {
+        url += $('.sub_wk').eq(i1).val() + ' ';
+      };
+      // console.log(url);
+      $.get(url, function (json) {
+          var html = '<option value="">请选择课程</option>';
+          for (var i = 0; i < json.data.length; i++) {
+            // console.log(json.data[i].course);
+            html += '<option value="' + json.data[i].id + '">' + json.data[i].course + '</option>';
+          };
+          // $('.pass_wk').html(html);
+          for (var i4 = pass_wk.length;i4<5;i4++){
+            $('.pass_wk').eq(i4).html(html)
+          }
+
+        });
+    });
+
+
+    $('.pass_ms').click(function () {
+      if ($(this).val()) {
+        $(this).css('color', 'black');
+        $(this).css('border-color', '#2781d7');
+      } else {
+        $(this).css('color', 'rgb(177, 177, 177)');
+        $(this).css('border-color', 'gainsboro');;
+      };
+      var url = 'assistant?course_name=';
+      for (var i1 = 0; i1 < 5; i1++) {
+        url += $('.pass_ms').eq(i1).val() + ' ';
+      };
+      // console.log(url);
+      $.get(url, function (json) {
+          var html = '<option value="">请选择课程</option>';
+          for (var i = 0; i < json.data.length; i++) {
+            // console.log(json.data[i].course);
+            html += '<option value="' + json.data[i].id + '">' + json.data[i].course + '</option>';
+          };
+          // $('.pass_ms').html(html);
+          for (var i4 = LOP_ms.length;i4<5;i4++){
+            $('.LOP_ms').eq(i4).html(html)
+          }
+
+        });
+    });
+
+
+    $('.pass_wk').click(function () {
+      if ($(this).val()) {
+        $(this).css('color', 'black');
+        $(this).css('border-color', '#2781d7');
+      } else {
+        $(this).css('color', 'rgb(177, 177, 177)');
+        $(this).css('border-color', 'gainsboro');;
+      };
+
+      var url = 'assistant?course_name=';
+      for (var i1 = 0; i1 < 5; i1++) {
+        url += $('.pass_wk').eq(i1).val() + ' ';
+      };
+      // console.log(url);
+      $.get(url, function (json) {
+          var html = '<option value="">请选择课程</option>';
+          for (var i = 0; i < json.data.length; i++) {
+            // console.log(json.data[i].course);
+            html += '<option value="' + json.data[i].id + '">' + json.data[i].course + '</option>';
+          };
+          // $('.pass_wk').html(html);
+          for (var i4 = LOP_wk.length;i4<5;i4++){
+            $('.LOP_wk').eq(i4).html(html)
+          }
+
+        });
+    });
+
+
+    $('.LOP_wk').click(function () {
+      if ($(this).val()) {
+        $(this).css('color', 'black');
+        $(this).css('border-color', '#2781d7');
+      } else {
+        $(this).css('color', 'rgb(177, 177, 177)');
+        $(this).css('border-color', 'gainsboro');;
+      };
+    });
+    $('.LOP_ms').click(function () {
+      if ($(this).val()) {
+        $(this).css('color', 'black');
+        $(this).css('border-color', '#2781d7');
+      } else {
+        $(this).css('color', 'rgb(177, 177, 177)');
+        $(this).css('border-color', 'gainsboro');;
+      };
+    });
+  </script>
+</body>
+
+</html>

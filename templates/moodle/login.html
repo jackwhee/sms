@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <script>
+    if(window.screen.availWidth < 1024){
+      alert('请使用电脑浏览器进入平台')
+      window.location.href=document.referrer;
+    }
+  </script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSO Moodle Login</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      background-image: url('/static/moodle/img/login/out.jpg');
+      background-size: 100% 100%;
+      margin: 0;
+    }
+
+    main {
+      width: 84vw;
+      height: 71vh;
+      position: absolute;
+      top: 14vh;
+      left: 8vw;
+      border-radius: 2vw;
+      background-image: url(/static/moodle/img/login/in.jpg);
+      background-size: 100% 100%;
+    }
+
+    #left_div {
+      float: left;
+      position: relative;
+      width: 39vw;
+      height: 71vh;
+    }
+
+    form {
+      position: absolute;
+      top: 34vh;
+      left: 4.5vw;
+    }
+
+    input {
+      display: block;
+      width: 18.5vw;
+      height: 4vh;
+      background: none;
+      outline: none;
+      border: none;
+      border-bottom: 1px solid #bbbbbb;
+    }
+
+    .tianxie {
+      padding-left: 2.5vw;
+      font-size: 1.2vw;
+    }
+
+    #sub {
+      width: 15vw;
+      height: 6vh;
+      border-radius: 6vh;
+      cursor: pointer;
+      font-size: 1.4vw;
+      color: white;
+      font-weight: 700;
+      background-color: #042955;
+    }
+
+
+    #right_div {
+      float: left;
+      position: relative;
+      width: 45vw;
+      height: 71vh;
+    }
+
+
+    input::placeholder {
+      color: #bbbbbb;
+
+    }
+
+    .msg {
+      position: absolute;
+      left: 41.5vw;
+      color: white;
+      font-weight: 700;
+    }
+
+    .s_png {
+      width: 1.2vw;
+      height: 2vh;
+      position: absolute;
+      left: 4.6vw;
+    }
+  </style>
+</head>
+
+<script src="/static/js/jquery-3.4.1.min.js"></script>
+
+
+<body>
+  <main>
+
+    <img style="top: 35vh;" class="s_png" src="/static/moodle/img/login/用户名图标.png" alt="">
+    <img style="top: 42.5vh;" class="s_png" src="/static/moodle/img/login/密码图标.png" alt="">
+
+    <p style="    position: absolute;left: 4.4vw;top: 17vh;font-size: 2.5vw;font-weight: 700;color: #002853;">用户登录</p>
+    <form action="/v1/moodle/login" method="POST">
+
+      {% csrf_token %}
+
+      <input name="m_ac" class="tianxie" placeholder='请输入用户名' required='required' style="margin-bottom: 3vh;" type="text">
+      <input name="m_ps" class="tianxie" placeholder='请输入密码' required='required' style="margin-bottom: 8.5vh;" type="password">
+      <input id="sub" value="立即登录" type="submit">
+
+        <p>{{ msg }}</p>
+
+
+    </form>
+    <p style="top: 24.5vh;font-size: 2.6vw;" class="msg">北美权威学分课程</p>
+    <p style="top: 34vh;font-size: 2.2vw;" class="msg">Summer Sessions & Overseas Study</p>
+
+  </main>
+</body>
+
+
+<script>
+
+</script>
+
+
+</html>

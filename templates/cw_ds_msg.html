@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>&#60;CSO&#62;大使信息</title>
+  <link rel="stylesheet" href="/static/css/css_initialize.css">
+  <link rel="stylesheet" href="/static/layui/css/layui.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/jquery-3.4.1.min.js"></script>
+  <script src="/static/layui/layui.js"></script>
+</head>
+
+<body>
+  <div style="position: absolute; top: 0">
+    &nbsp;&nbsp;&nbsp;<span style="color: #2781d7;">蓝色标题选框</span>&nbsp;&nbsp;&nbsp;为可更改信息<br>
+    <!-- {{stu_id}} -->
+
+  </div>
+
+  <!-- 你的HTML代码 -->
+
+
+  <form class="layui-form" action="assistant" method="POST">
+    <input style="display: none" type="text" readonly name="id" id="yincang" value="">
+
+    <div class="main layui-container">
+      <div class="layui-row">
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+              <input type="text" name="username" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block">
+              <input type="text" name="gender" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label class="layui-form-label">职位</label>
+            <div class="layui-input-block">
+              <input type="text" name="role" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+        </div>
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label class="layui-form-label">底薪</label>
+            <div class="layui-input-block">
+              <input type="text" name="base_salary" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label class="layui-form-label">身份证号</label>
+            <div class="layui-input-block">
+              <input type="text" name="IDCard" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label class="layui-form-label">学校</label>
+            <div class="layui-input-block">
+              <input type="text" name="school" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label class="layui-form-label">国内电话</label>
+            <div class="layui-input-block">
+              <input type="text" name="domesticTelephone" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label class="layui-form-label">负责人</label>
+            <div class="layui-input-block">
+              <input type="text" name="fzr" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+
+        </div>
+
+        <hr>
+
+
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label class="layui-form-label">缴申请费学生提成</label>
+            <div class="layui-input-block">
+              <input type="text" name="apply_commission" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label class="layui-form-label">补齐缴费学生提成</label>
+            <div class="layui-input-block">
+              <input type="text" name="underling_commission" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label class="layui-form-label">全额缴费学生提成</label>
+            <div class="layui-input-block">
+              <input type="text" name="all_commission" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label class="layui-form-label">退回学生扣款</label>
+            <div class="layui-input-block">
+              <input type="text" name="deduct" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label class="layui-form-label">额外提成</label>
+            <div class="layui-input-block">
+              <input type="text" name="supplement_commission" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="layui-col-md5">
+          <div class="layui-form-item">
+            <label class="layui-form-label">季度/年度奖金</label>
+            <div class="layui-input-block">
+              <input type="text" name="bonus" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+
+        </div>
+
+
+
+        <hr>
+
+
+
+
+        <div class="layui-col-md12">
+          <div class="layui-form-item">
+            <label class="layui-form-label">缴申请费学生</label>
+            <div class="layui-input-block">
+              <input type="text" name="sq_stu" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="layui-col-md12">
+          <div class="layui-form-item">
+            <label class="layui-form-label">补齐缴费学生</label>
+            <div class="layui-input-block">
+              <input type="text" name="bq_stu" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="layui-col-md12">
+          <div class="layui-form-item">
+            <label class="layui-form-label">全额缴费学生</label>
+            <div class="layui-input-block">
+              <input type="text" name="qe_stu" required disabled placeholder=" " autocomplete="off"
+                class="layui-input ">
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="layui-col-md12">
+            <div class="layui-form-item">
+              <label class="layui-form-label">退费学生</label>
+              <div class="layui-input-block">
+                <input type="text" name="yt_stu" required disabled placeholder=" " autocomplete="off"
+                  class="layui-input ">
+              </div>
+            </div>
+  
+          </div>
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+    </div>
+
+
+
+  </form>
+
+
+
+  <script>
+    function show(num) {
+      num = '#LOP_' + num
+      // console.log(num); 
+      layer.open({
+        type: 1,
+        title: false,
+        closeBtn: 0,
+        area: '900px',
+        skin: 'layui-layer-nobg', //没有背景色
+        shadeClose: true,
+        content: $(num)
+      });
+    }
+
+
+
+
+
+    layui.use(['layer', 'form'], function () {
+      var layer = layui.layer,
+        form = layui.form;
+      form.on('submit(formDemo)', function (data) {
+        layer.msg(JSON.stringify(data.field));
+        return false;
+      });
+
+      // layer.msg('Hello World!');
+    });
+
+    layui.use('laydate', function () {
+      var laydate = layui.laydate;
+
+      //执行一个laydate实例
+      laydate.render({
+        elem: '#time1', //指定元素
+      });
+    });
+
+
+
+
+
+
+    // console.log({{data|safe}})
+    $.get('/v1/users/{{ast_name}}?amb_smg={{stu_id}}', function (json) {
+      console.log(json)
+      // var a = $("input[name='username']").attr('placeholder',json.data.username)
+      // console.log(a)
+      $("input[name='username']").attr('placeholder', json.data.username);
+      $("input[name='gender']").attr('placeholder', json.data.gender);
+      $("input[name='birth']").attr('placeholder', json.data.birth);
+      $("input[name='IDCard']").attr('placeholder', json.data.IDCard);
+      $("input[name='school']").attr('placeholder', json.data.school);
+      $("input[name='domesticTelephone']").attr('placeholder', json.data.domesticTelephone);
+      $("input[name='fzr']").attr('placeholder', json.data.fzr);
+      $("input[name='count_ms']").attr('placeholder', json.data.count_ms);
+      $("input[name='count_wk']").attr('placeholder', json.data.count_wk);
+      $("input[name='base_salary']").attr('placeholder', json.data.base_salary);
+      $("input[name='role']").attr('placeholder', json.data.role);
+      $("input[name='deduct']").attr('placeholder', json.data.deduct);
+      $("input[name='supplement_commission']").attr('placeholder', json.data.supplement_commission);
+      $("input[name='apply_commission']").attr('placeholder', json.data.apply_commission);
+      $("input[name='bonus']").attr('placeholder', json.data.bonus);
+      $("input[name='all_commission']").attr('placeholder', json.data.all_commission);
+      $("input[name='underling_commission']").attr('placeholder', json.data.underling_commission);
+      $("input[name='sq_stu']").attr('placeholder', json.data.sq_stu);
+      $("input[name='bq_stu']").attr('placeholder', json.data.bq_stu);
+      $("input[name='qe_stu']").attr('placeholder', json.data.qe_stu);
+      $("input[name='yt_stu']").attr('placeholder', json.data.yt_stu);
+
+
+
+    });
+
+
+    // console.log($($('#distribution')))
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $(function () {
+
+      // console.log($("#distribution").parent().children())
+      $('body').fadeIn(500);
+    });
+  </script>
+</body>
+
+</html>

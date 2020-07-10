@@ -1,0 +1,365 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CSO暑校学生系统</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="/static/css/bui.css">
+		<script src="/static/js/zepto.js"></script>
+		<script src="/static/js/bui.js"></script>
+		<style></style>
+	</head>
+	<body>
+	<div class="bui-page page-form">
+    <header class="bui-bar">
+        <div class="bui-bar-left"> <a class="bui-btn btn-back"><i class="icon-back"></i></a> </div>
+        <div class="bui-bar-main">学生信息</div>
+        <div class="bui-bar-right"> </div>
+    </header>
+
+    <main>
+
+        <form id="form" action="">
+            <ul class="bui-list bui-select-form">
+                
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">姓名:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{username}}</span>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">性别:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{gender}}</span>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">微信号:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{wechat}}</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">出生年月:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{birth}}</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">身份证号:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{IDCard}}</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">专业:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{major}}</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">年级:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{grade}}</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">大学:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{school}}</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" style="width: 100px;">电话（国内）:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{domesticTelephone}}</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" style="width: 100px;">电话（国外）:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{foreignTelephone}}</span>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" style="width: 100px;">地址（国内）:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{domesticAddress}}</span>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" style="width: 100px;">地址（国外）:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{foreignAddress}}</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">邮件一:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{firstEmail}}</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">邮件二:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{secondEmail}}</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label" style="width: 150px;">校园大使（负责人）:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{ambassador}}</span>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">网课数量:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{count_wk}}</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">面授数量:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>{{count_ms}}</span>
+                        </div>
+                    </div>
+                </li>
+
+                <hr>
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">已报课程:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>面授</span>
+                        </div>
+                    </div>
+                </li>
+
+                {% for ms in course_ms %}
+                <li class="bui-btn bui-box clearactive">
+                        <div class="span1">
+                            <div class="bui-input user-input">
+                                <span>{{ms}}</span>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+                
+
+
+                <hr>
+
+
+                <li class="bui-btn bui-box clearactive">
+                    <label class="bui-label">已报课程:</label>
+                    <div class="span1">
+                        <div class="bui-input user-input">
+                            <span>网课</span>
+                        </div>
+                    </div>
+                </li>
+
+
+                {% for wk in course_wk %}
+                  
+                <li class="bui-btn bui-box clearactive">
+                        <div class="span1">
+                            <div class="bui-input user-input">
+                                <span>{{wk}}</span>
+                            </div>
+                        </div>
+                    </li>
+
+                {% endfor %}
+
+
+                
+            </ul>
+        </form>
+
+
+    </main>
+
+
+    </div>
+<script>bui.ready(function(){
+
+    $('#bj').click(function(){   
+        $('#bjShow').css("display","block");
+        $("#bj").css("display", "none");
+    });
+
+    // 拍照上传
+    var $facePZPhoto = $("#buiPZPhoto");
+    var $uploadPZBtn = $("#btnPZUpload").parent();
+
+    var uiUpload = bui.upload({
+        showProgress: false
+    });
+
+    // PZ图片上传上拉菜单 js 初始化:
+    var uiActionsheet = bui.actionsheet({
+        trigger: "#btnPZUpload",
+        buttons: [{ name: "拍照上传", value: "camera" }, { name: "从相册选取", value: "photo" }],
+        callback: function(e) {
+            var ui = this;
+            var val = $(e.target).attr("value");
+
+            switch (val) {
+                case "camera":
+                    ui.hide();
+                    uiUpload.add({
+                        "from": "camera",
+                        "needCompress": true, // 1.5.3新增压缩
+                        "width": 300,
+                        "destinationType": "file", //  file | blob | data 
+                        "onSuccess": function(val, data) {
+                            // 展示base64本地图片 建议直接调用start方法上传以后再展示远程地址,避免应用崩溃
+                            this.toBase64({
+                                onSuccess: function(url) {
+                                    $uploadPZBtn.before(templatePhoto(url))
+                                }
+                            });
+                            // 直接调用start上传图片
+
+                            this.start({
+                                header: {},
+                                url: `${webopenid}/web_voucher/`,
+                                onSuccess: function(data) {
+                                    console.log(data, "success");
+                                    // 成功
+                                },
+                                onFail: function(data) {
+                                    console.log(data, "fail");
+                                    // 失败
+                                },
+                            })
+                        }
+                    })
+
+                    break;
+                case "photo":
+                    ui.hide();
+                    uiUpload.add({
+                        "from": "",
+                        "onSuccess": function(val, data) {
+
+                            // 展示base64本地图片 建议直接调用start方法上传以后再展示远程地址,避免应用崩溃
+                            this.toBase64({
+                                onSuccess: function(url) {
+                                    $uploadPZBtn.before(templatePhoto(url))
+
+                                }
+                            });
+                            // 直接调用start上传图片
+                            // this.start({
+                            //     header: {},
+                            //     url: "http://easybui.com/images/",
+                            //     onSuccess: function(data) {
+                            //         console.log(data, "success");
+                            //         // 成功
+                            //     },
+                            //     onFail: function(data) {
+                            //         console.log(data, "fail");
+                            //         // 失败
+                            //     },
+                            // })
+                        }
+                    })
+
+                    break;
+                case "cancel":
+                    ui.hide();
+                    break;
+            }
+        }
+    })
+
+
+    function templatePhoto(url) {
+        return `<div class="span1" data-index="${uiUpload.currentIndex()}" data-name="${uiUpload.currentName()}">
+                <div class="bui-upload-thumbnail"><img src="${url}" alt="" /><i class="icon-removefill"></i></div>
+            </div>`
+    }
+
+
+    // 选择图片文件
+    $("#getSelect").on("click", function(argument) {
+
+        bui.alert(uiUpload.data());
+
+    })
+
+
+    // 选择PZ图片文件
+    $facePZPhoto.on("click", ".icon-removefill", function(e) {
+        var $item = $(this).parents(".span1");
+        var index = $item.attr("data-index");
+        // 删除对应的上传数据
+        uiUpload.remove(index);
+        // 删除dom显示
+        $item.remove();
+        e.stopPropagation();
+    })
+
+})
+
+</script>
+</body>
+</html>

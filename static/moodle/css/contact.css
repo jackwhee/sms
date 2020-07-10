@@ -1,0 +1,90 @@
+#contact_title {
+  width: 14vw;
+  height: 3vw;
+  margin: 0 auto;
+  padding-top: 1.5vw;
+}
+
+#contact_title img {
+  float: left;
+  width: 2.5vw;
+  margin-right: 1vw;
+  margin-top: 0.2vw;
+}
+
+#contact_title p {
+  float: left;
+  font-size: 1.5vw;
+  font-weight: 700;
+}
+
+#contact_body {
+  /*height: 28vw;*/
+}
+
+#contact_body>div {
+  height: 8vw;
+  position: relative;
+}
+
+.tb {
+  width: 2vw;
+  position: absolute;
+  left: 25vw;
+  top: 2.5vw;
+}
+
+.big_p {
+  position: absolute;
+  left: 29.2vw;
+  top: 2.5vw;
+  font-size: 1.3vw;
+  font-weight: 700;
+}
+
+.small_p {
+
+  width: 40vw;
+  transform: scale(.9);
+  position: relative;
+  left: 39.5vw;
+  top: 1.7vw;
+  font-size: .9vw;
+  line-height: 1.7vw;
+  font-weight: 700;
+  margin-bottom: 0 !important;
+}
+
+.QR {
+  width: 5vw;
+  height: 5.2vw;
+  display: block;
+  position: absolute;
+  opacity: 0;
+  top: 1vw;
+  transition: .3s;
+}
+
+.shu {
+  background-color: black;
+  width: 0.3vw;
+  height: 4vw;
+  position: absolute;
+  left: 39.6vw;
+  top: 1.5vw;
+}
+
+.QR_btn {
+  position: absolute;
+  top: 2.6vw;
+  right: 25vw;
+  font-size: 1vw;
+  color: white;
+  background-color: rgb(4, 41, 85);
+  padding: 0.2vw;
+  border-radius: 0.3vw;
+  width: 6vw;
+  text-align: center;
+  cursor: pointer;
+  transition: .3s;
+}

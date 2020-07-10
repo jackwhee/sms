@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>&#60;CSO&#62;校区多条件搜索</title>
+  <link rel="stylesheet" href="/static/css/css_initialize.css">
+  <link rel="stylesheet" href="/static/layui/css/layui.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/jquery-3.4.1.min.js"></script>
+  <style>
+
+
+    .main{
+            margin-top: 50px;
+        }
+
+    img{
+        width: 100vw;
+    }
+
+    span{
+        font-size: 15px;
+    }
+
+    .layui-input-block{
+        margin-left: 60px;
+    }
+
+    .layui-container{
+        position: relative;
+        top:0;
+    }
+
+    label.layui-form-label {
+        width: 200px;
+        font-size: 22px;
+    }
+
+    input{
+        border: 1px solid #01294D !important;
+        height: 3.5vw !important;
+        font-size: 18px;
+    }
+
+    input[name='allotTime']{
+        position: absolute;
+        left: 10vw;
+        height: 3.5vw;
+    }
+
+    input[name='subTime']{
+        position: absolute;
+        left: 10vw;
+        height: 3.5vw;
+    }
+
+    input[name='passTime']{
+        position: absolute;
+        left: 10vw;
+        height: 3.5vw;
+    }
+
+    input[name='LOPTime']{
+        position: absolute;
+        left: 10vw;
+        height: 3.5vw;
+    }
+
+    .sel_ddd{
+        position: absolute;
+        left: 10vw;
+        height: 3.5vw;
+        width: 41.5vw;
+    }
+
+    #btn_commit{
+        position: relative;
+        left: 0;
+        top: 2vw;
+        width: 25.5vw;
+        height: 5vw;
+        font-size: 1.5vw;
+        color:#fff;
+        border-radius: 0 !important;
+        background-color: #002854;
+    }
+
+    #btn_reset{
+        position: relative;
+        right: -29vw;
+        top: -3vw;
+        width: 25.5vw;
+        height: 5vw;
+        font-size: 1.5vw;
+        color:#fff;
+        border-radius: 0 !important;
+        background-color: #002854;
+    }
+
+    #all_all{
+        position: relative;
+        right: -15vw;
+        top: -1vw;
+        width: 25.5vw;
+        line-height: 5vw;
+        height: 5vw;
+        font-size: 1.5vw;
+        color:#fff;
+        border-radius: 0 !important;
+        background-color: #002854;
+    }
+
+    .footer-btn{
+      margin: 2vw 0 5vw;
+    }
+  
+  
+  </style>
+</head>
+
+<script>
+  // 顾问下拉
+  $.get('assistant?dp_menu=counselor', function (json) {
+    var html = '<option value="">请选择课程顾问名称</option>';
+    for (var i = 0; i < json.data.length; i++) {
+      // console.log(json.data[i].s_name);
+      html += '<option value="' + json.data[i].id + '">' + json.data[i].counselor
+         + '</option>';
+    };
+    $('#counselor').html(html)
+  });
+
+  // 上课校区下拉
+  $.get('assistant?dp_menu=school_sk', function (json) {
+  var html = '<option value="">请选择校区名称</option>';
+  for (var i = 0; i < json.data.length; i++) {
+    // console.log(json.data[i].s_name);
+    html += '<option value="' + json.data[i].id + '">' + json.data[i].s_name
+        + '</option>';
+  };
+  $('#school_sk').html(html)
+});
+
+  // 课程下拉
+  $.get('assistant?dp_menu=course', function (json) {
+  var html = '<option value="">请选择课程名称</option>';
+  for (var i = 0; i < json.data.length; i++) {
+    // console.log(json.data[i].s_name);
+    html += '<option value="' + json.data[i].id + '">' + json.data[i].course
+        + '</option>';
+  };
+  $('#course').html(html)
+});
+
+  // 上课校区下拉
+  $.get('assistant?dp_menu=school_sh', function (json) {
+  var html = '<option value="">请选择审课大纲大学名称</option>';
+  for (var i = 0; i < json.data.length; i++) {
+    // console.log(json.data[i].s_name);
+    html += '<option value="' + json.data[i].id + '">' + json.data[i].s_name
+        + '</option>';
+  };
+  $('#school_sh').html(html);
+
+
+  
+  layui.use(['layer', 'form'], function(){
+    var layer = layui.layer,form = layui.form;
+
+    form.on('submit(formDemo)', function(data){
+    // console.log(data)
+    // var json_obj = {}
+    var search_msg = JSON.stringify(data.field)
+    // console.log(search_msg.length)
+    if (search_msg.length != 110){
+      // console.log('assistant_sch_msg?search_msg='+search_msg)
+      window.location.href = 'assistant_sch_msg?search_msg='+search_msg
+    }else{
+      window.location.href = 'assistant_sch_msg?search_msg={"all":"my_all"}'
+    }
+    return false;
+  });
+  
+});
+
+    layui.use('laydate', function(){
+      var laydate = layui.laydate;
+      
+      //执行一个laydate实例
+      laydate.render({
+        elem: '#time1' //指定元素
+      });
+      laydate.render({
+        elem: '#time2', //指定元素
+        range: true
+      });
+      laydate.render({
+        elem: '#time3', //指定元素
+        range: true
+      });
+      laydate.render({
+        elem: '#time4', //指定元素
+        range: true
+      });
+    });
+
+    layui.use('upload', function(){
+      var upload = layui.upload;
+      
+      //执行实例
+      var uploadInst = upload.render({
+        elem: '#test1' //绑定元素
+        ,url: '/upload/' //上传接口
+        ,done: function(res){
+          //上传完毕回调
+        }
+        ,error: function(){
+          //请求异常回调
+        }
+      });
+    });
+
+
+
+
+
+
+
+
+
+});
+
+
+
+
+</script>
+
+ 
+<!-- 你的HTML代码 -->
+
+<body style="display: none">
+
+<img src="/static/images/course.jpg" alt="">
+<form class="layui-form" >
+
+  <div class="main layui-container">
+    <div class="layui-row">
+
+      <div class="layui-col-md9">
+
+        <div class="layui-form-item">
+          <label style="color: #2781d7" class="layui-form-label">课程顾问<br><span style="color:#959595">Course Consultant</span></label>
+          <div class="layui-input-block sel_ddd">
+            <select id="counselor" name="counselor" lay-verify="">
+              <option value="">网络延迟,请刷新</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label style="color: #2781d7" class="layui-form-label">校区<br><span style="color:#959595">Campus</span></label>
+          <div class="layui-input-block sel_ddd">
+            <select id="school_sk" name="school_sk" lay-verify="">
+              <option value="">网络延迟,请刷新</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="layui-form-item">
+          <label style="color: #2781d7" class="layui-form-label">课程名称<br><span style="color:#959595">Course name</span></label>
+          <div class="layui-input-block sel_ddd">
+            <select id="course" name="course" lay-verify="">
+              <option value="">网络延迟,请刷新</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label style="color: #2781d7" class="layui-form-label">审课大纲大学<br><span style="color:#959595">University</span></label>
+          <div class="layui-input-block sel_ddd">
+            <select id="school_sh" name="school" lay-verify="">
+              <option value="">网络延迟,请刷新</option>
+            </select>
+          </div>
+        </div>
+
+
+          <div class="layui-form-item">
+              <label style="color: #2781d7" class="layui-form-label">分配时间<br><span style="color:#959595">Allocation time</span></label>
+              <div class="layui-input-block">
+                <input autocomplete="off" type="text" name="allotTime" class="layui-input" id="time1">
+              </div>
+            </div>
+
+        <div class="layui-form-item">
+          <label style="color: #2781d7" class="layui-form-label">提交日期<br><span style="color:#959595">Date of submission</span></label>
+          <div class="layui-input-block">
+            <input autocomplete="off" type="text" name="subTime" class="layui-input" id="time2">
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label style="color: #2781d7" class="layui-form-label">通过日期<br><span style="color:#959595">Date of aboption</span></label>
+          <div class="layui-input-block">
+            <input autocomplete="off" type="text" name="passTime" class="layui-input" id="time3">
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label style="color: #2781d7" class="layui-form-label">LOP通过日期<br><span style="color:#959595">LOP pass date</span></label>
+          <div class="layui-input-block">
+            <input autocomplete="off" type="text" name="LOPTime" class="layui-input" id="time4">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="layui-col-md9">
+        <div class="layui-form-item footer-btn">
+          <div class="layui-input-block">
+            <button id="btn_commit" class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">搜索</button>
+            
+            <button id="btn_reset" type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <div class="layui-btn layui-btn-normal" id="all_all" >查看全部学生</div>
+            
+          </div>
+        </div>
+      </div>
+
+  </div>
+  </div>
+
+</form>
+
+<img src="/static/images/footer.jpg" alt="">
+
+</body>
+
+<script src="/static/layui/layui.js"></script>
+<script>
+//一般直接写在一个js文件中
+
+  $(function () {
+    
+    $('body').fadeIn(500);    
+
+    $('#all_all').click(function (){
+      console.log(1)
+      window.location.href = 'assistant_sch_msg?search_msg={"all":"all_all"}'
+    })
+    
+  })
+
+
+
+</script> 
+
+</html>

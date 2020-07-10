@@ -1,0 +1,167 @@
+{%extends "moodle/base.html" %}
+
+{% block title %}
+CSO Moodle
+{% endblock %}
+
+
+{% block css/js %}
+
+<link rel="stylesheet" href="/static/moodle/css/style.css">
+<link rel="stylesheet" href="/static/css/index.css">
+
+<style>
+  #info_line_father {
+    display: none;
+  }
+</style>
+
+{% endblock %}
+
+
+
+
+{% block main %}
+
+<main name='index'>
+  <div class="banner">
+    <!-- <a href="{% if request.session %}{% url 'course' %}{% else %}{% url 'login' %}{% endif %}">
+      <ul class="banner-list">
+        <li>Arts</li>
+        <li>Economics and Commerce</li>
+        <li>Languages</li>
+        <li>Humanities</li>
+        <li>Mathematics</li>
+        <li>Science</li>
+        <li>Social Science</li>
+        <li>Computer Science</li>
+      </ul>
+    </a> -->
+  </div>
+
+  <div class="index-title">
+    <div class="title">
+      <img style="width: 2.5vw;" src="/static/moodle/img/icon/hot.png" alt="">
+      <span>热门课程</span>
+    </div>
+  </div>
+
+  <div class="hot-course-list">
+    <div class="row">
+
+      {% for course in hot_course_5 %}
+
+      <a class="col course_card"
+        href="{% if request.session %}{% url 'course' %}{% else %}{% url 'login' %}{% endif %}">
+        <div>
+          <svg t="1585538583378" class="icon img_play" viewBox="0 0 1024 1024" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" p-id="8247" width="200" height="200">
+            <path
+              d="M512 24C242.48 24 24 242.48 24 512s218.48 488 488 488 488-218.48 488-488S781.52 24 512 24z m198.992 538.688L449.92 713.408c-48.288 27.872-87.792 5.072-87.792-50.688V361.28c0-55.76 39.504-78.56 87.792-50.688l261.072 150.72c48.288 27.872 48.288 73.504 0 101.376z"
+              p-id="8248" fill="#ffffff"></path>
+          </svg>
+          <img class="card-img-top"
+            src="{% if course.subject.sub_img %}{{ course.subject.sub_img.url }}{% else %}http://cdn.tmooc.cn/bsfile//courseImg///26EA97FA098C4E8D807C5A9C05C1421F.png{%endif%}"
+            alt="Card image" style="width:100%;">
+          <div class="his_card card-body ">
+            <p class="cour_name"> <span>{{ course.subject.s_name }}</span></p>
+            <p class="s_cour_name"><span>{{ course.c_name }}</span></p>
+            <!-- <div style="position: absolute;bottom: 8px;left: 17px;">
+                      <p class="teacher_name">Dr. Arifusalam Shaikh</p>
+                    </div> -->
+          </div>
+        </div>
+      </a>
+
+      {% endfor %}
+
+
+    </div>
+
+
+    <div class="row">
+
+      {% for course in hot_course_10 %}
+
+      <a class="col course_card"
+        href="{% if request.session %}{% url 'course' %}{% else %}{% url 'login' %}{% endif %}">
+        <div>
+          <svg t="1585538583378" class="icon img_play" viewBox="0 0 1024 1024" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" p-id="8247" width="200" height="200">
+            <path
+              d="M512 24C242.48 24 24 242.48 24 512s218.48 488 488 488 488-218.48 488-488S781.52 24 512 24z m198.992 538.688L449.92 713.408c-48.288 27.872-87.792 5.072-87.792-50.688V361.28c0-55.76 39.504-78.56 87.792-50.688l261.072 150.72c48.288 27.872 48.288 73.504 0 101.376z"
+              p-id="8248" fill="#ffffff"></path>
+          </svg>
+          <img class="card-img-top"
+            src="{% if course.subject.sub_img %}{{ course.subject.sub_img.url }}{% else %}http://cdn.tmooc.cn/bsfile//courseImg///26EA97FA098C4E8D807C5A9C05C1421F.png{%endif%}"
+            alt="Card image" style="width:100%;">
+          <div class="his_card card-body ">
+            <p class="cour_name"> <span>{{ course.subject.s_name }}</span></p>
+            <p class="s_cour_name"><span>{{ course.c_name }}</span></p>
+            <!-- <div style="position: absolute;bottom: 8px;left: 17px;">
+                      <p class="teacher_name">Dr. Arifusalam Shaikh</p>
+                    </div> -->
+          </div>
+        </div>
+      </a>
+
+      {% endfor %}
+
+
+    </div>
+
+  </div>
+
+
+  <div id="school_line" class="row long_row d-none d-md-block">
+    <!-- <p style="font-size: 1.3vw;line-height: 8vw;padding-left: 22px;display: inline-block;color: white;">全国多所合作高校</p>
+
+        <img src="/static/images/hbgy.png" alt="">
+
+        <img src="/static/images/hnld.png" alt="">
+        <img src="/static/images/shjt.png" alt="">
+        <img src="/static/images/xnjd.png" alt=""> -->
+  </div>
+
+
+  <div class="index-title">
+    <div class="title">
+      <img style="width: 2.5vw;" src="/static/moodle/img/icon/active.png" alt="">
+      <span>暑校活动</span>
+    </div>
+  </div>
+
+  <div class="index-active">
+
+    {% for active in active_list %}
+
+    <a target="_blank" style="color: black;" href="{{ active.url }}">
+      <div class="active-list">
+        <img
+          src="{% if active.active_img %}{{ active.active_img.url }}{% else %}/static/moodle/img/icon/index-img.png{%endif%}">
+        <div class="active-body">
+          <h3><b>{{ active.title }}</b></h3>
+          <p>{{ active.info }}</p>
+        </div>
+      </div>
+    </a>
+
+    {% endfor %}
+
+
+  </div>
+
+</main>
+
+{% endblock %}
+
+
+
+
+{% block base_script %}
+
+<script>
+
+</script>
+
+{% endblock %}

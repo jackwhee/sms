@@ -1,0 +1,63 @@
+{%extends "moodle/base.html" %}
+
+{% block title %}
+CSO Moodle
+{% endblock %}
+
+
+{% block css/js %}
+
+<link rel="stylesheet" href="/static/moodle/css/style.css">
+<style>
+    /* body{
+        background-image: url('/static/我的课程.jpg');
+        background-size: 100%;
+    } */
+</style>
+
+{% endblock %}
+
+
+
+
+{% block main %}
+
+<main name='course'>
+    <div class="renzheng">
+        <div class="title">
+            <img style="width: 3vw;" src="/static/moodle/img/icon/course.png" alt="">
+            <span style="font-size: 1.7vw;">我的课程</span>
+        </div>
+    </div>
+    <div class="course-list">
+        <ul>
+            {% for course in course_list %}
+                <a class="black-a" href="/v1/moodle/course/{{ course.id }}">
+                    <li>
+                        <img src="{% if course.subject.sub_img %}{{ course.subject.sub_img.url }}{% else %}/static/moodle/img/icon/course-img.png{%endif%}" alt="">
+                        <div class="course-name">
+                            <h3>{{ course.subject.s_name }}</h3>
+                            <h4>{{ course.c_name }}</h4>
+                            <p class="course-info">{{ course.info }}</p>
+                            <p class="professor">教授：{% if course.getProfessor %}{{ course.getProfessor.moodle_user.nick }}{% endif %}</p>
+                        </div>
+                    </li>
+                </a>
+            {% endfor %}
+
+        </ul>
+    </div>
+</main>
+
+{% endblock %}
+
+
+
+
+{% block base_script %}
+
+<script>
+
+</script>
+
+{% endblock %}

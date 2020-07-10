@@ -1,0 +1,74 @@
+{%extends "moodle/base.html" %}
+
+{% block title %}
+CSO Moodle
+{% endblock %}
+
+
+{% block css/js %}
+
+
+
+<link rel="stylesheet" href="/static/moodle/css/style.css">
+
+{% endblock %}
+
+
+
+
+{% block main %}
+
+<main name='score'>
+    <div class="renzheng">
+        <div class="title">
+            <img src="/static/moodle/img/icon/renzheng.png" alt="">
+            <span>Total score</span>
+        </div>
+
+        <div class="grade-search">
+            <div class="title">
+                <div class="shu"></div>
+                <span>Student achievement</span>
+            </div>
+
+            <div class="grade-list">
+                <ul>
+                    {% for item in course_list %}
+                        <li>
+                            <img src="{% if item.subject.sub_img %}{{ item.subject.sub_img.url }}{% else %}/static/moodle/img/icon/img.png{%endif%}" alt="">
+                            <div class="course-name">
+                                <h3>{{ item.subject.s_name }}</h3>
+                                <h4>{{ item.c_name }}</h4>
+                            </div>
+                            <div class="course-grade">
+                                <a href="{% url 'score' item.id %}">Check</a>
+                            </div>
+                        </li>
+                    {% endfor %}
+
+
+                </ul>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+</main>
+
+{% endblock %}
+
+
+
+
+{% block base_script %}
+
+<script>
+
+</script>
+
+{% endblock %}

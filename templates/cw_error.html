@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>&#60;CSO&#62;错误</title>
+    <link rel="stylesheet" href="/static/css/css_initialize.css">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <style>
+        #error {
+            color: #d81e05;
+            font-size: 5vw;
+            line-height: 5vw;
+            position: absolute;
+            left: 34vw;
+            top: 9vw;
+            text-align: center;
+            width: 30vw;
+        }
+
+        #slug {
+            color: #d81e05;
+            width: 30vw;
+            line-height: 5vw;
+            position: absolute;
+            left: 34vw;
+            top: 12vw;
+            text-align: center;
+        }
+
+        #button {
+            text-align: center;
+            cursor: pointer;
+            border: 0;
+            border-radius: 0.5vw;
+            color: white;
+            font-size: 1vw;
+            background: #2781d7;
+            position: absolute;
+            top: 22vw;
+            left: 41vw;
+            border: 0.2vw solid #2781d7;
+            line-height: 2.4vw;
+            width: 15vw;
+            outline: none;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        #button:hover {
+            line-height: 2.4vw;
+            background: white;
+            color: #2781d7;
+            border: 0.2vw solid #2781d7;
+        }
+
+
+
+    </style>
+</head>
+
+<body style="display: none">
+    <h1 id="error">ERROR</h1>
+    <p id="slug">密码错误或登录超时,请重新登录</p>
+    <a id="button" href="cw_login">重新登陆</a>
+</body>
+
+
+<script>
+    $(function () {
+        $('body').fadeIn(500); 
+
+
+    })
+</script>
+
+
+</html>
